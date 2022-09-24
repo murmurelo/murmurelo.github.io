@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Archives | Hexo</title>
+        <title>Ubuntu | Hexo</title>
         <meta name="author" content="John Doe">
         <meta name="description" content="">
         <meta name="keywords" content="">
@@ -78,75 +78,37 @@
                     </div>
                     <div id="main">
                         
-<div id="archives">
-    
-    <div class="timeline">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2022/9/24</div>
-            <a href="/2022/09/24/Github/">
-                <h3>Github</h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
-        </div>
+<div class="article">
+    <div>
+        <h1>Ubuntu </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/9/24
+        </span>
+        
+        
+    </div>
+    <div class="content" v-pre>
+        <h1 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h1><h3 id="编辑文本"><a href="#编辑文本" class="headerlink" title="编辑文本"></a>编辑文本</h3><p>‘sudo gedit’  </p>
+<h3 id="更改apt源"><a href="#更改apt源" class="headerlink" title="更改apt源"></a>更改apt源</h3><p>‘sudo gedit &#x2F;etc&#x2F;apt&#x2F;sources.list’</p>
+<h3 id="查看cuda版本"><a href="#查看cuda版本" class="headerlink" title="查看cuda版本"></a>查看cuda版本</h3><p>‘cat &#x2F;usr&#x2F;local&#x2F;cuda&#x2F;version.txt’<br>‘nvidia-smi’</p>
+<h3 id="查看cudnn版本"><a href="#查看cudnn版本" class="headerlink" title="查看cudnn版本"></a>查看cudnn版本</h3><p>‘nvcc -V’</p>
+<h3 id="安装显卡驱动cuda"><a href="#安装显卡驱动cuda" class="headerlink" title="安装显卡驱动cuda"></a>安装显卡驱动cuda</h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/108930996">article</a></p>
+<h3 id="查看文件夹下文件"><a href="#查看文件夹下文件" class="headerlink" title="查看文件夹下文件"></a>查看文件夹下文件</h3><p>‘ls’<br>绿色表示可执行文件 ‘sudo .&#x2F;可执行文件’</p>
+<h3 id="解压gz文件"><a href="#解压gz文件" class="headerlink" title="解压gz文件"></a>解压gz文件</h3><p>‘grid -d FileName.gz’<br>‘gunzip FileName.gz’</p>
+<h3 id="更新软件包"><a href="#更新软件包" class="headerlink" title="更新软件包"></a>更新软件包</h3><p>‘sudo apt-get update’</p>
+<h3 id="安装ssh"><a href="#安装ssh" class="headerlink" title="安装ssh"></a>安装ssh</h3><p>‘sudo apt-get install ssh’</p>
+<h3 id="更新全局变量"><a href="#更新全局变量" class="headerlink" title="更新全局变量"></a>更新全局变量</h3><p>‘source ~&#x2F;.bashrc’</p>
+
     </div>
     
-    <div class="timeline">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2022/9/24</div>
-            <a href="/2022/09/24/ROS/">
-                <h3>ROS</h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
-        </div>
-    </div>
-    
-    <div class="timeline">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2022/9/24</div>
-            <a href="/2022/09/24/Ubuntu/">
-                <h3>Ubuntu</h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
-        </div>
-    </div>
-    
-    <div class="timeline">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2022/9/24</div>
-            <a href="/2022/09/24/VMware/">
-                <h3>VMware</h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
-        </div>
-    </div>
-    
-    <div class="timeline">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2022/8/31</div>
-            <a href="/2022/08/31/hello-world/">
-                <h3>Hello World</h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container">
         </div>
     </div>
     
@@ -178,6 +140,26 @@
         <script src="/js/particlex.js"></script>
         <script src="/js/showimg.js"></script>
         
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+<script>
+    var clientID = "", clientSecret = "";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "",
+        owner: "",
+        admin: [""],
+        language: "zh-CN",
+        id: location.pathname,
+        distractionFreeMode: false,
+        
+        proxy: "https://fy135.herokuapp.com/https://github.com/login/oauth/access_token"
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
 
     </body>
 </html>
