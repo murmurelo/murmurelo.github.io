@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Test_my_site | Hexo</title>
+        <title>Archives | Hexo</title>
         <meta name="author" content="John Doe">
         <meta name="description" content="">
         <meta name="keywords" content="">
@@ -78,27 +78,33 @@
                     </div>
                     <div id="main">
                         
-<div class="article">
-    <div>
-        <h1>Test_my_site </h1>
-    </div>
-    <div class="info">
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/8/31
-        </span>
-        
-        
-    </div>
-    <div class="content" v-pre>
-        
+<div id="archives">
+    
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2022/9/24</div>
+            <a href="/2022/09/24/Github/">
+                <h3>Github</h3>
+            </a>
+            <div class="info">
+                
+                
+            </div>
+        </div>
     </div>
     
-    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
-    <div id="comment">
-        <div id="gitalk-container">
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2022/8/31</div>
+            <a href="/2022/08/31/hello-world/">
+                <h3>Hello World</h3>
+            </a>
+            <div class="info">
+                
+                
+            </div>
         </div>
     </div>
     
@@ -130,26 +136,6 @@
         <script src="/js/particlex.js"></script>
         <script src="/js/showimg.js"></script>
         
-<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
-<script>
-    var clientID = "", clientSecret = "";
-    
-    const gitalk = new Gitalk({
-        clientID: clientID,
-        clientSecret: clientSecret,
-        repo: "",
-        owner: "",
-        admin: [""],
-        language: "zh-CN",
-        id: location.pathname,
-        distractionFreeMode: false,
-        
-        proxy: "https://fy135.herokuapp.com/https://github.com/login/oauth/access_token"
-        
-    })
-    gitalk.render("gitalk-container")
-</script>
-
 
     </body>
 </html>

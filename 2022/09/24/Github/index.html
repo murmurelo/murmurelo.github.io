@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Archives | Hexo</title>
+        <title>Github | Hexo</title>
         <meta name="author" content="John Doe">
         <meta name="description" content="">
         <meta name="keywords" content="">
@@ -78,33 +78,87 @@
                     </div>
                     <div id="main">
                         
-<div id="archives">
-    
-    <div class="timeline">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2022/9/24</div>
-            <a href="/2022/09/24/Github/">
-                <h3>Github</h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
-        </div>
+<div class="article">
+    <div>
+        <h1>Github </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/9/24
+        </span>
+        
+        
+    </div>
+    <div class="content" v-pre>
+        <h1 id="Github-Hexo创建个人博客"><a href="#Github-Hexo创建个人博客" class="headerlink" title="Github+Hexo创建个人博客"></a>Github+Hexo创建个人博客</h1><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="git-part"><a href="#git-part" class="headerlink" title="git part"></a>git part</h3><p>1）安装git <a target="_blank" rel="noopener" href="https://git-scm.com/download/win">下载地址</a></p>
+<p>2）打开git bash，设置配置信息</p>
+<pre><code>git config --global user.name &quot;github用户名&quot;
+git config --global user.email &quot;github注册邮箱&quot;
+</code></pre>
+<p>3)设置密匙，省去每次输入密码的步骤<br>a.git生成密匙（私钥），复制生成的id_rsa.pub内容   </p>
+<pre><code>ssh-keygen -t rsa -C &quot;github注册邮箱&quot;
+</code></pre>
+<p>b.设置github密匙（公钥）<br>打开<a target="_blank" rel="noopener" href="https://github.com/settings/keys">github_settings_keys</a>，输入id_rsa.pub内容<br>c.验证公钥设置是否成功</p>
+<pre><code>ssh git@github.com
+</code></pre>
+<h3 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h3><p>1)安装Node.js  <a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">下载地址</a></p>
+<p>2)检测安装是否成功</p>
+<pre><code>node -v
+npm -v
+</code></pre>
+<h3 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h3><p>1)创建blog文件夹</p>
+<p>2)安装Hexo</p>
+<pre><code>npm install -g hexo-cli
+</code></pre>
+<p>3)初始化博客，即在文件夹下创建博客</p>
+<pre><code>hexo init blog
+</code></pre>
+<p>4)进入博客，快乐玩耍</p>
+<pre><code>#创建博客
+hexo new md
+#生成网页
+hexo g
+#启动服务预览，即可在本地预览网页
+hexo s
+</code></pre>
+<p>5)打开浏览器地址localhost:4000，即可进入网站进行预览</p>
+<p>6)推送网站<br>a.关联Hexo与Github，修改站点配置文件</p>
+<pre><code>deploy:
+    type: git
+    repo: 仓库地址
+    branch: master
+</code></pre>
+<p>即配置网站部署地址   </p>
+<p>b.安装hexo-git部署插件</p>
+<p>c.输入指令</p>
+<pre><code>#清除缓存
+hexo clean
+#生成网页
+hexo g
+hexo d
+</code></pre>
+<p>7)常用的Hexo命令</p>
+<pre><code>npm install hexo -g
+npm update hexo -g
+hexo init
+hexo n
+hexo g
+hexo s
+hexo d
+#用于网页不正常时
+hexo clean
+</code></pre>
+<p>8)更换主题<br>~</p>
+<h2 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h2><p>~</p>
+
     </div>
     
-    <div class="timeline">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2022/8/31</div>
-            <a href="/2022/08/31/hello-world/">
-                <h3>Hello World</h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container">
         </div>
     </div>
     
@@ -136,6 +190,26 @@
         <script src="/js/particlex.js"></script>
         <script src="/js/showimg.js"></script>
         
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+<script>
+    var clientID = "", clientSecret = "";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "",
+        owner: "",
+        admin: [""],
+        language: "zh-CN",
+        id: location.pathname,
+        distractionFreeMode: false,
+        
+        proxy: "https://fy135.herokuapp.com/https://github.com/login/oauth/access_token"
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
 
     </body>
 </html>
