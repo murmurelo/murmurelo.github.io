@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Github | Hexo</title>
+        <title>EEG-Inception | Hexo</title>
         <meta name="author" content="John Doe">
         <meta name="description" content="">
         <meta name="keywords" content="">
@@ -80,82 +80,27 @@
                         
 <div class="article">
     <div>
-        <h1>Github </h1>
+        <h1>EEG-Inception </h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2022/9/24
+            2022/9/5
         </span>
         
         
     </div>
     <div class="content" v-pre>
-        <h1 id="Github-Hexo创建个人博客"><a href="#Github-Hexo创建个人博客" class="headerlink" title="Github+Hexo创建个人博客"></a>Github+Hexo创建个人博客</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26625249">参考文章</a>  </p>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="git-part"><a href="#git-part" class="headerlink" title="git part"></a>git part</h3><p>1）安装git <a target="_blank" rel="noopener" href="https://git-scm.com/download/win">下载地址</a></p>
-<p>2）打开git bash，设置配置信息</p>
-<pre><code>git config --global user.name &quot;github用户名&quot;
-git config --global user.email &quot;github注册邮箱&quot;
-</code></pre>
-<p>3)设置密匙，省去每次输入密码的步骤<br>a.git生成密匙（私钥），复制生成的id_rsa.pub内容   </p>
-<pre><code>ssh-keygen -t rsa -C &quot;github注册邮箱&quot;
-</code></pre>
-<p>b.设置github密匙（公钥）<br>打开<a target="_blank" rel="noopener" href="https://github.com/settings/keys">github_settings_keys</a>，输入id_rsa.pub内容   </p>
-<p>c.验证公钥设置是否成功</p>
-<pre><code>ssh git@github.com
-</code></pre>
-<h3 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h3><p>1)安装Node.js  <a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">下载地址</a></p>
-<p>2)检测安装是否成功</p>
-<pre><code>node -v
-npm -v
-</code></pre>
-<h3 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h3><p>1)创建blog文件夹</p>
-<p>2)安装Hexo</p>
-<pre><code>npm install -g hexo-cli
-</code></pre>
-<p>3)初始化博客，即在文件夹下创建博客</p>
-<pre><code>hexo init blog
-</code></pre>
-<p>4)进入博客，快乐玩耍</p>
-<pre><code>#创建博客
-hexo new md
-#生成网页
-hexo g
-#启动服务预览，即可在本地预览网页
-hexo s
-</code></pre>
-<p>5)打开浏览器地址localhost:4000，即可进入网站进行预览</p>
-<p>6)推送网站<br>a.关联Hexo与Github，修改站点配置文件</p>
-<pre><code>deploy:
-    type: git
-    repo: 仓库地址
-    branch: master
-</code></pre>
-<p>即配置网站部署地址   </p>
-<p>b.安装hexo-git部署插件</p>
-<p>c.输入指令</p>
-<pre><code>#清除缓存
-hexo clean
-#生成网页
-hexo g
-hexo d
-</code></pre>
-<p>7)常用的Hexo命令</p>
-<pre><code>npm install hexo -g
-npm update hexo -g
-hexo init
-hexo n
-hexo g
-hexo s
-hexo d
-#用于网页不正常时
-hexo clean
-</code></pre>
-<p>8)更换主题<br>~</p>
-<h2 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h2><p>~</p>
+        <!-- wp:paragraph -->
 
+<p>一种新的卷积神经网络<br>首个集成了Inception模块的用于ERP检测的模型<br>ERP通常被认为在delta (0-4 Hz) 和theta (4-7 Hz) 波段具有大部分的能量， 大多数的ERP检测算法都没有考虑到EEG的高频段 ， ERP检测算法应当能够处理在不同的时间尺度上EEG模式 ，目前的用于ERP检测的CNN网络中的每层，仅使用一个固定大小的卷积，这就限制了网络学习不同尺度时间特征的能力。<br>采样率256 Hz，导联数8<br>在信号预处理中，首先降采样到128 Hz；采用<strong>通带为0.5-45 Hz的带通滤波器</strong>；<strong>进行重参考，使用共平均参考</strong>；  <strong>对数据进行切分，从刺激开始时刻到之后的1000 ms为止 .</strong><br>EEG-Inception网络结构上包含了2个Inception模块后接了两个卷积层，最后全连接层进行分类<br> 第一个Inception模块对信号进行三种时间维度的特征提取,对应每个卷积分别对应了500m、250ms和125ms的时间窗。  紧接着D1、D2和D3卷积层为导联维度的深度卷积。 之后将不同卷积的输出拼接，进行平均池化降低维度<br>第二个Inception模块三个卷积分支同样对应500m、250ms和125ms的时间窗 ，该模块在更高的特征抽象层次提取所有导联的时序特征。之后将不同卷积的输出拼接，进行平均池化降低维度<br>最后的两个卷积层用于提取特征中对于分类有用的模式，同时使用平均池化降低特征维度，最后全连接+softmax进行分类输出。<br> 网络的超参数在验证集上通过网格搜索获得。方法性能评估的测量采用跨被试训练+fine-tuning的模式<br>**对于矩阵拼写器，经过一轮行列的闪烁才能确定被试想要拼写的字符。因此，上表中的指令解码精度为不同fine-tuning数据量（N）情况下，使用No. Sequences轮的数据，实现的拼写字符判断正确率。 **  </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
     </div>
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">

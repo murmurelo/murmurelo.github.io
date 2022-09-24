@@ -1,0 +1,1286 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>Hexo</title>
+        <meta name="author" content="John Doe">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <link rel="icon" href="https://picx.zhimg.com/80/v2-c6f978bef2a9792fbf4c0a9002a2a7d4_720w.jpg?source=1940ef5c">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.1.1/js/all.min.js"></script>
+        
+        <link rel="stylesheet" href="/css/test/fonts.min.css">
+        <link rel="stylesheet" href="/css/test/particlex.css">
+        
+        <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
+    <meta name="generator" content="Hexo 6.2.0"></head>
+    <body>
+        <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">Hexo</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;Hexo</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        <div id="home-head">
+    <div id="home-background" style="background-image: url(https://images5.alphacoders.com/722/722798.jpg)"></div>
+    
+    <div id="home-info" class="home-info" @click="home_click">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>Hexo</h1>
+                <h3></h3>
+                <h5></h5>
+            </div>
+        </span>
+    </div>
+    
+</div>
+
+<div id="home-posts-wrap" class="">
+    <div id="home-posts">
+        <div id="posts">
+            
+
+<div class="post">
+    <a href="/2022/08/31/hello-world/">
+        <h2 class="post-title">Hello World</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/8/31
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
+</code></pre>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
+</code></pre>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
+</code></pre>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
+</code></pre>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2022/08/31/hello-world/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2022/08/31/LeNet/">
+        <h2 class="post-title">LeNet---手写数字识别</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/8/31
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2022/08/31/LeNet/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2022/08/29/EEGNet/">
+        <h2 class="post-title">EEGNet</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/8/29
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <!-- wp:paragraph -->
+
+<p>摘要：卷积神经网络已被用于cv和nlp中进行自动特征提取和分类，我们设计了一个单一的CNN架构来准确地分类来自不同BCI范式的脑电图信号，即EEGNet。我们的结果表明：EEGNet足够鲁棒，可以在一系列BCI任务中学习各种各样的可解释特征，并且取得了相当高的性能。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+
+<h3 id="引言："><a href="#引言：" class="headerlink" title="引言："></a>引言：</h3><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>一般来说，BCI主要包括五个主要处理阶段：<br>1）数据收集阶段<br>2）信号处理阶段<br>3）特征提取阶段<br>4）分类阶段<br>5）反馈阶段</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>虽然在BCI范式中这些阶段都基本相同，但每个范式都依赖于信号处理、特征提取和分类方法的手动规范，而这一过程通常需要重要的专业知识和对预期脑电图信号的先验知识。<strong>还有一种情况，由于脑电图信号预处理步骤通常针对感兴趣的脑电图特征（例如，针对特定频率范围的带通滤波），其他潜在相关的脑电图特征可能被排除在分析之外（例如：带同频率范围以外的特征）</strong><br>随着BCI技术发展到新的应用领域，对鲁棒的特征提取技术需求只会继续增加。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>深度学习在很大程度上减轻了人工提取特征的需要，在计算机视觉和语音识别等领域实现了最先进的性能，深度卷积网路的使用越来越多，部分原因是它们在许多具有挑战性的图像分类问题上超过了依赖手工制作的特征的方法。<br>虽然大多数BCI系统仍然依赖于使用手工制作的特征，但最近已有许多研究探索了深度学习在脑电图信号中的应用。<br>例如—<br>这些研究主要集中在单个BCI任务的分类上，通常使用特定于任务的知识来设计网络架构。此外，用于训练这些网络的<strong>数据量在不同研究中的差距很大</strong>，部分原因是在不同的实验设计下收集数据的难度很大，因此，目前尚不清楚这些先前的深度学习方法如何推广到其他BCI任务以及不同训练数据大小。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>在EEGNet中，我们引入了深度卷积和可分离卷积的使用，封装了几个著名的脑电图特征提取概念，如<strong>最佳空间滤波和滤波器组构建</strong>，同时与现有方法相比，减少了可训练参数的数量。我们评估了EEGNet在从四种不同的BCI范式收集的脑电图数据集上的泛化性：P300,ERN,MRCP,SMR。代表了基于时间相关电位和振荡成分分类的范式。此外，每个数据集包含的数据数量不同，允许我们探索EEGNet对不同训练数据大小的有效性。<br>结果表明：当训练数据有限时，EEGNet在几乎所有测试范式中都比现有 范式不可知的EEG-CNN模型 具有更好的分类性能。此外，我们还证明了EEGNet有效地推广了所有的测试范例，而且EEGNet表现得与更具范式特异性的EEG-Net模型一样好但需要拟合的参数少了两个数量级，表示模型更加有效地使用了参数。。<br>最后，通过使用特征可视化和模型消融分析，我们表明可以<strong>从EEGNet模型中提取神经生理学可解释的特征</strong>。这一点很重要，因为尽管CNN具有强大的自动特征提取的功能，但它们经常产生难以解释的特征。对于神经科学的从业者来说，根据预期的应用，<strong>获得对CNN衍生的神经生理现象的见解</strong>的能力可能与获得良好的分类性能一样重要。我们验证了我们的架构在几个充分研究的BCI范式上 提取神经生理学可解释信号的能力 。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+
+<h3 id="材料和方法"><a href="#材料和方法" class="headerlink" title="材料和方法"></a>材料和方法</h3><!-- /wp:heading -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>根据感兴趣的脑电特征，BCI一般分为两种类型：事件相关和振荡。<br>事件相关电位旨在检测<strong>已知的 、时间锁定的外部刺激的高振幅和低频率脑电图反应</strong> 。它们通常在不同的被试之间都是鲁棒的，并且包含了<strong>良好的定型波形，</strong>使ERP的时间过程能够通过机器学习有效地建模。基于ERP的bci主要依赖于从外部事件或刺激中检测ERP波形。<br>振荡型BCI— </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>P300:  </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>ERN:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>MRCP:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>SMR:–</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="分类方法"><a href="#分类方法" class="headerlink" title="分类方法"></a>分类方法</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>EEGNet：<br>1）可以应用于几种不同的BCI范例<br>2）可以使用非常有限的数据进行训练<br>3）可以产生神经生理学上可解释的特征</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>EEGNet模型：<br>1）采样频率为128Hz，通道数为C，时间样本为T<br>2）Adam优化器，<strong>默认参数</strong>，交叉熵损失函数<br>3）500 epoches<br>4）NVIDIA Quadro M60000 GPU，CUDA 9，cuDNN v7，Tensorflow<br>5）卷积层省略偏置单元(虽然所有卷积都是一维的，但我们使用了二维卷积函数</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>block 1:<br>1)时间滤波器：二维卷积滤波器(1,64)，滤波器长度为数据采样率(128Hz)的一半，输出包含了不同带通频率脑电图信号的F1特征图。<strong>将时间核的长度设置为采样率的一半，允许捕获2hz及以上的频率信息。 **<br>2)空间滤波器：大小为(C,1)的深度卷积，深度卷积的主要好处是减少了可训练参数的拟合数量，</strong>因为这些卷积并没有完全连接到所有以前的特征映射<strong>。<br>重要的是，当用于脑电图特定的应用时，</strong>该操作提供一种直接的方法来学习每个时间滤波器的空间滤波器，从而能够有效地提取特定频率的空间滤波器。深度参数D控制每个特征映射要学习的空间滤波器的数量<strong>。<br>这种两步卷积序列的灵感部分来自于滤波器组公共空间模式(FBCSP)算法，并且在本质上类似于另一种分解技术–双线性判别分量分析。<br>3）我们保持两个卷积都是线性的，因为我们发现在使用非线性激活时没有显著的性能提高。在应用ELU之前，我们</strong>沿着特征图维度<strong>应用批量归一化。为了</strong>帮助正则化或建模<strong>，我们使用dropout技术，我们设置了被试内分类的dropout概率为0.5，以帮助防止在小样本中训练时过拟合，设置跨被试分类的dropout概率为0.25，因为训练集规模大得多。<br>4）我们应用一个平均大小为(1,4)的池化层来</strong>将信号的采样率降低到32Hz<strong>。<br>5）</strong>我们还通过对权重使用最大范数约束1来正则化每个空间滤波器**。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>block2:<br>1)可分离卷积：大小为(1,16)的深度卷积+(1,1)点卷积，可分离卷积的主要好处是a.减少拟合参数的数量 b.通过首先学习一个核，分别总结每个特征映射，然后最优地合并输出，解耦合特征映射内部和跨特征映射的关系。<br>当用于EEG特定的应用时，该操作将学习如何及时总结单个特征映射（深度卷积）与如何最佳地组合特征映射（点卷积）分离开来。这种操作对于脑电图信号也特别有用，因为不同的特征图可能代表不同时间尺度的信息数据。 在我们的例子中，我们首先学习每个特征图的500ms，然后合并输出。<br>2)池化层：平均大小为(1,8)的池化层用于降维</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>分类block:<br>N个单元的softmax分类，我们省略了使用稠密层进行特征聚合，以减少模型中的自由参数</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="与现存CNN方法的比较"><a href="#与现存CNN方法的比较" class="headerlink" title="与现存CNN方法的比较"></a>与现存CNN方法的比较</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>我们比较了EEGNet与DeepConvNet和ShallowConvNet的性能。由于它们的架构最初是为250Hz的EEG信号设计的（与这里使用的128Hz信号相反），我们将它们架构中的<strong>时间核和池化层</strong>的长度分为2个，以<strong>大致对应于我们模型中使用的采样率</strong>。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>DeepConvNet体系结构由五个卷积层组成，其中一个softmax层用于分类</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>ShallowConvNet架构由两个卷积层组成。<br>我们想强调的是，ShallowConvNet架构是**专门为振荡信号分类设计的(通过提取与log-功率相关的特征)**，因此，它可能不能很好地工作在基于ERP的分类任务上。然而，DeepConvNet架构被设计为通用架构，不局限于特定的功能类型，因此，它可以作为EEGNet的一个更有效的比较。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>结论：在所有数据集上，EEGNet模型的每个模型都比DeepConvNet和ShallowConvNet要小两个数量级，**另外， 我们为SMR数据集使用32个样本的时间核长度，因为数据是4hz的高通滤波数据。 **</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="与传统方法比较："><a href="#与传统方法比较：" class="headerlink" title="与传统方法比较："></a>与传统方法比较：</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>我们还将EEGNet的性能与表现最好的传统方法对每个范例的性能进行了比较。对于所有的基于ERP的数据分析(P300,ERN,MRCP)，传统方法是赢得Kaggle BCI竞赛的方法，<strong>使用xDAWN空间滤波、黎曼几何、选择通道子集和L1特征正则化的组合</strong>。对于基于振荡的SMR分类，传统的方法是我们自己实现OVR滤波器组共空间模式(FBCSP)算法。为了便于实现，我们选择使用弹性网络逻辑回归，而且事实上它已经在FBCSP的现有软件实现中使用。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="数据分析："><a href="#数据分析：" class="headerlink" title="数据分析："></a>数据分析：</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>分类结果报告了两组分析：被试内和被试间。<br>被试内分类使用被试数据的一部分来训练专门针对该被试的模型，而跨被试分类使用来自其他被试的数据来训练被试不可知的模型。<br>虽然在各种任务上，被试内部模型往往比跨被试模型表现得更好，但正在进行的研究调查技术可以最小化（或可能消除）训练鲁棒系统所需的被试特定的信息</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>对于被试内：我们使用四折交叉验证。我们使用重复测量方差分析(ANOVA)进行统计测试<br>对于P300和MRCP中的跨被试分析，我们随机选择四个被试作为验证集，一个被试作为测试集，其余的被试作为训练集。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>当训练被试内和跨被试模型时，我们在数据不平衡时（每个类的试次数不均等）对损失函数应用类别权重。我们应用的类别权重是训练数据中比例的倒数。例如，在P300数据集中，非目标和目标之间的几率为5.6:1。这个过程只应用于P300和ERN数据集，因为这是唯一存在显著类别不平衡的数据集。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="EEGNet特征解释"><a href="#EEGNet特征解释" class="headerlink" title="EEGNet特征解释"></a>EEGNet特征解释</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>在过去的几年里，从深度神经网络实现特征解释的方法的发展已经成为一个活跃的研究领域，并已被提出作为一个鲁棒的模型验证程序的重要组成部分，确保分类性能是由相关特征驱动的，而不是数据中的噪声或者伪影。我们提出了三种不同的方法来理解<strong>EEGNet派生的特性：</strong><br>1）<strong>汇总隐藏单元激活的平均输出。这可以定位某个频段的空间位置</strong><br>2）可视化卷积核权重 ：因为EEGNet限制了卷积层的连通性(使用深度卷积和可分离卷积)，所以可以将时间卷积解释为窄带频率滤波器，将深度卷积解释为特定频率的空间滤波器。<br>3）计算单试次特征对分类决策的相关性：相关性的正值表示支持结果的证据，而相关性的负值表示反对结果的证据。 **这种分析可以用来阐明高置信度和低置信度预测的特征相关性，并可以用来确认学习到的相关特征是可解释的，而不是噪声或伪特征。 **</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2022/08/29/EEGNet/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2022/08/28/SSVEP/">
+        <h2 class="post-title">SSVEP综述</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/8/28
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <!-- wp:paragraph -->
+
+<p>摘要：SSVEP因具有训练时间少、使用简单以及学习传输率高的特点而受到广泛关注，然而目前BCI的性能水平限制了它的实际应用。针对这些问题，本文从<strong>视觉刺激的调制方式</strong>和模式分类算法入手，对SSVEP-BCI进行了深入的研究，以期提高这类BCI的性能，进而推进其实用化进程</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a><strong>引言</strong></h2><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>数以百万计的人们患有严重的神经肌肉紊乱性疾病，这些病人中的大多数不能通过常规大脑输出通路（外周神经和肌肉）与外界交流，在这些疾病无法康复的情形下，目前主要有三种途径来实现这些病人与外界交流。<br>1）用功能仅存的神经或肌肉取代受损的神经和肌肉<br>2）借助受损部位残存的神经或肌肉活动来完成功能的恢复<br>3）为大脑提供一个全新的不依赖于外周神经和肌肉的交流通道，即脑机接口，用于将用户的意图或命令传递给外部世界</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>BCI系统通过测量携带了用户意愿的大脑信号的特征并将其转化为相应的设备控制信号，从而实现基于计算机的交流或对外部设备的控制。BCI并不能读脑，而是将中枢神经系统反射活动的电生理信号转化为信息和命令并作用于外部世界</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>成功的BCI操作依赖于两个<strong>自适应控制器</strong>的交互。一个为<strong>利用特定大脑信号编码意愿的用户</strong>，另一个为转化大脑信号为输出从而实现用户意愿的BCI。BCI旨在替代常规神经肌肉的输出通道，因此它在功能上是一个<strong>自适应的闭环控制系统</strong>。BCI必须向用户提供实时的反馈，而用户则可以通过调节大脑信号以获得预期的输出。值得注意的是，只是简单记录和分析而不能将分析结果以实时交互的方式提供给用户的系统并不是BCI。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>BCI系统主要由三大部分组成：<br>1）信号采集，即采集大脑信号<br>2）信号处理，即从采集到的大脑信号中提取出能够反映用户意愿的特征，对提取到的特征进行分类并转化为控制命令<br>3）设备控制，即根据控制了执行对外部设备的操作以实现用户的意愿</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="信号采集"><a href="#信号采集" class="headerlink" title="信号采集"></a><strong>信号采集</strong></h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>监测大脑活动的方法有多种，原则上均可为BCI系统提供输入信号。近年来基于EEG的BCI蓬勃发展。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="信号处理"><a href="#信号处理" class="headerlink" title="信号处理"></a>信号处理</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>脑信号中通常包含有多种噪声和伪迹（例如：与用户意愿产生的闹模式无关的信号、由硬件引入的信号、眼电&#x2F;肌电伪迹等），这在一定程度上降低了信号的质量。预处理方法（例如时域滤波和空域滤波）能够很大程度上减少信号的噪声和伪迹，从而提高信噪比和<strong>空间分辨率。</strong><br>信号特征可以通过时频、频域或时频域的方法进行提取。目前BCI系统中应用较广的特征包括<strong>事件相关电位的幅度或潜伏期、频谱能量、各神经元发放率</strong>。<br>最后，将提取的特征转化为离散或连续的控制信号，进而控制相应的外设。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="设备控制"><a href="#设备控制" class="headerlink" title="设备控制"></a>设备控制</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>例如在计算机屏幕上操作字符输入&#x2F;光标移动、控制机械臂、神经假肢控制瘫痪手臂运动、控制轮椅或其他的辅助装置。用于交流的计算机屏幕是目前应用最广泛的输出设备。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<h2 id="基于脑电信号的脑机接口系统"><a href="#基于脑电信号的脑机接口系统" class="headerlink" title="基于脑电信号的脑机接口系统"></a>基于脑电信号的脑机接口系统</h2><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>不同的实验范式所得到的作为用户医院载体的脑电的模式或成分不同，因此可以根据这些脑电特征对用户意愿进行相应的编码。目前有多种电生理信号已经在基于EEG的BCI系统中被采用。这些信号大致可以分为两类：内源性和外源性。外源性成分主要取决于外部物理刺激（视觉、听觉或触觉）的属性而与认知活动无关，其中较为常见的有视觉诱发电位和听觉诱发电位等，而内源性成分则主要由认知活动所产生而与外部物理刺激无关，常见的有：慢皮层电位、P300等。现有的基于EEG的BCI系统根据所检测的电生理信号不同主要分为以下三类：运动想象脑机接口、P300脑机接口、稳态视觉诱发电位脑机接口。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="运动想象脑机接口"><a href="#运动想象脑机接口" class="headerlink" title="运动想象脑机接口"></a>运动想象脑机接口</h4><!-- /wp:heading -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="P300脑机接口"><a href="#P300脑机接口" class="headerlink" title="P300脑机接口"></a>P300脑机接口</h4><!-- /wp:heading -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="稳态视觉诱发电位脑机接口"><a href="#稳态视觉诱发电位脑机接口" class="headerlink" title="稳态视觉诱发电位脑机接口"></a>稳态视觉诱发电位脑机接口</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>在基于EEG的BCI系统中，SSVEP-BCI因系统简单、较少训练以及高信息传输率得到了广泛研究<br>1）较少或无需训练：在P300-BCI和MI-BCI中，由于不同受试者的状态不同且同一受试者不同时间段的状态也不都是一致的，因此这两类BCI系统在实验前都需要针对个体进行较长时间的训练，并通过训练数据的分析结果提取分类器参数。相比之下，SSVEP-BCI适应性更强且操作起来更简单易行<br>2）高信噪比。SSVEP是初级视觉皮层对视觉刺激的物理反应，其信号主要集中在大脑枕区且信号强度相比于其他脑电信号强。另外，SSVEP具有明显的周期性和节律同化，这一特性大大简化了BCI的信号提取特征算法<br>3）高信息传输率。主要归功于两方面：a.<strong>目标数量的增加通常会降低系统的分类正确率，但在SSVEP-BCI系统中并非如此</strong>  b.SSVEP信号是由外部视觉刺激诱发的。与内源性成分相比，SSVEP信号更为鲁棒且更容易控制</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>为了确保SSVEP-BCI系统获得可靠高效的识别性能，不同刺激序列诱发的SSVEPs应该在某些变换域（例如：频域）上相互正交或近似正交。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<h2 id="稳态视觉诱发电位脑机接口的研究现状"><a href="#稳态视觉诱发电位脑机接口的研究现状" class="headerlink" title="稳态视觉诱发电位脑机接口的研究现状"></a>稳态视觉诱发电位脑机接口的研究现状</h2><!-- /wp:heading -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="稳态视觉诱发电位脑机接口的类型"><a href="#稳态视觉诱发电位脑机接口的类型" class="headerlink" title="稳态视觉诱发电位脑机接口的类型"></a>稳态视觉诱发电位脑机接口的类型</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>在测量大脑活动的系统中，按照有无肌肉活动参与，BCI可分为依赖型BCI和独立型BCI。依赖型BCI系统需要来自大脑正常输出通道的一些活动（例如：肌肉），而独立型BCI不依赖这些输出通道。大多数已有的SSVEP-BCI系统需要控制眼动或头动的肌肉参与，属于依赖型BCI。依赖型SSVEP-BCI具有短的识别时间、高的分类正确率、易于实现多目标且不需要长时间训练等特点。相比之下，由<strong>受试者注意力</strong>控制的SSVEP-BCI被称为独立型BCI。独立型SSVEP-BCI一般可实现的目标数量较少且需要较长训练时间。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="视觉刺激参数的选择"><a href="#视觉刺激参数的选择" class="headerlink" title="视觉刺激参数的选择"></a>视觉刺激参数的选择</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>SSVEP-BCI系统涉及到几个关键参数的选择：视觉刺激器、刺激频率、刺激颜色、电极数量和位置。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>1）视觉刺激器，目前可供选择的视觉刺激器主要有LED、CRT和LCD。<br>LED可以产生任何频率的视觉刺激，具有很高的精度，与计算机显示器相比LED产生的视觉刺激具有更强的亮度且能够诱发出更强的SSVEP响应，但这种方法通常需要额外的硬件装置来实现且涉及到硬件间的通信协议。<br>计算机显示器分为CRT和LCD两种类型，具有较高的通用性且容易整合到基于计算机的系统中。<br>LCD由于自身技术因素，存在一定的响应延迟，可能会对此造成一定影响（即引入低频伪迹成分），随着技术的进步，LCD的响应时间已经下降到了5ms以下，CRT的响应时间在1ms左右，但CRT显示器的市场日趋衰退导致购买面临困难。<br>因此LCD是目前应用较为广泛的视觉刺激器。<br>与LED相比，计算机显示器可以完全通过计算机软件来产生视觉刺激，可实现较为复杂的刺激（大小、形状、颜色等）而且改变刺激的布局或数量都较为方便。<strong>但采用传统分频方法实现所需的刺激时，受显示器固有刷新率而只能产生几种特定频率的视觉刺激</strong>。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>常用于BCI研究的刺激主要有两种类型：一是简单刺激（例如：闪烁LED或计算机显示器上的闪烁方块），二是复杂刺激（例如：反转棋盘格）<br>与简单刺激相比，复杂刺激能够诱发出更为明显的SSVEP，但复杂刺激诱发的高频成分较弱，也就是说复杂刺激的频率范围更窄，同时复杂刺激占用的面积大在一定空间里所能呈现的刺激数量少于呈现简单刺激的数量。<br>在BCI中，一个刺激通常编码一个命令，因此复杂刺激能够编码的命令数量少于简单刺激编码的命令数量</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>2）刺激频率。尽管研究表明1<del>100Hz的视觉刺激都能够诱发SSVEP，但是频率范围主要集中在4</del>50Hz。这些频率可以细分为三个频率段： 低频段（15 Hz以下）、中频段（15~30 Hz）和高频段（30 Hz以上）。最大的SSVEP出现在低频段，SSVEP在高频段表现出最小的响应。虽然低频段的频率能够诱发出较强的SSVEP，但也存在容易引起眼睛疲劳、诱发光敏感癫痫发作的风险和<strong>涵盖自发脑电</strong>。尤其alpha频段，容易引起假阳性检测等问题。高频段刺激能够解决上述这些问题，但诱发的SSVEP强度较弱。由于自发脑电在高频段的能量也较少，有研究表明SSVEP虽然在高频段的强度较弱，但其信噪比却不低，可用于实际的SSVEP-BCI。因此，不同频段的频率各有利弊。目前虽然没有统一的标准来指导SSVEP-BCI刺激频率的选择，但有研究从稳定性（即离线计算各刺激频率诱发SSVEP的分类正确率）和信噪比（即刺激频率处SSVEP功率与相邻频率处的平均功率的比值）<strong>两方面</strong>去进行选择或针对具体系统要求选择某一频段内频率或多个频段内频率的结合</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>3）刺激颜色。暂略</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>4）电极位置和数量<br>视觉皮层（尤其是V1区），枕区<br>电极数量越少，系统复杂度越低，但同时可能带来识别上的困难。<br>已有研究表明，多个电极信号能够提高识别正确率，但是并非电极数量越多越好，它会带来计算复杂度的提高从而难以满足实时处理的要求，而且特征空间的维数增加可能带来BCI系统性能的下降。  </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<h2 id="提高信息传输率"><a href="#提高信息传输率" class="headerlink" title="提高信息传输率"></a>提高信息传输率</h2><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>BCI系统性能可通过多种方法来评估，例如分类正确率与信息传输率(ITR，单位时间内传输的信息量bits&#x2F;min)。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":63} -->
+<figure class="wp-block-image">![](image-1024x280.png)</figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+
+<p>ITR的大小受目标数量、分类正确率和输出一个命令所需的时间三方面因素影响。<br>输出一个命令的信息量随着目标数量和分类正确率的提高而增加。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>很少有研究报道BCI系统具有高的ITR，对于完全丧失肌肉控制的病人，BCI可能是唯一可行的选择，但对健康受试者或者部分丧失肌肉控制的病人而言，BCI的通讯速率仍然很低。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":64} -->
+<figure class="wp-block-image">![](image-1.png)</figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+
+<p>提高系统的信息传输率主要从三个方面考虑：<br>1）增加目标的数量<br>2）提高系统的分类正确率<br>3）减少输出一个命令所需的时间</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="增加目标的数量"><a href="#增加目标的数量" class="headerlink" title="增加目标的数量"></a>增加目标的数量</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>频率编码是SSVEP-BCI中最常用的方法。在这类系统中，每个目标按照不同频率闪烁，通过检测记录下好的主要频率成分，进而识别受试者所注视的目标<br>当使用传统分频方法来实现刺激频率时，刺激频率只能选择f&#x3D;R&#x2F;N。另外，<strong>刺激频率的谐波会干扰刺激频率的识别，从而导致系统性能的下降，因此刺激频率的谐波通常被排除在编码目标之外</strong>。并且人体对视觉刺激响应的频段有限（即能够诱发出较好的SSVEP的频率是非常有限的）。在某些问题中，传统单频编码范式无法提供足够多的频率数量来对每一个目标进行编码，因此基于有限的频率数量来编码更多的目标成为缓解这一问题的一个重要方向。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p><strong>具体实现方法</strong>有三种：<br>1）并行刺激方式<br>2）串行刺激方式<br>3）在并行刺激方式基础上引入了空间信息，即频率-空间混合调制<br>此外，相位也是SSVEP的一个基本特征</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="提高系统的分类正确率"><a href="#提高系统的分类正确率" class="headerlink" title="提高系统的分类正确率"></a>提高系统的分类正确率</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>1）提高SSVEP的信噪比<br>2）增加目标间的可区分性</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p><strong>通常可以通过降低噪声水平和增加刺激相关信号水平来提高信噪比。EEG信号含有大量噪声和伪迹。由于编码信息在SSVEP中，与SSVEP不相关的信号通常也被认为是噪声。SSVEP是淹没在脑电中的一种周期信号，多种信号处理方法已被应用于提取SSVEP信号。叠加平均方法通常被用于提高事件相关电位的信噪比。时域滤波同样在提高BCI系统的信噪比方面扮演着重要的作用，可用于消除50 Hz工频干扰和提取有用频带信息。由于空域滤波方法能够利用多个导联的空间分布模式和多导联信号间的互信息，在提高SSVEP信噪比方面有较好的效果。例如， CCA能够最大化SSVEP信号和预先定义的参考信号间的相关系数，进而提高SSVEP的频率识别。独立分量分析（ICA）能够将任务相关的EEG成分与任务不相关的EEG成分和伪迹成分进行分离，从而达到增加EEG信号的信噪比目的。</strong><br><strong>还可以通过实验范式的改进而得到提高，SSVEP的强度主要受注意力影响。</strong><br><strong>分类正确率依赖于各目标的可区分性。机器学习技术已被用于提高BCI系统的目标识别正确率。</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="减少输出一个命令所需的时间"><a href="#减少输出一个命令所需的时间" class="headerlink" title="减少输出一个命令所需的时间"></a>减少输出一个命令所需的时间</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>1）反应时，受试者需要一定时间来准备（思考或寻找下一个目标的位置）和执行相应的活动（即：移动眼球）</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>2）传递时，一旦目光集中于某一特定的目标，视觉信息从眼睛传递至视觉皮层需要一定时间以便SSVEP信号能被检测到</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>3）<strong>设备时</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>4）<strong>样本时</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>5）分类时，对目标进行分类以及产生相应的反馈</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p><strong>改进方法</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<h2 id="稳态视觉诱发电位脑机接口的局限性"><a href="#稳态视觉诱发电位脑机接口的局限性" class="headerlink" title="稳态视觉诱发电位脑机接口的局限性"></a>稳态视觉诱发电位脑机接口的局限性</h2><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>1）人体敏感的SSVEP刺激频率较少，而且传统分频方法限制显示器可实现频率的数量，导致能够实现的刺激数量非常有限，不能满足BCI实际应用的需求</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>2）虽然低频的SSVEP视觉刺激能够诱发较强的SSVEP，但长时间的视觉刺激容易使被试产生疲惫感且增强诱发光敏感癫痫的风险</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>3）BCI系统固有的问题，即SSVEP-BCI的通讯速率仍是限制其广泛应用的主要原因</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<h2 id="信息调制"><a href="#信息调制" class="headerlink" title="信息调制"></a>信息调制</h2><!-- /wp:heading -->
+
+<!-- wp:heading -->
+
+<h2 id="模式识别"><a href="#模式识别" class="headerlink" title="模式识别"></a>模式识别</h2><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2022/08/28/SSVEP/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2022/08/27/BCI/">
+        <h2 class="post-title">基于脑电BCI的研究综述</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/8/27
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <!-- wp:paragraph -->
+
+<p>摘要：从BCI信号角度入手，总结了近年来基于脑电BCI的典型系统、相关分析方法以及研究成果</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>关键词：脑机接口；脑电信号；独立分量分析；小波变换；支持向量机</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="基于脑电BCI的研究方向"><a href="#基于脑电BCI的研究方向" class="headerlink" title="基于脑电BCI的研究方向"></a>基于脑电BCI的研究方向</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>P300：人在接收到新刺激后，大约经过300ms的潜伏期之后。会产上一个正向的波峰，波幅与相关靶刺激出现的概率程反比。典型的P300 BCI系统是由Farewell等人设计的虚拟打字机，准确率能够达到80%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>SSVEP：平均准确率可以达到87.5%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>改变心理作业：当大脑进行不同的任务时，脑电信号在<strong>左右大脑表现差异</strong>，Kerin等人探讨了通过脑电信号区分五种不同心理作业的可能性，并取得了较好的效果。Kerin对脑电信号的处理采用的是<strong>功率谱方法</strong>，其中采用<strong>自相关方法</strong>的分类准确率在80%-90%之间，采用<strong>AR模型</strong>的方法则于模型的阶数有关，大于5阶时正确率也能达到自相关法的水平</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>慢皮层电位(SCP)：略</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>事件相关去同步(ERD)和事件相关同步(ERS)：                                                                                       ERD是指人在进行某一意识活动时大脑皮层存在对应的处于激活状态的区域，而这些区域产生的脑电信号中的的β波和α波的低频部分将出现幅值衰减的现象。 ERS则是指，大脑皮层的部分区域在没有受到刺激的情况下，该区域的脑电信号中的α波和β 波出现幅值增加的情况 。<br>基于ERD&#x2F;ERS的BCI系统目前主要是用于辨别运动想象任务下的脑电信号，通过分析被试不同运动想象模式下ERD&#x2F;ERS脑电能量分布情况来判别被试的想象内容。<br>经典的系统是GRAZ-BCI系统，系统包括GRAZ I和GRAZ II等BCI系统，GRAZ I系统对左右手运动想象的脑电信号的分类识别率可达85%；GRAZ II系统对被试左右手食指和右脚的运动想想脑电信号进行分类，准确率可达75%。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="常见的脑电数据分析方法"><a href="#常见的脑电数据分析方法" class="headerlink" title="常见的脑电数据分析方法"></a>常见的脑电数据分析方法</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>1）功率谱分析法：频域角度<br>传统方法是直接通过傅里叶变换来进行功率谱估计，容易实现但分辨能力有限<br>现代功率谱估计中常用的是AR模型， 只需要短程数据就能够获得高分辨率的谱估计，同时能够方便的转化为特征向量。张毅等人通过8阶AR模型来逼近脑电数据，并将AR模型系数作为脑电信号的特征量来进行特征分类，该方法的正确识别率达到75%<br>能够很好地反映信号的频域过程，但会损失时域信息，同时脑电信号具有高时间分辨率决定了时域信号包含了重要的信息</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>2）小波变换法：时频角度<br>具有多分辨率特性，能够将信号的各个频带分解，进而重构各个频带的信号，小波变换能够在分解与重构信号的过程中，提取出信号的隐藏特征。Wei-Yen Hsu等人进行了用离散小波变换对脑电信号进行特征提取的研究，通过<strong>对脑电信号的离线分析获取离散小波变换所需的参数</strong>，并利用线性判别分类方法进行分类，得到了较高的识别率<br>损失时域信息，很大程度依赖于脑电信号的先验知识，主要表现在直接获取感兴趣信号频段的小波系数作为特征，但很难获得脑电信号的准确先验知识。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>3）<strong>独立分量分析</strong>(ICA)：空域角度  </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>4）支持向量机：分类<br>其原理是<strong>将低维空间不可分的数据映射到高维空间</strong>，并通过计算得到一个最右面，从而使样本线性分开。Shoker等人在研究左右手运动想象脑电信号的μ节律时，通过SVM较好地解决了非线性、维数高、样本小、局部极小点等问题，并获得83.5%以上的分类准确率<br>由于脑电信号的随机、非平稳特性，研究者对信号的分布特性缺少一定的先验知识，导致对SVM最优核函数的选取以及参数的设置均存在不确定性。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>5）人工神经网络：端到端<br>通过模拟大脑神经网络特征而建立的数据处理算法，人工神经网络具有极强的学习能力和适应能力，它能够通过一定的训练和学习获取网络的结构特征，近年来，神经网络方法被广泛用于脑电信号研究中。<br>能够较好地解决非线性问题，然而神经网络中的很多问题尚未从理论上解决，需要在实际使用中凭借先验知识确定，如网络节点数的确定、初始权值的大小、学习速率以及局部最小值、过拟合与欠拟合等问题。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>6）<strong>共同空间模式算法</strong>(CSP)：空域角度</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="前人工作总结与展望"><a href="#前人工作总结与展望" class="headerlink" title="前人工作总结与展望"></a>前人工作总结与展望</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>上述方法除了各自的缺陷外，还有两个共同的不足之处<br>1）** 只针对有限的导联进行分析 **<br>2）将脑电信号·分析看作单纯的信号特征提取和分类问题，没有考虑到脑电信号本身的特性</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>  基于脑电BCI的研究综述    刘斌, 魏梦然, 罗聪    1009-3044(2014)07-1493-03 </p>
+<!-- /wp:paragraph -->
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2022/08/27/BCI/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2022/08/27/BCI_E/">
+        <h2 class="post-title">BCI简述</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/8/27
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <!-- wp:heading {"level":4} -->
+
+<h4 id="BCI定义"><a href="#BCI定义" class="headerlink" title="BCI定义"></a>BCI定义</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>脑机接口(BCI)：将采集到的脑活动信号转换为信息和指令输出，实现大脑对外部设备的直接控制而不经过<strong>人的外周神经系统</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:verse -->
+<pre class="wp-block-verse">理解：  
+外周神经系统：</pre>
+<!-- /wp:verse -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="BCI分类"><a href="#BCI分类" class="headerlink" title="BCI分类"></a>BCI分类</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>按照信号检测技术可以分为侵入式BCI、半侵入式BCI和非侵入式BCI</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>侵入式BCI对大脑内部的神经元进行刺激或记录，侵入式的方法可以实现对单个神经元或神经元集群活动信息的记录，具有极高的<strong>空间和时间的分辨率</strong>，但存在重大风险：（1）穿透血脑屏障可能导致感染 （2）免疫反应组织对电极形成的包围能使信号质量<strong>随时间下降</strong>（3）植入过程中，可能对完好无损的大脑回路产生损害</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>半侵入式BCI对大脑表层或大脑神经进行记录或刺激。例如基于皮质脑电信号(ECoG)的BCI和基于大脑外周神经信号的BCI。虽然现在的非侵入式采集技术能够检测有大量神经元活动引起的血流量变化或磁场波动，但是还远未能实现利用非侵入式采集技术检测<strong>锋电位</strong>这一级的的神经活动。由于这种采集技术的缺乏，因而研究者主要关注EEG、MEG、fMRI和fNIR等非侵入式技术，研究如何利用它们采集到的大规模神经元集群的脑信号来设计BCI</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="BCI组成"><a href="#BCI组成" class="headerlink" title="BCI组成"></a>BCI组成</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>系统的三个主要的组成部分分别是脑信号的采集、脑信号的解码和应用输出</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="脑信号"><a href="#脑信号" class="headerlink" title="脑信号"></a>脑信号</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>脑电信号：大脑活动时的电位变化，利用头皮上放置的电极记录的电位变化称为脑电图(EEG)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>其他信号：皮质脑电图信号(ECoG)，脑磁图(MEG)，功能性磁共振成像(fMRI)和功能性近红外光谱技术(fNIRS)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>衡量不同脑信号的几个维度：<strong>时间分辨率，空间分辨率</strong>，安全性，便携性和价格</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>目前EEG仍然是脑科学研究的有效工具，由于其安全性、时间分辨率、便携性以及成分方面的优势，是目前应用和研究最广泛的一种脑信号</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="BCI应用"><a href="#BCI应用" class="headerlink" title="BCI应用"></a>BCI应用</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>医疗领域：医疗领域的应用到目前为止是脑机接口发展的第一推动力，典型应用是辅助运动与<strong>神经康复</strong>。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>非医疗领域：针对对象是普通人群，目的是通过脑机接口技术提高普通人群的生活质量。基于脑机接口的物联网的研究也逐渐兴起，脑机接口有望代替语音助手称为智能家居的入口。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>娱乐领域：玩家可以通过脑机接口技术来完成游戏的控制指令，提供一种全新的娱乐方式。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>交通领域：检测驾驶者的精神状态和疲劳程度</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>此外：可以作为艺术的载体，为艺术家提供艺术创作的平台</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="脑信号解码"><a href="#脑信号解码" class="headerlink" title="脑信号解码"></a>脑信号解码</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>解码的一般流程：预处理、特征提取和分类</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="信号预处理"><a href="#信号预处理" class="headerlink" title="信号预处理"></a>信号预处理</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>根据频率不同可以将EEG分成不同波。脑电预处理一方面去除所采集到的信号中的诸多伪迹，减弱噪声干扰，提高信噪比。另一方面，针对不同的应用下，所需要关注的脑电信号的频率范围是不同的，因此预处理中往往也会去除任务无关的部分。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>脑电信号预处理的主要包括：滤波、重参考、Data reject、坏导差值、去眼动伪迹等；基于神经网络的方法在脑电预处理方法也崭露头角：（1）基于深度学习的EEG去噪网络EEG-DenoiseNet （2）基于self-supervise的通道插值方法</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="特征提取"><a href="#特征提取" class="headerlink" title="特征提取"></a>特征提取</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>时域方法：主要分析脑电信号波形的几何性质，如振幅、方差、波峰等。时域分析方法具有直观性强、物理意义比较明确、信息失真少等特点。特别是对ERP的分析，通常采用<strong>时域叠加平均</strong>的方法来分析不同时间段的脑电成分</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>频域方法：（1）根据EEG信号的频率特征，通过<strong>频域带通滤波</strong>的方法，可以保留有效信息所在的EEG频段      （2）从频域对脑电信号进行分析，提取其频率特征。因此，通过<strong>功率谱等谱分析方法</strong>，也可以有效地从EEG提取处特征，常用的频域分析方法包括<strong>傅里叶变换、功率谱估计、相干分析等</strong>。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>时频分析方法：EEG信号是一种典型的非平稳随机信号，时频分析可以同时反映EEG在时域和频域同时变化的信息，常用的时频分析方法包括短<strong>时傅里叶变换(SIFT)、小波变换、Wigner-Ville分布、Cohen类、Hilbert变换</strong>等</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>空域方法：不同思维活动会引起大脑不同区域的神经电活动，具有空间特征</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>时空分析方法</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>基于神经网络的特征提取：端到端，从数据输入到分类&#x2F;回归结果输出。通过多层的网络结构提取数据中的特征，避免了手工设计特征的过程，例如EEG-Net</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>分类算法的任务是将表征神经电活动的特征映射为指定的类别，反映大脑当前的活动模式。例如在执行左右手运动想象，通过采集到用户的脑电，对提取的特征分类来判断用户正在想象的是左手还是右手的运动</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>评价分类算法的性能主要有分类正确率、计算速度、泛化性能、模型描述的简洁性和可解释性，分类算法的性能直接决定任务性能的好坏。在离线情况下，分类正确率是最重要的指标，在在线情况下，除了分类正确率，选择推广能力好、计算速度快的分类器是设计BCI系统的关键。目前BCI系统中常用的分类算法可以分为五类，分别是线性分类器（如LDA）、非线性方法（如SVM、<strong>非线性贝叶斯分类器</strong>）、近邻分类器（如1NN、KNN）和组合分类器（集成学习）、神经网络（如CNN、LSTM）。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/342686293">https://zhuanlan.zhihu.com/p/342686293</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2022/08/27/BCI_E/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2022/08/27/SSVEP2/">
+        <h2 class="post-title">SSVEP：稳态视觉诱发电位</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/8/27
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <!-- wp:heading {"level":4} -->
+
+<h4 id="SSVEP介绍"><a href="#SSVEP介绍" class="headerlink" title="SSVEP介绍"></a>SSVEP介绍</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>脑电(EEG)：分为内源性（自发）和外源性（诱发）脑电，诱发性脑电主要包括事件相关电位(ERP)和稳态视觉诱发电位(SSVEP)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"textColor":"very-dark-gray"} -->
+
+<p>诱发电位(EP)：<strong>独特的正向和负向电压偏转模式</strong>，<strong>在时间上锁时于</strong>一个特定的感觉刺激或事件</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>视觉诱发电位(VEP)：突然的视觉刺激诱发的电位，最突出的VEP成分包括<strong>N70和P100</strong>，产生于初级视觉皮层或其附近</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>稳态视觉诱发电位(SSVEP)：由快速重复刺激诱发的电压的稳定振荡，连续的刺激呈现诱发类似的响应，这些响应的重叠产生稳态的振荡</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>SSVEP的特征主要在频域，可以由传统的<strong>平均方法</strong>或频率分析方法来分析。频率分析通常揭示<strong>刺激频率处</strong>的峰值，以及在<strong>高次谐波频率</strong>处的峰值</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="SSVEP范式"><a href="#SSVEP范式" class="headerlink" title="SSVEP范式"></a>SSVEP范式</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>SSVEP范式具有<strong>稳定、指令集丰富、信息传输速率高</strong>等优点</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:verse -->
+<pre class="wp-block-verse">理解:  
+指令集丰富：指令集即不同的频率，故丰富  
+</pre>
+<!-- /wp:verse -->
+
+<!-- wp:paragraph -->
+
+<p>在标准的基于SSVEP的BCI中，用户会看到位于视野中不同地方的并发的重复刺激显示，每个刺激以一个固定的频率呈现，该频率不同于其他刺激的频率。每个刺激都对应着一个特定的脑机接口输出</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>用户一般会通过注释代表 期望的BCI输出 的刺激来做出选择。BCI计算枕区EEG的频谱，频谱通常显示了一个峰值，该峰值匹配用户正在注视的刺激频率，BCI进而产生那个刺激代表的输出</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>在标准的基于SSVEP的BCI范式中，每一个重复的刺激发生在一个特定的频率，这称为频率调制的视觉诱发电位(f-VEP) 的BCI范式</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>此外，还存在时间调制的视觉诱发电位(t-VEP)的BCI范式和编码调制的视觉诱发电位·(c-VEP)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="SSVEP应用"><a href="#SSVEP应用" class="headerlink" title="SSVEP应用"></a>SSVEP应用</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>拼写器：基于SSVEP范式的BCI系统的典型应用。在不同的拼写器范式中基于SSVEP范式的拼写器具有目前最高的<strong>信息传输速率</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:verse -->
+<pre class="wp-block-verse">理解：  
+信息传输速率：从被试开始注视目标到BCI发出相应指令</pre>
+<!-- /wp:verse -->
+
+<!-- wp:paragraph -->
+
+<p>拨号系统：由清华大学高上凯教授的BCI小组设计</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>脑控轮椅：由北航的团队设计</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="SSVEP问题"><a href="#SSVEP问题" class="headerlink" title="SSVEP问题"></a>SSVEP问题</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>基于SSVEP的BCI范式依赖于用户的视线方向，对于眼部肌肉控制方面存在障碍的用户价值可能有限</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/353415868">https://zhuanlan.zhihu.com/p/353415868</a>  </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2022/08/27/SSVEP2/" class="go-post">阅读全文</a>
+</div>
+
+             
+<div class="page-current">
+    <div class="prev">
+        
+        <a href="/">
+            <span class="page-num">
+                <i class="fa-solid fa-caret-left fa-fw"></i>
+            </span>
+        </a>
+        
+    </div>
+    <div class="page-index">
+        
+        <span>
+            
+            
+            <a href="/">
+                <span class="page-num">
+                    1
+                </span>
+            </a>
+        </span>
+        
+        <span class="current">
+            2
+        </span>
+        
+    </div>
+    <div class="next">
+        
+    </div>
+</div>
+        </div>
+    </div>
+    
+    <div id="home-card">
+        <div id="card-div">
+    <div class="card-style" style="width: 300px">
+        <div class="avatar">
+            <img src="https://picx.zhimg.com/80/v2-c6f978bef2a9792fbf4c0a9002a2a7d4_720w.jpg?source=1940ef5c " alt="avatar">
+        </div>
+        <div class="name">
+            John Doe
+        </div>
+        <div class="descriptions">
+            
+            <div class="description">
+                balabala...
+            </div>
+            
+        </div>
+        <div class="icon-links">
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://github.com/murmurelo/">
+                    <i class="fa-brands fa-github fa-fw"></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="http://39.108.173.79/wp-blog/">
+                    <i class="fa-brands fa-wordpress fa-fw"></i>
+                </a>
+            </span>
+            
+        </div>
+        <div class="friend-links">
+            
+        </div>
+    </div>
+</div>
+    </div>
+    
+</div>
+                         
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 20xx - 2022 Hexo
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @John Doe
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+
+    </body>
+</html>

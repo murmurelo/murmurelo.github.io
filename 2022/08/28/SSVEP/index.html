@@ -1,0 +1,444 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>SSVEP综述 | Hexo</title>
+        <meta name="author" content="John Doe">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <link rel="icon" href="https://picx.zhimg.com/80/v2-c6f978bef2a9792fbf4c0a9002a2a7d4_720w.jpg?source=1940ef5c">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.1.1/js/all.min.js"></script>
+        
+        <link rel="stylesheet" href="/css/test/fonts.min.css">
+        <link rel="stylesheet" href="/css/test/particlex.css">
+        
+        <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
+    <meta name="generator" content="Hexo 6.2.0"></head>
+    <body>
+        <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">Hexo</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;Hexo</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        
+<div class="article">
+    <div>
+        <h1>SSVEP综述 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/8/28
+        </span>
+        
+        
+    </div>
+    <div class="content" v-pre>
+        <!-- wp:paragraph -->
+
+<p>摘要：SSVEP因具有训练时间少、使用简单以及学习传输率高的特点而受到广泛关注，然而目前BCI的性能水平限制了它的实际应用。针对这些问题，本文从<strong>视觉刺激的调制方式</strong>和模式分类算法入手，对SSVEP-BCI进行了深入的研究，以期提高这类BCI的性能，进而推进其实用化进程</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a><strong>引言</strong></h2><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>数以百万计的人们患有严重的神经肌肉紊乱性疾病，这些病人中的大多数不能通过常规大脑输出通路（外周神经和肌肉）与外界交流，在这些疾病无法康复的情形下，目前主要有三种途径来实现这些病人与外界交流。<br>1）用功能仅存的神经或肌肉取代受损的神经和肌肉<br>2）借助受损部位残存的神经或肌肉活动来完成功能的恢复<br>3）为大脑提供一个全新的不依赖于外周神经和肌肉的交流通道，即脑机接口，用于将用户的意图或命令传递给外部世界</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>BCI系统通过测量携带了用户意愿的大脑信号的特征并将其转化为相应的设备控制信号，从而实现基于计算机的交流或对外部设备的控制。BCI并不能读脑，而是将中枢神经系统反射活动的电生理信号转化为信息和命令并作用于外部世界</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>成功的BCI操作依赖于两个<strong>自适应控制器</strong>的交互。一个为<strong>利用特定大脑信号编码意愿的用户</strong>，另一个为转化大脑信号为输出从而实现用户意愿的BCI。BCI旨在替代常规神经肌肉的输出通道，因此它在功能上是一个<strong>自适应的闭环控制系统</strong>。BCI必须向用户提供实时的反馈，而用户则可以通过调节大脑信号以获得预期的输出。值得注意的是，只是简单记录和分析而不能将分析结果以实时交互的方式提供给用户的系统并不是BCI。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>BCI系统主要由三大部分组成：<br>1）信号采集，即采集大脑信号<br>2）信号处理，即从采集到的大脑信号中提取出能够反映用户意愿的特征，对提取到的特征进行分类并转化为控制命令<br>3）设备控制，即根据控制了执行对外部设备的操作以实现用户的意愿</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="信号采集"><a href="#信号采集" class="headerlink" title="信号采集"></a><strong>信号采集</strong></h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>监测大脑活动的方法有多种，原则上均可为BCI系统提供输入信号。近年来基于EEG的BCI蓬勃发展。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="信号处理"><a href="#信号处理" class="headerlink" title="信号处理"></a>信号处理</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>脑信号中通常包含有多种噪声和伪迹（例如：与用户意愿产生的闹模式无关的信号、由硬件引入的信号、眼电&#x2F;肌电伪迹等），这在一定程度上降低了信号的质量。预处理方法（例如时域滤波和空域滤波）能够很大程度上减少信号的噪声和伪迹，从而提高信噪比和<strong>空间分辨率。</strong><br>信号特征可以通过时频、频域或时频域的方法进行提取。目前BCI系统中应用较广的特征包括<strong>事件相关电位的幅度或潜伏期、频谱能量、各神经元发放率</strong>。<br>最后，将提取的特征转化为离散或连续的控制信号，进而控制相应的外设。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="设备控制"><a href="#设备控制" class="headerlink" title="设备控制"></a>设备控制</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>例如在计算机屏幕上操作字符输入&#x2F;光标移动、控制机械臂、神经假肢控制瘫痪手臂运动、控制轮椅或其他的辅助装置。用于交流的计算机屏幕是目前应用最广泛的输出设备。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<h2 id="基于脑电信号的脑机接口系统"><a href="#基于脑电信号的脑机接口系统" class="headerlink" title="基于脑电信号的脑机接口系统"></a>基于脑电信号的脑机接口系统</h2><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>不同的实验范式所得到的作为用户医院载体的脑电的模式或成分不同，因此可以根据这些脑电特征对用户意愿进行相应的编码。目前有多种电生理信号已经在基于EEG的BCI系统中被采用。这些信号大致可以分为两类：内源性和外源性。外源性成分主要取决于外部物理刺激（视觉、听觉或触觉）的属性而与认知活动无关，其中较为常见的有视觉诱发电位和听觉诱发电位等，而内源性成分则主要由认知活动所产生而与外部物理刺激无关，常见的有：慢皮层电位、P300等。现有的基于EEG的BCI系统根据所检测的电生理信号不同主要分为以下三类：运动想象脑机接口、P300脑机接口、稳态视觉诱发电位脑机接口。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="运动想象脑机接口"><a href="#运动想象脑机接口" class="headerlink" title="运动想象脑机接口"></a>运动想象脑机接口</h4><!-- /wp:heading -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="P300脑机接口"><a href="#P300脑机接口" class="headerlink" title="P300脑机接口"></a>P300脑机接口</h4><!-- /wp:heading -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="稳态视觉诱发电位脑机接口"><a href="#稳态视觉诱发电位脑机接口" class="headerlink" title="稳态视觉诱发电位脑机接口"></a>稳态视觉诱发电位脑机接口</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>在基于EEG的BCI系统中，SSVEP-BCI因系统简单、较少训练以及高信息传输率得到了广泛研究<br>1）较少或无需训练：在P300-BCI和MI-BCI中，由于不同受试者的状态不同且同一受试者不同时间段的状态也不都是一致的，因此这两类BCI系统在实验前都需要针对个体进行较长时间的训练，并通过训练数据的分析结果提取分类器参数。相比之下，SSVEP-BCI适应性更强且操作起来更简单易行<br>2）高信噪比。SSVEP是初级视觉皮层对视觉刺激的物理反应，其信号主要集中在大脑枕区且信号强度相比于其他脑电信号强。另外，SSVEP具有明显的周期性和节律同化，这一特性大大简化了BCI的信号提取特征算法<br>3）高信息传输率。主要归功于两方面：a.<strong>目标数量的增加通常会降低系统的分类正确率，但在SSVEP-BCI系统中并非如此</strong>  b.SSVEP信号是由外部视觉刺激诱发的。与内源性成分相比，SSVEP信号更为鲁棒且更容易控制</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>为了确保SSVEP-BCI系统获得可靠高效的识别性能，不同刺激序列诱发的SSVEPs应该在某些变换域（例如：频域）上相互正交或近似正交。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<h2 id="稳态视觉诱发电位脑机接口的研究现状"><a href="#稳态视觉诱发电位脑机接口的研究现状" class="headerlink" title="稳态视觉诱发电位脑机接口的研究现状"></a>稳态视觉诱发电位脑机接口的研究现状</h2><!-- /wp:heading -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="稳态视觉诱发电位脑机接口的类型"><a href="#稳态视觉诱发电位脑机接口的类型" class="headerlink" title="稳态视觉诱发电位脑机接口的类型"></a>稳态视觉诱发电位脑机接口的类型</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>在测量大脑活动的系统中，按照有无肌肉活动参与，BCI可分为依赖型BCI和独立型BCI。依赖型BCI系统需要来自大脑正常输出通道的一些活动（例如：肌肉），而独立型BCI不依赖这些输出通道。大多数已有的SSVEP-BCI系统需要控制眼动或头动的肌肉参与，属于依赖型BCI。依赖型SSVEP-BCI具有短的识别时间、高的分类正确率、易于实现多目标且不需要长时间训练等特点。相比之下，由<strong>受试者注意力</strong>控制的SSVEP-BCI被称为独立型BCI。独立型SSVEP-BCI一般可实现的目标数量较少且需要较长训练时间。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="视觉刺激参数的选择"><a href="#视觉刺激参数的选择" class="headerlink" title="视觉刺激参数的选择"></a>视觉刺激参数的选择</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>SSVEP-BCI系统涉及到几个关键参数的选择：视觉刺激器、刺激频率、刺激颜色、电极数量和位置。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>1）视觉刺激器，目前可供选择的视觉刺激器主要有LED、CRT和LCD。<br>LED可以产生任何频率的视觉刺激，具有很高的精度，与计算机显示器相比LED产生的视觉刺激具有更强的亮度且能够诱发出更强的SSVEP响应，但这种方法通常需要额外的硬件装置来实现且涉及到硬件间的通信协议。<br>计算机显示器分为CRT和LCD两种类型，具有较高的通用性且容易整合到基于计算机的系统中。<br>LCD由于自身技术因素，存在一定的响应延迟，可能会对此造成一定影响（即引入低频伪迹成分），随着技术的进步，LCD的响应时间已经下降到了5ms以下，CRT的响应时间在1ms左右，但CRT显示器的市场日趋衰退导致购买面临困难。<br>因此LCD是目前应用较为广泛的视觉刺激器。<br>与LED相比，计算机显示器可以完全通过计算机软件来产生视觉刺激，可实现较为复杂的刺激（大小、形状、颜色等）而且改变刺激的布局或数量都较为方便。<strong>但采用传统分频方法实现所需的刺激时，受显示器固有刷新率而只能产生几种特定频率的视觉刺激</strong>。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>常用于BCI研究的刺激主要有两种类型：一是简单刺激（例如：闪烁LED或计算机显示器上的闪烁方块），二是复杂刺激（例如：反转棋盘格）<br>与简单刺激相比，复杂刺激能够诱发出更为明显的SSVEP，但复杂刺激诱发的高频成分较弱，也就是说复杂刺激的频率范围更窄，同时复杂刺激占用的面积大在一定空间里所能呈现的刺激数量少于呈现简单刺激的数量。<br>在BCI中，一个刺激通常编码一个命令，因此复杂刺激能够编码的命令数量少于简单刺激编码的命令数量</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>2）刺激频率。尽管研究表明1<del>100Hz的视觉刺激都能够诱发SSVEP，但是频率范围主要集中在4</del>50Hz。这些频率可以细分为三个频率段： 低频段（15 Hz以下）、中频段（15~30 Hz）和高频段（30 Hz以上）。最大的SSVEP出现在低频段，SSVEP在高频段表现出最小的响应。虽然低频段的频率能够诱发出较强的SSVEP，但也存在容易引起眼睛疲劳、诱发光敏感癫痫发作的风险和<strong>涵盖自发脑电</strong>。尤其alpha频段，容易引起假阳性检测等问题。高频段刺激能够解决上述这些问题，但诱发的SSVEP强度较弱。由于自发脑电在高频段的能量也较少，有研究表明SSVEP虽然在高频段的强度较弱，但其信噪比却不低，可用于实际的SSVEP-BCI。因此，不同频段的频率各有利弊。目前虽然没有统一的标准来指导SSVEP-BCI刺激频率的选择，但有研究从稳定性（即离线计算各刺激频率诱发SSVEP的分类正确率）和信噪比（即刺激频率处SSVEP功率与相邻频率处的平均功率的比值）<strong>两方面</strong>去进行选择或针对具体系统要求选择某一频段内频率或多个频段内频率的结合</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>3）刺激颜色。暂略</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>4）电极位置和数量<br>视觉皮层（尤其是V1区），枕区<br>电极数量越少，系统复杂度越低，但同时可能带来识别上的困难。<br>已有研究表明，多个电极信号能够提高识别正确率，但是并非电极数量越多越好，它会带来计算复杂度的提高从而难以满足实时处理的要求，而且特征空间的维数增加可能带来BCI系统性能的下降。  </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<h2 id="提高信息传输率"><a href="#提高信息传输率" class="headerlink" title="提高信息传输率"></a>提高信息传输率</h2><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>BCI系统性能可通过多种方法来评估，例如分类正确率与信息传输率(ITR，单位时间内传输的信息量bits&#x2F;min)。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":63} -->
+<figure class="wp-block-image">![](image-1024x280.png)</figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+
+<p>ITR的大小受目标数量、分类正确率和输出一个命令所需的时间三方面因素影响。<br>输出一个命令的信息量随着目标数量和分类正确率的提高而增加。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>很少有研究报道BCI系统具有高的ITR，对于完全丧失肌肉控制的病人，BCI可能是唯一可行的选择，但对健康受试者或者部分丧失肌肉控制的病人而言，BCI的通讯速率仍然很低。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":64} -->
+<figure class="wp-block-image">![](image-1.png)</figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+
+<p>提高系统的信息传输率主要从三个方面考虑：<br>1）增加目标的数量<br>2）提高系统的分类正确率<br>3）减少输出一个命令所需的时间</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="增加目标的数量"><a href="#增加目标的数量" class="headerlink" title="增加目标的数量"></a>增加目标的数量</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>频率编码是SSVEP-BCI中最常用的方法。在这类系统中，每个目标按照不同频率闪烁，通过检测记录下好的主要频率成分，进而识别受试者所注视的目标<br>当使用传统分频方法来实现刺激频率时，刺激频率只能选择f&#x3D;R&#x2F;N。另外，<strong>刺激频率的谐波会干扰刺激频率的识别，从而导致系统性能的下降，因此刺激频率的谐波通常被排除在编码目标之外</strong>。并且人体对视觉刺激响应的频段有限（即能够诱发出较好的SSVEP的频率是非常有限的）。在某些问题中，传统单频编码范式无法提供足够多的频率数量来对每一个目标进行编码，因此基于有限的频率数量来编码更多的目标成为缓解这一问题的一个重要方向。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p><strong>具体实现方法</strong>有三种：<br>1）并行刺激方式<br>2）串行刺激方式<br>3）在并行刺激方式基础上引入了空间信息，即频率-空间混合调制<br>此外，相位也是SSVEP的一个基本特征</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="提高系统的分类正确率"><a href="#提高系统的分类正确率" class="headerlink" title="提高系统的分类正确率"></a>提高系统的分类正确率</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>1）提高SSVEP的信噪比<br>2）增加目标间的可区分性</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p><strong>通常可以通过降低噪声水平和增加刺激相关信号水平来提高信噪比。EEG信号含有大量噪声和伪迹。由于编码信息在SSVEP中，与SSVEP不相关的信号通常也被认为是噪声。SSVEP是淹没在脑电中的一种周期信号，多种信号处理方法已被应用于提取SSVEP信号。叠加平均方法通常被用于提高事件相关电位的信噪比。时域滤波同样在提高BCI系统的信噪比方面扮演着重要的作用，可用于消除50 Hz工频干扰和提取有用频带信息。由于空域滤波方法能够利用多个导联的空间分布模式和多导联信号间的互信息，在提高SSVEP信噪比方面有较好的效果。例如， CCA能够最大化SSVEP信号和预先定义的参考信号间的相关系数，进而提高SSVEP的频率识别。独立分量分析（ICA）能够将任务相关的EEG成分与任务不相关的EEG成分和伪迹成分进行分离，从而达到增加EEG信号的信噪比目的。</strong><br><strong>还可以通过实验范式的改进而得到提高，SSVEP的强度主要受注意力影响。</strong><br><strong>分类正确率依赖于各目标的可区分性。机器学习技术已被用于提高BCI系统的目标识别正确率。</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+
+<h4 id="减少输出一个命令所需的时间"><a href="#减少输出一个命令所需的时间" class="headerlink" title="减少输出一个命令所需的时间"></a>减少输出一个命令所需的时间</h4><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>1）反应时，受试者需要一定时间来准备（思考或寻找下一个目标的位置）和执行相应的活动（即：移动眼球）</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>2）传递时，一旦目光集中于某一特定的目标，视觉信息从眼睛传递至视觉皮层需要一定时间以便SSVEP信号能被检测到</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>3）<strong>设备时</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>4）<strong>样本时</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>5）分类时，对目标进行分类以及产生相应的反馈</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p><strong>改进方法</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<h2 id="稳态视觉诱发电位脑机接口的局限性"><a href="#稳态视觉诱发电位脑机接口的局限性" class="headerlink" title="稳态视觉诱发电位脑机接口的局限性"></a>稳态视觉诱发电位脑机接口的局限性</h2><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<p>1）人体敏感的SSVEP刺激频率较少，而且传统分频方法限制显示器可实现频率的数量，导致能够实现的刺激数量非常有限，不能满足BCI实际应用的需求</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>2）虽然低频的SSVEP视觉刺激能够诱发较强的SSVEP，但长时间的视觉刺激容易使被试产生疲惫感且增强诱发光敏感癫痫的风险</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<p>3）BCI系统固有的问题，即SSVEP-BCI的通讯速率仍是限制其广泛应用的主要原因</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<h2 id="信息调制"><a href="#信息调制" class="headerlink" title="信息调制"></a>信息调制</h2><!-- /wp:heading -->
+
+<!-- wp:heading -->
+
+<h2 id="模式识别"><a href="#模式识别" class="headerlink" title="模式识别"></a>模式识别</h2><!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+    </div>
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container">
+        </div>
+    </div>
+    
+</div>
+                         
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 20xx - 2022 Hexo
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @John Doe
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+<script>
+    var clientID = "", clientSecret = "";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "",
+        owner: "",
+        admin: [""],
+        language: "zh-CN",
+        id: location.pathname,
+        distractionFreeMode: false,
+        
+        proxy: "https://fy135.herokuapp.com/https://github.com/login/oauth/access_token"
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
+
+    </body>
+</html>
