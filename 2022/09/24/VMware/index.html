@@ -93,11 +93,24 @@
         
     </div>
     <div class="content" v-pre>
-        <h1 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h1><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/daemon_2017/article/details/80660372">参考文章</a><br>1）在虚拟机设置中修改硬盘大小<br>2）’sudo apt-get install gparted’<br>3）’sudo gparted’<br>4）使用gpart调整分区</p>
-<h3 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h3><p>VMware错误：指定的虚拟磁盘需要进行修复（在(1)中出现）<br>解决方法：重启VMvare</p>
-<h1 id="VMvare-tools安装"><a href="#VMvare-tools安装" class="headerlink" title="VMvare_tools安装"></a>VMvare_tools安装</h1><h3 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41892825/article/details/122464113">参考文章</a>  </p>
-<h1 id="虚拟机连接VScode"><a href="#虚拟机连接VScode" class="headerlink" title="虚拟机连接VScode"></a>虚拟机连接VScode</h1><h3 id="步骤-2"><a href="#步骤-2" class="headerlink" title="步骤"></a>步骤</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59038488/article/details/122099093">参考文章</a></p>
-<h3 id="报错-1"><a href="#报错-1" class="headerlink" title="报错"></a>报错</h3><p>failed to start ssh.service. unit ssh.service not found<br>解决方案：<a target="_blank" rel="noopener" href="https://blog.csdn.net/xiato_yu/article/details/104166581">参考文章</a></p>
+        <h1 id="虚拟机扩容"><a href="#虚拟机扩容" class="headerlink" title="虚拟机扩容"></a>虚拟机扩容</h1><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/daemon_2017/article/details/80660372">参考文章</a><br>1）在虚拟机设置中修改硬盘大小<br>2）’sudo apt-get install gparted’<br>3）’sudo gparted’<br>4）使用gpart调整分区</p>
+<h2 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h2><p>VMware错误：指定的虚拟磁盘需要进行修复（在(1)中出现）<br>解决方法：重启VMvare</p>
+<h1 id="VMvare-tools安装"><a href="#VMvare-tools安装" class="headerlink" title="VMvare_tools安装"></a>VMvare_tools安装</h1><h2 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41892825/article/details/122464113">参考文章</a>  </p>
+<h1 id="虚拟机连接VScode"><a href="#虚拟机连接VScode" class="headerlink" title="虚拟机连接VScode"></a>虚拟机连接VScode</h1><h2 id="步骤-2"><a href="#步骤-2" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59038488/article/details/122099093">参考文章</a></p>
+<h2 id="报错-1"><a href="#报错-1" class="headerlink" title="报错"></a>报错</h2><p>failed to start ssh.service. unit ssh.service not found<br>解决方案：<a target="_blank" rel="noopener" href="https://blog.csdn.net/xiato_yu/article/details/104166581">参考文章</a></p>
+<h1 id="VSCode连接虚拟机"><a href="#VSCode连接虚拟机" class="headerlink" title="VSCode连接虚拟机"></a>VSCode连接虚拟机</h1><h2 id="步骤-3"><a href="#步骤-3" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59038488/article/details/122099093?spm=1001.2014.3001.5506">参考文章</a><br>1)安装扩展Remote-ssh<br>2)配置ssh-config文件<br>3)linux开启ssh服务</p>
+<pre><code>#安装ssh
+sudo apt-get install sshd
+#查看SSH版本（测试是否安装成功）
+ssh -V
+#开启ssh服务
+sudo service ssh start
+#查看是否开启
+sudo ps -e |grep ssh
+</code></pre>
+<p>4)连接</p>
+<h2 id="报错-2"><a href="#报错-2" class="headerlink" title="报错"></a>报错</h2><p>开启ssh服务时：Failed to start ssh.service: Unit ssh.service not found.</p>
+<p>解决方法:<a target="_blank" rel="noopener" href="https://blog.csdn.net/luminous_you/article/details/108791035?spm=1001.2014.3001.5506">参考文章</a></p>
 
     </div>
     
