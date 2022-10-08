@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>ResNet | Hexo</title>
+        <title>Archives | Hexo</title>
         <meta name="author" content="John Doe">
         <meta name="description" content="">
         <meta name="keywords" content="">
@@ -78,79 +78,117 @@
                     </div>
                     <div id="main">
                         
-<div class="article">
-    <div>
-        <h1>ResNet </h1>
-    </div>
-    <div class="info">
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/9/6
-        </span>
-        
-        
-    </div>
-    <div class="content" v-pre>
-        <!-- wp:paragraph -->
-
-<p> “越深网络准确率越高” </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<p> 假设一个层数较少的神经网络已经达到了较高准确率，我们可以在这个神经网络之后，拼接一段恒等变换的网络层，这些恒等变换的网络层对输入数据不做任何转换，直接返回（<em>y</em>&#x3D;_x_），就能得到一个深度较大的神经网络，并且，这个深度较大的神经网络的准确率等于拼接之前的神经网络准确率，准确率没有理由降低。<br>层数较多的神经网络，可由较浅的神经网络和恒等变换网络拼接而成</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<p>随着网络层不断的加深，模型的准确率先是不断的提高，达到最大值（准确率饱和），然后随着网络深度的继续增加，模型准确率毫无征兆的出现大幅度的降低。</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<p>ResNet团队把退化现象归因为深层神经网络难以实现”恒等变换（<em>y</em>&#x3D;_x_）”</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<p> 与传统的机器学习相比，深度学习的关键特征在于网络层数更深、非线性转换（激活）、自动的特征提取和特征转换，其中，非线性转换是关键目标，它将数据映射到高纬空间以便于更好的完成”数据分类”。随着网络深度的不断增大，所引入的激活函数也越来越多，数据被映射到更加离散的空间，此时已经难以<strong>让数据回到原点</strong>（恒等变换）。 或者说，神经网络将这些数据映射回原点所需要的计算量，已经远远超过我们所能承受的。 </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<p>退化现象让我们对非线性转换进行反思，非线性转换极大的提高了数据分类能力，但是，随着网络的深度不断的加大，我们在非线性转换方面已经走的太远，竟然无法实现线性转换。显然，在神经网络中增加线性转换分支成为很好的选择，于是，ResNet团队在ResNet模块中增加了快捷连接分支，在线性转换和非线性转换之间寻求一个平衡</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
+<div id="archives">
+    
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2022/10/9</div>
+            <a href="/2022/10/09/LSL-Lab-Streaming-Layer/">
+                <h3>LSL:Lab Streaming Layer</h3>
+            </a>
+            <div class="info">
+                
+                
+            </div>
+        </div>
     </div>
     
-    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
-    <div id="comment">
-        <div id="gitalk-container">
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2022/9/28</div>
+            <a href="/2022/09/28/OpenBCI/">
+                <h3></h3>
+            </a>
+            <div class="info">
+                
+                
+            </div>
+        </div>
+    </div>
+    
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2022/9/24</div>
+            <a href="/2022/09/24/WordPress/">
+                <h3>WordPress</h3>
+            </a>
+            <div class="info">
+                
+                
+            </div>
+        </div>
+    </div>
+    
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2022/9/24</div>
+            <a href="/2022/09/24/Github/">
+                <h3>Github</h3>
+            </a>
+            <div class="info">
+                
+                
+            </div>
+        </div>
+    </div>
+    
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2022/9/24</div>
+            <a href="/2022/09/24/ROS/">
+                <h3>ROS</h3>
+            </a>
+            <div class="info">
+                
+                
+            </div>
+        </div>
+    </div>
+    
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2022/9/24</div>
+            <a href="/2022/09/24/Ubuntu/">
+                <h3>Ubuntu</h3>
+            </a>
+            <div class="info">
+                
+                
+            </div>
+        </div>
+    </div>
+    
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2022/9/24</div>
+            <a href="/2022/09/24/VMware/">
+                <h3>VMware</h3>
+            </a>
+            <div class="info">
+                
+                
+            </div>
+        </div>
+    </div>
+    
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2022/8/31</div>
+            <a href="/2022/08/31/Nano/">
+                <h3>Nano</h3>
+            </a>
+            <div class="info">
+                
+                
+            </div>
         </div>
     </div>
     
@@ -182,26 +220,6 @@
         <script src="/js/particlex.js"></script>
         <script src="/js/showimg.js"></script>
         
-<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
-<script>
-    var clientID = "", clientSecret = "";
-    
-    const gitalk = new Gitalk({
-        clientID: clientID,
-        clientSecret: clientSecret,
-        repo: "",
-        owner: "",
-        admin: [""],
-        language: "zh-CN",
-        id: location.pathname,
-        distractionFreeMode: false,
-        
-        proxy: "https://fy135.herokuapp.com/https://github.com/login/oauth/access_token"
-        
-    })
-    gitalk.render("gitalk-container")
-</script>
-
 
     </body>
 </html>

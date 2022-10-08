@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>VGGNet | Hexo</title>
+        <title>Hexo</title>
         <meta name="author" content="John Doe">
         <meta name="description" content="">
         <meta name="keywords" content="">
@@ -80,55 +80,27 @@
                         
 <div class="article">
     <div>
-        <h1>VGGNet </h1>
+        <h1> </h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2022/9/6
+            2022/9/28
         </span>
         
         
     </div>
     <div class="content" v-pre>
-        <!-- wp:paragraph -->
+        <h1 id="Software-Preperation"><a href="#Software-Preperation" class="headerlink" title="Software Preperation"></a>Software Preperation</h1><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>1）<a target="_blank" rel="noopener" href="https://ftdichip.com/drivers/vcp-drivers/">FTDI driver for Cython</a><br>注意事项：安装最新版，安装需要与Cython和Cython+Daisy建立感觉连接</p>
+<p>2）<a target="_blank" rel="noopener" href="https://shop.openbci.com/products/ganglion-dongle">small USB Dongle for </a></p>
+<p>3）<a target="_blank" rel="noopener" href="https://openbci.com/downloads">OpenBCI GUI</a></p>
+<p>4）plug in OpenBCI USB Dongle<br>Note: make sure your USB Dongle is switched to GPIO 6 and not RESET. The switch should be set closer to your computer as seen in the picture to the right.</p>
+<p>5）Plug in your 6V AA battery pack</p>
+<p>6）switch your Cyton board to PC<br>Note: it’s important to plug in your Dongle before you turn on your Cyton board.</p>
+<p>7）connect yourself to OpenBCI    </p>
 
-<p> 主要工作是证明了增加网络的深度能够在一定程度上影响网络最终的性能 </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<p>采用连续的几个3x3的卷积核代替AlexNet中的较大卷积核 ,多层非线性层可以增加网络深度来保证学习更复杂的模式，而且代价还比较小（参数更少）<br>简单来说，在VGG中，使用了3个3x3卷积核来代替7x7卷积核，使用了2个3x3卷积核来代替5*5卷积核，这样做的主要目的是在保证具有相同感知野的条件下，提升了网络的深度，在一定程度上提升了神经网络的效果。 </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<p> VGGNet的结构非常简洁，整个网络都使用了同样大小的卷积核尺寸（3x3）和最大池化尺寸（2x2).几个小滤波器（3x3）卷积层的组合比一个大滤波器（5x5或7x7）卷积层好(验证了通过不断加深网络结构可以提升性能)</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<p> VGG耗费更多计算资源，并且使用了更多的参数 , 其中绝大多数的参数都是来自于第一个全连接层<br>PS：有的文章称：发现这些全连接层即使被去除，对于性能也没有什么影响，这样就显著降低了参数数量 </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<p>有公开的pretrained model让我们很方便的使用 </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
     </div>
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
