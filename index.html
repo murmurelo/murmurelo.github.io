@@ -102,8 +102,8 @@
             
 
 <div class="post">
-    <a href="/2022/10/09/LSL-Lab-Streaming-Layer/">
-        <h2 class="post-title">LSL:Lab Streaming Layer</h2>
+    <a href="/2022/10/09/C++学习笔记/">
+        <h2 class="post-title"></h2>
     </a>
     <div class="category-and-date">
         
@@ -125,7 +125,66 @@
         
         
     </div>
-    <a href="/2022/10/09/LSL-Lab-Streaming-Layer/" class="go-post">阅读全文</a>
+    <a href="/2022/10/09/C++学习笔记/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2022/10/09/LSL协议/">
+        <h2 class="post-title">LSL:Lab Streaming Layer</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/10/9
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <h1 id="LSL：Lab-Streaming-Layer"><a href="#LSL：Lab-Streaming-Layer" class="headerlink" title="LSL：Lab Streaming Layer"></a>LSL：Lab Streaming Layer</h1><h2 id="相关名词介绍"><a href="#相关名词介绍" class="headerlink" title="相关名词介绍"></a>相关名词介绍</h2><pre><code>Sample: 对一台设备的所有通道进行一次测量
+
+Chunk: 样本的集合发送
+
+MetaData: XML记录关于流的信息，类似于文件头
+
+Stream: 设备的采样数据与元数据的组合称为流，流的采样率可以相同可以不同，可以来自一个通道也可以来自很多通道，流内数据必须为相同类型
+
+Stream Outlet: 用于提供时间序列数据流，数据被逐样本或逐块推送到出口；通过outlet可以使数据流被网络中的一批主机可见，主机可以通过解析函数找到outlet以及订阅
+
+Stream Inlet: 用于从连接的outlet中接收时间序列数据，允许从流中检索采样数据，inlet还可以获得元数据（以XML形式或者通过**小型的内嵌DOM接口**）
+
+Resolver: LSL提供函数来解析数据流（根据以内容为基础的查询），查找服务并不依赖于外部设备，旨在简化数据采集网络
+
+Built-in clock: 允许对传输的样本进行时间戳，以便它们可以相互同步
+
+Time Synchronization: LSL具有的内嵌时间同步设备，**详细内容，NTP**
+
+File Format: 传输API本身不提供特定的文件格式，但提供的记录程序（默认）将数据记录为XDF格式，XDF与LSL同时设计，支持LSL的完整功能集（包括**多流**，任意大小的XML头，所有的样本格式以及时间同步信息）
+</code></pre>
+<h2 id="具体说明"><a href="#具体说明" class="headerlink" title="具体说明"></a>具体说明</h2><pre><code>Outlets: 一个出口可能使用ipv4，也可能使用ipv6，也可能同时使用，lsl::stream_outlet
+</code></pre>
+<pre><code>UDP Service Discovery: 一个出口创建多个UDP socket，用于监听查询。这样的查询都是用于查找感兴趣的数据流，出口将每个入站查询与其元数据匹配，一旦匹配则响应，重复的查询将被缓存；特别地，outlets监听组播端口(16571)，用于接收组播和多播请求，并且为此创建了多个socket，用于监听不同的多播地址，这些socket采用异步I/O与单线程，**虽然这听起来仍然花销巨大，但请注意线程在大多数时候都处于等待状态**；另外，outlets创建了一个单播的UDP socket用于在**free port**（16572-16604）上监听查询，这个socket不仅用于处理内容查询也用于响应时间估计数据包（由入口发出）
+</code></pre>
+<pre><code>TCP Data Transmission: 另外每个出口创建一个TCP服务端socket通过**free port**（16572-16604）接收实际的数据传输请求,传输请求包括两种：请求数据流和请求元数据，TCP服务器也可以用于处理服务发现，但是因为低效不被用于这个目的
+</code></pre>
+<pre><code>Resolve Operations: 当一个客户端创建了一个Stream Solver来解析实验室网络中具有所需属性的流时，它会发出解析操作，解析操作会临时打开一系列UDP sockets，通过这些socket，查询被发送到激活的地址，它同样会开启一个UDP socket来接收结果包，解析操作会在一个短暂的时间内**向每个通道**发送一个数据包，并等待响应，然后发送下一个突发，知道找到服务或超时
+</code></pre>
+<pre><code>Inlets: Inlet在被创建时是默认没有任何socket的，创建socket的情况有以下几种：1）调用lsl::stream_inlet::pull_sample()或者lsl::stream_inlet::open_stream()以开启数据流的传输，此时将会建立一个TCP连接，  2）调用lsl::stream_inlet::info()，    3）当调用lsl::stream_inlet::time_correction()用于估计**时间校正值**时，将打开一个UDP socket，与出口的UDP单播端口**交换一系列简短的数据包**，
+</code></pre>
+<pre><code>Clock synchronization: 本地时钟函数lsl_local_clock()，查询时间偏移函数lsl_time_correction_ex()，获取加载库的版本的函数lsl_library_version()
+</code></pre>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2022/10/09/LSL协议/" class="go-post">阅读全文</a>
 </div>
 
 <div class="post">
@@ -163,7 +222,7 @@
 </div>
 
 <div class="post">
-    <a href="/2022/09/24/WordPress/">
+    <a href="/2022/09/24/WordPress搭建指南/">
         <h2 class="post-title">WordPress</h2>
     </a>
     <div class="category-and-date">
@@ -259,11 +318,11 @@ cat -n /var/www/html/wp-blog/wp-config.php
         
         
     </div>
-    <a href="/2022/09/24/WordPress/" class="go-post">阅读全文</a>
+    <a href="/2022/09/24/WordPress搭建指南/" class="go-post">阅读全文</a>
 </div>
 
 <div class="post">
-    <a href="/2022/09/24/Github/">
+    <a href="/2022/09/24/Github使用/">
         <h2 class="post-title">Github</h2>
     </a>
     <div class="category-and-date">
@@ -368,11 +427,95 @@ hexo clean
         
         
     </div>
-    <a href="/2022/09/24/Github/" class="go-post">阅读全文</a>
+    <a href="/2022/09/24/Github使用/" class="go-post">阅读全文</a>
 </div>
 
 <div class="post">
-    <a href="/2022/09/24/ROS/">
+    <a href="/2022/09/24/VMware安装及使用/">
+        <h2 class="post-title">VMware</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/9/24
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <h1 id="虚拟机扩容"><a href="#虚拟机扩容" class="headerlink" title="虚拟机扩容"></a>虚拟机扩容</h1><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/daemon_2017/article/details/80660372">参考文章</a><br>1）在虚拟机设置中修改硬盘大小<br>2）’sudo apt-get install gparted’<br>3）’sudo gparted’<br>4）使用gpart调整分区</p>
+<h2 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h2><p>VMware错误：指定的虚拟磁盘需要进行修复（在(1)中出现）<br>解决方法：重启VMvare</p>
+<h1 id="VMvare-tools安装"><a href="#VMvare-tools安装" class="headerlink" title="VMvare_tools安装"></a>VMvare_tools安装</h1><h2 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41892825/article/details/122464113">参考文章</a>  </p>
+<h1 id="虚拟机连接VScode"><a href="#虚拟机连接VScode" class="headerlink" title="虚拟机连接VScode"></a>虚拟机连接VScode</h1><h2 id="步骤-2"><a href="#步骤-2" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59038488/article/details/122099093">参考文章</a></p>
+<h2 id="报错-1"><a href="#报错-1" class="headerlink" title="报错"></a>报错</h2><p>failed to start ssh.service. unit ssh.service not found<br>解决方案：<a target="_blank" rel="noopener" href="https://blog.csdn.net/xiato_yu/article/details/104166581">参考文章</a></p>
+<h1 id="VSCode连接虚拟机"><a href="#VSCode连接虚拟机" class="headerlink" title="VSCode连接虚拟机"></a>VSCode连接虚拟机</h1><h2 id="步骤-3"><a href="#步骤-3" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59038488/article/details/122099093?spm=1001.2014.3001.5506">参考文章</a><br>1)安装扩展Remote-ssh<br>2)配置ssh-config文件<br>3)linux开启ssh服务</p>
+<pre><code>#安装ssh
+sudo apt-get install sshd
+#查看SSH版本（测试是否安装成功）
+ssh -V
+#开启ssh服务
+sudo service ssh start
+#查看是否开启
+sudo ps -e |grep ssh
+</code></pre>
+<p>4)连接</p>
+<h2 id="报错-2"><a href="#报错-2" class="headerlink" title="报错"></a>报错</h2><p>开启ssh服务时：Failed to start ssh.service: Unit ssh.service not found.</p>
+<p>解决方法:<a target="_blank" rel="noopener" href="https://blog.csdn.net/luminous_you/article/details/108791035?spm=1001.2014.3001.5506">参考文章</a></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2022/09/24/VMware安装及使用/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2022/09/24/Ubuntu常见用法/">
+        <h2 class="post-title">Ubuntu</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/9/24
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <h1 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h1><h3 id="编辑文本"><a href="#编辑文本" class="headerlink" title="编辑文本"></a>编辑文本</h3><p>‘sudo gedit’  </p>
+<h3 id="更改apt源"><a href="#更改apt源" class="headerlink" title="更改apt源"></a>更改apt源</h3><p>‘sudo gedit &#x2F;etc&#x2F;apt&#x2F;sources.list’</p>
+<h3 id="查看cuda版本"><a href="#查看cuda版本" class="headerlink" title="查看cuda版本"></a>查看cuda版本</h3><pre><code>&#39;cat /usr/local/cuda/version.txt&#39;  
+&#39;nvidia-smi&#39;
+&#39;nvcc -V&#39;
+</code></pre>
+<h3 id="安装显卡驱动cuda"><a href="#安装显卡驱动cuda" class="headerlink" title="安装显卡驱动cuda"></a>安装显卡驱动cuda</h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/108930996">article</a></p>
+<h3 id="查看文件夹下文件"><a href="#查看文件夹下文件" class="headerlink" title="查看文件夹下文件"></a>查看文件夹下文件</h3><p>‘ls’<br>绿色表示可执行文件 ‘sudo .&#x2F;可执行文件’</p>
+<h3 id="解压gz文件"><a href="#解压gz文件" class="headerlink" title="解压gz文件"></a>解压gz文件</h3><p>‘grid -d FileName.gz’<br>‘gunzip FileName.gz’</p>
+<h3 id="更新软件包"><a href="#更新软件包" class="headerlink" title="更新软件包"></a>更新软件包</h3><p>‘sudo apt-get update’</p>
+<h3 id="安装ssh"><a href="#安装ssh" class="headerlink" title="安装ssh"></a>安装ssh</h3><p>‘sudo apt-get install ssh’</p>
+<h3 id="更新全局变量"><a href="#更新全局变量" class="headerlink" title="更新全局变量"></a>更新全局变量</h3><p>‘source ~&#x2F;.bashrc’</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2022/09/24/Ubuntu常见用法/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2022/09/24/ROS部署与使用/">
         <h2 class="post-title">ROS</h2>
     </a>
     <div class="category-and-date">
@@ -470,95 +613,11 @@ catkin_make
         
         
     </div>
-    <a href="/2022/09/24/ROS/" class="go-post">阅读全文</a>
+    <a href="/2022/09/24/ROS部署与使用/" class="go-post">阅读全文</a>
 </div>
 
 <div class="post">
-    <a href="/2022/09/24/Ubuntu/">
-        <h2 class="post-title">Ubuntu</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/9/24
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <h1 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h1><h3 id="编辑文本"><a href="#编辑文本" class="headerlink" title="编辑文本"></a>编辑文本</h3><p>‘sudo gedit’  </p>
-<h3 id="更改apt源"><a href="#更改apt源" class="headerlink" title="更改apt源"></a>更改apt源</h3><p>‘sudo gedit &#x2F;etc&#x2F;apt&#x2F;sources.list’</p>
-<h3 id="查看cuda版本"><a href="#查看cuda版本" class="headerlink" title="查看cuda版本"></a>查看cuda版本</h3><pre><code>&#39;cat /usr/local/cuda/version.txt&#39;  
-&#39;nvidia-smi&#39;
-&#39;nvcc -V&#39;
-</code></pre>
-<h3 id="安装显卡驱动cuda"><a href="#安装显卡驱动cuda" class="headerlink" title="安装显卡驱动cuda"></a>安装显卡驱动cuda</h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/108930996">article</a></p>
-<h3 id="查看文件夹下文件"><a href="#查看文件夹下文件" class="headerlink" title="查看文件夹下文件"></a>查看文件夹下文件</h3><p>‘ls’<br>绿色表示可执行文件 ‘sudo .&#x2F;可执行文件’</p>
-<h3 id="解压gz文件"><a href="#解压gz文件" class="headerlink" title="解压gz文件"></a>解压gz文件</h3><p>‘grid -d FileName.gz’<br>‘gunzip FileName.gz’</p>
-<h3 id="更新软件包"><a href="#更新软件包" class="headerlink" title="更新软件包"></a>更新软件包</h3><p>‘sudo apt-get update’</p>
-<h3 id="安装ssh"><a href="#安装ssh" class="headerlink" title="安装ssh"></a>安装ssh</h3><p>‘sudo apt-get install ssh’</p>
-<h3 id="更新全局变量"><a href="#更新全局变量" class="headerlink" title="更新全局变量"></a>更新全局变量</h3><p>‘source ~&#x2F;.bashrc’</p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-    </div>
-    <a href="/2022/09/24/Ubuntu/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2022/09/24/VMware/">
-        <h2 class="post-title">VMware</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/9/24
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <h1 id="虚拟机扩容"><a href="#虚拟机扩容" class="headerlink" title="虚拟机扩容"></a>虚拟机扩容</h1><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/daemon_2017/article/details/80660372">参考文章</a><br>1）在虚拟机设置中修改硬盘大小<br>2）’sudo apt-get install gparted’<br>3）’sudo gparted’<br>4）使用gpart调整分区</p>
-<h2 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h2><p>VMware错误：指定的虚拟磁盘需要进行修复（在(1)中出现）<br>解决方法：重启VMvare</p>
-<h1 id="VMvare-tools安装"><a href="#VMvare-tools安装" class="headerlink" title="VMvare_tools安装"></a>VMvare_tools安装</h1><h2 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41892825/article/details/122464113">参考文章</a>  </p>
-<h1 id="虚拟机连接VScode"><a href="#虚拟机连接VScode" class="headerlink" title="虚拟机连接VScode"></a>虚拟机连接VScode</h1><h2 id="步骤-2"><a href="#步骤-2" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59038488/article/details/122099093">参考文章</a></p>
-<h2 id="报错-1"><a href="#报错-1" class="headerlink" title="报错"></a>报错</h2><p>failed to start ssh.service. unit ssh.service not found<br>解决方案：<a target="_blank" rel="noopener" href="https://blog.csdn.net/xiato_yu/article/details/104166581">参考文章</a></p>
-<h1 id="VSCode连接虚拟机"><a href="#VSCode连接虚拟机" class="headerlink" title="VSCode连接虚拟机"></a>VSCode连接虚拟机</h1><h2 id="步骤-3"><a href="#步骤-3" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59038488/article/details/122099093?spm=1001.2014.3001.5506">参考文章</a><br>1)安装扩展Remote-ssh<br>2)配置ssh-config文件<br>3)linux开启ssh服务</p>
-<pre><code>#安装ssh
-sudo apt-get install sshd
-#查看SSH版本（测试是否安装成功）
-ssh -V
-#开启ssh服务
-sudo service ssh start
-#查看是否开启
-sudo ps -e |grep ssh
-</code></pre>
-<p>4)连接</p>
-<h2 id="报错-2"><a href="#报错-2" class="headerlink" title="报错"></a>报错</h2><p>开启ssh服务时：Failed to start ssh.service: Unit ssh.service not found.</p>
-<p>解决方法:<a target="_blank" rel="noopener" href="https://blog.csdn.net/luminous_you/article/details/108791035?spm=1001.2014.3001.5506">参考文章</a></p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-    </div>
-    <a href="/2022/09/24/VMware/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2022/08/31/Nano/">
+    <a href="/2022/08/31/Nano部署/">
         <h2 class="post-title">Nano</h2>
     </a>
     <div class="category-and-date">
@@ -717,7 +776,7 @@ sudo pip3 install pycocotools
         
         
     </div>
-    <a href="/2022/08/31/Nano/" class="go-post">阅读全文</a>
+    <a href="/2022/08/31/Nano部署/" class="go-post">阅读全文</a>
 </div>
 
              
