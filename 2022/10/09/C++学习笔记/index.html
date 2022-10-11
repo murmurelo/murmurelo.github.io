@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Hexo</title>
+        <title>C++ | Hexo</title>
         <meta name="author" content="John Doe">
         <meta name="description" content="">
         <meta name="keywords" content="">
@@ -80,7 +80,7 @@
                         
 <div class="article">
     <div>
-        <h1> </h1>
+        <h1>C++ </h1>
     </div>
     <div class="info">
         <span class="date">
@@ -93,7 +93,16 @@
         
     </div>
     <div class="content" v-pre>
-        
+        <h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>MinGW </p>
+<p>GNU</p>
+<p>g++</p>
+<p>gcc</p>
+<p>make</p>
+<p>cmake</p>
+<h3 id="环境踩雷"><a href="#环境踩雷" class="headerlink" title="环境踩雷"></a>环境踩雷</h3><p>1） CMake报错：error in configuration process, project files may be invalid<br>原因：编译器配置为2017，但电脑里只有2019（明明2019里安装了2017的编译器，不知道为什么不可以)<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qc530167365/article/details/89399877?spm=1001.2014.3001.5506">参考文章</a></p>
+<p>2）VS编译cmake生成文件时出现error MSB3073错误<br>原因：CMake GUI中CMAKE_INSTALL_PREFIX指定为C盘目录，导致权限不够</p>
+<p>3）C4819<br>原因：没找到</p>
+
     </div>
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
