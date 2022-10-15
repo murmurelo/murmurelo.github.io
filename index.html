@@ -102,6 +102,44 @@
             
 
 <div class="post">
+    <a href="/2022/10/15/项目笔记/">
+        <h2 class="post-title">项目笔记</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/10/15
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <h1 id="项目笔记"><a href="#项目笔记" class="headerlink" title="项目笔记"></a>项目笔记</h1><p>1）<a target="_blank" rel="noopener" href="https://aistudio.baidu.com/aistudio/projectdetail/3944737?channelType=0&channel=0">安全帽检测</a>：感觉实用性和工业性挺强的</p>
+<p>2）<a target="_blank" rel="noopener" href="https://aistudio.baidu.com/aistudio/projectdetail/4094475?channelType=0&channel=0">人员进出视频管理方案</a>：同1</p>
+<p>3）<a target="_blank" rel="noopener" href="https://aistudio.baidu.com/aistudio/projectdetail/3565870?channelType=0&channel=0">遥感图像分割</a>：不知道可以用来干嘛，但感觉很高级</p>
+<p>4）<a target="_blank" rel="noopener" href="https://aistudio.baidu.com/aistudio/projectdetail/3405079?channelType=0&channel=0">衣服生成项目</a>：感觉挺有意思，但是可能难度有点大Orz</p>
+<p>5）<a target="_blank" rel="noopener" href="https://aistudio.baidu.com/aistudio/projectdetail/2474969?channelType=0&channel=0">车牌识别</a>：挺常见的用途，就是不知道具体可以干嘛</p>
+<p>6）<a target="_blank" rel="noopener" href="https://aistudio.baidu.com/aistudio/projectdetail/3000729?channelType=0&channel=0">癌症速检</a>：感觉实用性强，也很高级</p>
+<p>7）<a target="_blank" rel="noopener" href="https://aistudio.baidu.com/aistudio/projectdetail/2459012?channelType=0&channel=0">林业病虫害</a>：实用性和工业性（用pipeline实现)</p>
+<p>8）<a target="_blank" rel="noopener" href="https://aistudio.baidu.com/aistudio/projectdetail/4239758">手势乐器</a>：有点好玩，但成本高（而且星火杯没有报销）而且不知道有啥用</p>
+<p>9）<a target="_blank" rel="noopener" href="https://aistudio.baidu.com/aistudio/projectdetail/4319819">自动驾驶</a>: 实用性和工业性</p>
+<p>10）<a target="_blank" rel="noopener" href="https://aistudio.baidu.com/aistudio/projectdetail/4429519?channelType=0&channel=0">皮影戏</a>:高级，难度较大，比较完善</p>
+<p>11）<a target="_blank" rel="noopener" href="https://aistudio.baidu.com/aistudio/projectdetail/4475890">美甲机</a>：比较有意思也比较实用</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2022/10/15/项目笔记/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2022/10/14/LSL时间同步/">
         <h2 class="post-title">LSL时间同步</h2>
     </a>
@@ -201,19 +239,13 @@
 <p>Built-in clock: 允许对传输的样本进行时间戳，以便它们可以相互同步</p>
 <p>Time Synchronization: LSL具有的内嵌时间同步设备，<strong>详细内容，NTP</strong></p>
 <p>File Format: 传输API本身不提供特定的文件格式，但提供的记录程序（默认）将数据记录为XDF格式，XDF与LSL同时设计，支持LSL的完整功能集（包括<strong>多流</strong>，任意大小的XML头，所有的样本格式以及时间同步信息）</p>
-<h2 id="具体说明"><a href="#具体说明" class="headerlink" title="具体说明"></a>具体说明</h2><pre><code>Outlets: 一个出口可能使用ipv4，也可能使用ipv6，也可能同时使用，lsl::stream_outlet
-</code></pre>
-<pre><code>UDP Service Discovery: 一个出口创建多个UDP socket，用于监听查询。这样的查询都是用于查找感兴趣的数据流，出口将每个入站查询与其元数据匹配，一旦匹配则响应，重复的查询将被缓存；特别地，outlets监听组播端口(16571)，用于接收组播和多播请求，并且为此创建了多个socket，用于监听不同的多播地址，这些socket采用异步I/O与单线程，**虽然这听起来仍然花销巨大，但请注意线程在大多数时候都处于等待状态**；另外，outlets创建了一个单播的UDP socket用于在**free port**（16572-16604）上监听查询，这个socket不仅用于处理内容查询也用于响应时间估计数据包（由入口发出）
-</code></pre>
-<pre><code>TCP Data Transmission: 另外每个出口创建一个TCP服务端socket通过**free port**（16572-16604）接收实际的数据传输请求,传输请求包括两种：请求数据流和请求元数据，TCP服务器也可以用于处理服务发现，但是因为低效不被用于这个目的
-</code></pre>
-<pre><code>Resolve Operations: 当一个客户端创建了一个Stream Solver来解析实验室网络中具有所需属性的流时，它会发出解析操作，解析操作会临时打开一系列UDP sockets，通过这些socket，查询被发送到激活的地址，它同样会开启一个UDP socket来接收结果包，解析操作会在一个短暂的时间内**向每个通道**发送一个数据包，并等待响应，然后发送下一个突发，知道找到服务或超时
-</code></pre>
-<pre><code>Inlets: Inlet在被创建时是默认没有任何socket的，创建socket的情况有以下几种：1）调用lsl::stream_inlet::pull_sample()或者lsl::stream_inlet::open_stream()以开启数据流的传输，此时将会建立一个TCP连接，  2）调用lsl::stream_inlet::info()，    3）当调用lsl::stream_inlet::time_correction()用于估计**时间校正值**时，将打开一个UDP socket，与出口的UDP单播端口**交换一系列简短的数据包**，
-</code></pre>
-<pre><code>Clock synchronization: 本地时钟函数lsl_local_clock()，查询时间偏移函数lsl_time_correction_ex()，获取加载库的版本的函数lsl_library_version()
-</code></pre>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2>
+<h2 id="具体说明"><a href="#具体说明" class="headerlink" title="具体说明"></a>具体说明</h2><p>Outlets: 一个出口可能使用ipv4，也可能使用ipv6，也可能同时使用，lsl::stream_outlet</p>
+<p>UDP Service Discovery: 一个出口创建多个UDP socket，用于监听查询。这样的查询都是用于查找感兴趣的数据流，出口将每个入站查询与其元数据匹配，一旦匹配则响应，重复的查询将被缓存；特别地，outlets监听组播端口(16571)，用于接收组播和多播请求，并且为此创建了多个socket，用于监听不同的多播地址，这些socket采用异步I&#x2F;O与单线程，<strong>虽然这听起来仍然花销巨大，但请注意线程在大多数时候都处于等待状态</strong>；另外，outlets创建了一个单播的UDP socket用于在<strong>free port</strong>（16572-16604）上监听查询，这个socket不仅用于处理内容查询也用于响应时间估计数据包（由入口发出）</p>
+<p>TCP Data Transmission: 另外每个出口创建一个TCP服务端socket通过<strong>free port</strong>（16572-16604）接收实际的数据传输请求,传输请求包括两种：请求数据流和请求元数据，TCP服务器也可以用于处理服务发现，但是因为低效不被用于这个目的</p>
+<p>Resolve Operations: 当一个客户端创建了一个Stream Solver来解析实验室网络中具有所需属性的流时，它会发出解析操作，解析操作会临时打开一系列UDP sockets，通过这些socket，查询被发送到激活的地址，它同样会开启一个UDP socket来接收结果包，解析操作会在一个短暂的时间内<strong>向每个通道</strong>发送一个数据包，并等待响应，然后发送下一个突发，知道找到服务或超时</p>
+<p>Inlets: Inlet在被创建时是默认没有任何socket的，创建socket的情况有以下几种：1）调用lsl::stream_inlet::pull_sample()或者lsl::stream_inlet::open_stream()以开启数据流的传输，此时将会建立一个TCP连接，  2）调用lsl::stream_inlet::info()，    3）当调用lsl::stream_inlet::time_correction()用于估计<strong>时间校正值</strong>时，将打开一个UDP socket，与出口的UDP单播端口<strong>交换一系列简短的数据包</strong>，</p>
+<p>Clock synchronization: 本地时钟函数lsl_local_clock()，查询时间偏移函数lsl_time_correction_ex()，获取加载库的版本的函数lsl_library_version()</p>
+
             
         </div>
     </div>
@@ -359,160 +391,6 @@ cat -n /var/www/html/wp-blog/wp-config.php
 </div>
 
 <div class="post">
-    <a href="/2022/09/24/Github使用/">
-        <h2 class="post-title">Github</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/9/24
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <h1 id="Github-Hexo创建个人博客"><a href="#Github-Hexo创建个人博客" class="headerlink" title="Github+Hexo创建个人博客"></a>Github+Hexo创建个人博客</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26625249">参考文章</a>  </p>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="git-part"><a href="#git-part" class="headerlink" title="git part"></a>git part</h3><p>1）安装git <a target="_blank" rel="noopener" href="https://git-scm.com/download/win">下载地址</a></p>
-<p>2）打开git bash，设置配置信息</p>
-<pre><code>git config --global user.name &quot;github用户名&quot;
-git config --global user.email &quot;github注册邮箱&quot;
-</code></pre>
-<p>3)设置密匙，省去每次输入密码的步骤<br>a.git生成密匙（私钥），复制生成的id_rsa.pub内容   </p>
-<pre><code>ssh-keygen -t rsa -C &quot;github注册邮箱&quot;
-</code></pre>
-<p>b.设置github密匙（公钥）<br>打开<a target="_blank" rel="noopener" href="https://github.com/settings/keys">github_settings_keys</a>，输入id_rsa.pub内容   </p>
-<p>c.验证公钥设置是否成功</p>
-<pre><code>ssh git@github.com
-</code></pre>
-<h3 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h3><p>1)安装Node.js  <a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">下载地址</a></p>
-<p>2)检测安装是否成功</p>
-<pre><code>node -v
-npm -v
-</code></pre>
-<h3 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h3><p>1)创建blog文件夹</p>
-<p>2)安装Hexo</p>
-<pre><code>npm install -g hexo-cli
-</code></pre>
-<p>3)初始化博客，即在文件夹下创建博客</p>
-<pre><code>hexo init blog
-</code></pre>
-<p>4)进入博客，快乐玩耍</p>
-<pre><code>#创建博客
-hexo new md
-#生成网页
-hexo g
-#启动服务预览，即可在本地预览网页
-hexo s
-</code></pre>
-<p>5)打开浏览器地址localhost:4000，即可进入网站进行预览</p>
-<p>6)推送网站<br>a.关联Hexo与Github，修改站点配置文件</p>
-<pre><code>deploy:
-    type: git
-    repo: 仓库地址
-    branch: master
-</code></pre>
-<p>即配置网站部署地址   </p>
-<p>b.安装hexo-git部署插件</p>
-<p>c.输入指令</p>
-<pre><code>#清除缓存
-hexo clean
-#生成网页
-hexo g
-hexo d
-</code></pre>
-<p>7)常用的Hexo命令</p>
-<pre><code>npm install hexo -g
-npm update hexo -g
-hexo init
-hexo n
-hexo g
-hexo s
-hexo d
-#用于网页不正常时
-hexo clean
-</code></pre>
-<p>8)更换主题<br>~</p>
-<h2 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h2><p>~</p>
-<h1 id="Git使用"><a href="#Git使用" class="headerlink" title="Git使用"></a>Git使用</h1><h2 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://www.runoob.com/manual/git-guide/">参考文章</a><br>1)Git安装 <a target="_blank" rel="noopener" href="https://gitforwindows.org/">下载地址</a></p>
-<p>2)创建仓库</p>
-<pre><code>git init
-</code></pre>
-<p>3)添加内容到暂存区</p>
-<pre><code>git add FileName.md
-</code></pre>
-<p>4)将暂存区内容提交到Head</p>
-<pre><code>git commit -m &quot;提交信息&quot;
-</code></pre>
-<p>5）将本地仓库连接到远程服务器&#x2F;Github</p>
-<pre><code>git remote add origin &lt;server&gt;
-</code></pre>
-<p>6)将head中内容提交到远程仓库</p>
-<pre><code>git push origin master
-</code></pre>
-<p>7)分支</p>
-<pre><code>~
-</code></pre>
-<h1 id="Git连接VScode"><a href="#Git连接VScode" class="headerlink" title="Git连接VScode"></a>Git连接VScode</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38981614/article/details/115013188">参考文章</a></p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-    </div>
-    <a href="/2022/09/24/Github使用/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2022/09/24/VMware安装及使用/">
-        <h2 class="post-title">VMware安装与使用</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/9/24
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <h1 id="虚拟机扩容"><a href="#虚拟机扩容" class="headerlink" title="虚拟机扩容"></a>虚拟机扩容</h1><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/daemon_2017/article/details/80660372">参考文章</a><br>1）在虚拟机设置中修改硬盘大小<br>2）’sudo apt-get install gparted’<br>3）’sudo gparted’<br>4）使用gpart调整分区</p>
-<h2 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h2><p>VMware错误：指定的虚拟磁盘需要进行修复（在(1)中出现）<br>解决方法：重启VMvare</p>
-<h1 id="VMvare-tools安装"><a href="#VMvare-tools安装" class="headerlink" title="VMvare_tools安装"></a>VMvare_tools安装</h1><h2 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41892825/article/details/122464113">参考文章</a>  </p>
-<h1 id="虚拟机连接VScode"><a href="#虚拟机连接VScode" class="headerlink" title="虚拟机连接VScode"></a>虚拟机连接VScode</h1><h2 id="步骤-2"><a href="#步骤-2" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59038488/article/details/122099093">参考文章</a></p>
-<h2 id="报错-1"><a href="#报错-1" class="headerlink" title="报错"></a>报错</h2><p>failed to start ssh.service. unit ssh.service not found<br>解决方案：<a target="_blank" rel="noopener" href="https://blog.csdn.net/xiato_yu/article/details/104166581">参考文章</a></p>
-<h1 id="VSCode连接虚拟机"><a href="#VSCode连接虚拟机" class="headerlink" title="VSCode连接虚拟机"></a>VSCode连接虚拟机</h1><h2 id="步骤-3"><a href="#步骤-3" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59038488/article/details/122099093?spm=1001.2014.3001.5506">参考文章</a><br>1)安装扩展Remote-ssh<br>2)配置ssh-config文件<br>3)linux开启ssh服务</p>
-<pre><code>#安装ssh
-sudo apt-get install sshd
-#查看SSH版本（测试是否安装成功）
-ssh -V
-#开启ssh服务
-sudo service ssh start
-#查看是否开启
-sudo ps -e |grep ssh
-</code></pre>
-<p>4)连接</p>
-<h2 id="报错-2"><a href="#报错-2" class="headerlink" title="报错"></a>报错</h2><p>开启ssh服务时：Failed to start ssh.service: Unit ssh.service not found.</p>
-<p>解决方法:<a target="_blank" rel="noopener" href="https://blog.csdn.net/luminous_you/article/details/108791035?spm=1001.2014.3001.5506">参考文章</a></p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-    </div>
-    <a href="/2022/09/24/VMware安装及使用/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
     <a href="/2022/09/24/Ubuntu常见用法/">
         <h2 class="post-title">Ubuntu常见用法</h2>
     </a>
@@ -654,8 +532,8 @@ catkin_make
 </div>
 
 <div class="post">
-    <a href="/2022/08/31/Nano部署/">
-        <h2 class="post-title">Nano部署YoloV5</h2>
+    <a href="/2022/09/24/VMware安装及使用/">
+        <h2 class="post-title">VMware安装与使用</h2>
     </a>
     <div class="category-and-date">
         
@@ -663,148 +541,30 @@ catkin_make
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2022/8/31
+            2022/9/24
         </span>
     </div>
     <div class="excerpt">
         <div class="content" v-pre>
             
-            <h1 id="Nano部署YoloV5"><a href="#Nano部署YoloV5" class="headerlink" title="Nano部署YoloV5"></a>Nano部署YoloV5</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/IamYZD/article/details/119618950?spm=1001.2014.3001.5506">参考文章</a></p>
-<p>准备：SD卡、电源线</p>
-<h2 id="烧录"><a href="#烧录" class="headerlink" title="烧录"></a>烧录</h2><p>1）<a target="_blank" rel="noopener" href="https://developer.nvidia.com/embedded/dlc/jetson-nano-dev-kit-sd-card-image">下载镜像</a></p>
-<p>2）使用SD Card Formatter格式化SD卡</p>
-<p>3）使用Etcher写入镜像 <a target="_blank" rel="noopener" href="https://www.balena.io/etcher/">Etcher下载地址</a></p>
-<p>4）将SD卡插入nano开机</p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>问题常用解决方法:sudo apt-get update</p>
-<p>1）备份</p>
-<pre><code>sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
-sudo gedit /etc/apt/sources.list
+            <h1 id="虚拟机扩容"><a href="#虚拟机扩容" class="headerlink" title="虚拟机扩容"></a>虚拟机扩容</h1><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/daemon_2017/article/details/80660372">参考文章</a><br>1）在虚拟机设置中修改硬盘大小<br>2）’sudo apt-get install gparted’<br>3）’sudo gparted’<br>4）使用gpart调整分区</p>
+<h2 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h2><p>VMware错误：指定的虚拟磁盘需要进行修复（在(1)中出现）<br>解决方法：重启VMvare</p>
+<h1 id="VMvare-tools安装"><a href="#VMvare-tools安装" class="headerlink" title="VMvare_tools安装"></a>VMvare_tools安装</h1><h2 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41892825/article/details/122464113">参考文章</a>  </p>
+<h1 id="虚拟机连接VScode"><a href="#虚拟机连接VScode" class="headerlink" title="虚拟机连接VScode"></a>虚拟机连接VScode</h1><h2 id="步骤-2"><a href="#步骤-2" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59038488/article/details/122099093">参考文章</a></p>
+<h2 id="报错-1"><a href="#报错-1" class="headerlink" title="报错"></a>报错</h2><p>failed to start ssh.service. unit ssh.service not found<br>解决方案：<a target="_blank" rel="noopener" href="https://blog.csdn.net/xiato_yu/article/details/104166581">参考文章</a></p>
+<h1 id="VSCode连接虚拟机"><a href="#VSCode连接虚拟机" class="headerlink" title="VSCode连接虚拟机"></a>VSCode连接虚拟机</h1><h2 id="步骤-3"><a href="#步骤-3" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59038488/article/details/122099093?spm=1001.2014.3001.5506">参考文章</a><br>1)安装扩展Remote-ssh<br>2)配置ssh-config文件<br>3)linux开启ssh服务</p>
+<pre><code>#安装ssh
+sudo apt-get install sshd
+#查看SSH版本（测试是否安装成功）
+ssh -V
+#开启ssh服务
+sudo service ssh start
+#查看是否开启
+sudo ps -e |grep ssh
 </code></pre>
-<p>2）更换软件源</p>
-<pre><code>deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic main multiverse restricted universe
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic-security main multiverse restricted universe
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic-updates main multiverse restricted universe
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic-backports main multiverse restricted universe
-deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic main multiverse restricted universe
-deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic-security main multiverse restricted universe
-deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic-updates main multiverse restricted universe
-deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic-backports main multiverse restricted universe
-</code></pre>
-<p>3）配置cuda</p>
-<pre><code>gedit ~/.bashrc
-</code></pre>
-<pre><code>export PATH=/usr/local/cuda-10.2/bin$&#123;PATH:+:$&#123;PATH&#125;&#125;
-export LD_LIBRARY_PATH=/usr/local/cuda-10.2/lib64$&#123;LD_LIBRARY_PATH:+:$&#123;LD_LIBRARY_PATH&#125;&#125;
-export CUDA_ROOT=/usr/local/cuda
-</code></pre>
-<pre><code>source ~/.bashrc
-</code></pre>
-<pre><code>nvcc -V
-</code></pre>
-<p>4）安装pip3</p>
-<pre><code>sudo apt-get update
-sudo apt-get install python3-pip python3-dev -y
-</code></pre>
-<p>5）配置需要用到的库</p>
-<pre><code>sudo apt-get install build-essential make cmake cmake-curses-gui -y
-sudo apt-get install git g++ pkg-config curl -y
-sudo apt-get install libatlas-base-dev gfortran libcanberra-gtk-module libcanberra-gtk3-module -y
-sudo apt-get install libhdf5-serial-dev hdf5-tools -y
-sudo apt-get install nano locate screen -y
-</code></pre>
-<p>6)安装所需要的依赖环境</p>
-<pre><code>sudo apt-get install libfreetype6-dev -y
-sudo apt-get install protobuf-compiler libprotobuf-dev openssl -y
-sudo apt-get install libssl-dev libcurl4-openssl-dev -y
-sudo apt-get install cython3 -y
-</code></pre>
-<p>7）安装opencv的系统级依赖，一些编解码的库</p>
-<pre><code>sudo apt-get install build-essential -y
-sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev -y
-sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff5-dev libdc1394-22-dev -y
-sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev liblapacke-dev -y
-sudo apt-get install libxvidcore-dev libx264-dev -y
-sudo apt-get install libatlas-base-dev gfortran -y
-sudo apt-get install ffmpeg -y
-</code></pre>
-<p>8）更新CMake，因为arm架构的东西很多要从源码编译</p>
-<pre><code>wget http://www.cmake.org/files/v3.13/cmake-3.13.0.tar.gz
-tar xpvf cmake-3.13.0.tar.gz cmake-3.13.0/  #解压
-cd cmake-3.13.0/
-./bootstrap --system-curl	# 漫长的等待,做一套眼保健操...
-make -j4 #编译  同样是漫长的等待...
-echo &#39;export PATH=~/cmake-3.13.0/bin/:$PATH&#39; &gt;&gt; ~/.bashrc
-source ~/.bashrc #更新.bashrc
-</code></pre>
-<p>9）U盘兼容</p>
-<pre><code>sudo apt-get install exfat-utils
-</code></pre>
-<h2 id="安装pytorch"><a href="#安装pytorch" class="headerlink" title="安装pytorch"></a>安装pytorch</h2><p>注意：版本选择要与nano版本(JetPack)匹配</p>
-<p>1）下载pytorch</p>
-<pre><code>https://forums.developer.nvidia.com/t/pytorch-for-jetson-version-1-9-0-now-available/72048
-</code></pre>
-<p>百度网盘</p>
-<pre><code>https://pan.baidu.com/s/1Nfm9w1DfE2k_cZQ1zTykMQ 
-提取码：zpsa
-</code></pre>
-<p>2）安装pytorch1.8</p>
-<pre><code>sudo pip3 install xxx.whl
-</code></pre>
-<h2 id="安装torchvision0-9-0版本"><a href="#安装torchvision0-9-0版本" class="headerlink" title="安装torchvision0.9.0版本"></a>安装torchvision0.9.0版本</h2><p>注意：pytorch版本与torchvision版本应该相对应</p>
-<p>1)安装所需依赖</p>
-<pre><code>sudo apt-get install libopenmpi2
-sudo apt-get install libopenblas-dev
-sudo apt-get install libjpeg-dev zlib1g-dev
-</code></pre>
-<p>2）安装torchvision</p>
-<pre><code>git clone --branch v0.7.0 https://github.com/pytorch/vision torchvision
-</code></pre>
-<p>百度网盘</p>
-<pre><code>https://pan.baidu.com/s/1Nfm9w1DfE2k_cZQ1zTykMQ 
-提取码：zpsa
-</code></pre>
-<pre><code>cd torchvision	# 进入到这个包的目录下
-export BUILD_VERSION=0.9.0
-sudo python3 setup.py install		# 安装（估计要20分钟不止吧）
-</code></pre>
-<h2 id="安装YoloV5源代码"><a href="#安装YoloV5源代码" class="headerlink" title="安装YoloV5源代码"></a>安装YoloV5源代码</h2><pre><code>https://pan.baidu.com/s/1UGJX7d2sSx04whjbQb3RTA 
-提取码：q0f3
-</code></pre>
-<h2 id="安装YoloV5所需包"><a href="#安装YoloV5所需包" class="headerlink" title="安装YoloV5所需包"></a>安装YoloV5所需包</h2><pre><code>sudo pip3 install matplotlib==3.2.2
-sudo pip3 install --upgrade Cython	#更新一下这个包
-</code></pre>
-<pre><code>sudo apt-get remove python-numpy
-sudo pip3 install numpy==1.19.4
-sudo pip3 install scipy==1.4.1.	# 这个包安装巨慢，耐心等待
-</code></pre>
-<pre><code>sudo pip3 install tqdm==4.61.2
-sudo pip3 install seaborn==0.11.1
-sudo pip3 install scikit-build==0.11.1	# 安装opencv需要这个包
-sudo pip3 install opencv-python==4.5.3.56	# 不出意外也是一个相当漫长的过程
-sudo pip3 install tensorboard==2.5.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
-sudo pip3 install --upgrade PyYAML	# 我升级到了5.4.1 也可以sudo pip3 install PyYAML==5.4.1
-sudo pip3 install thop
-sudo pip3 install pycocotools
-</code></pre>
-<h2 id="安装Pycharm"><a href="#安装Pycharm" class="headerlink" title="安装Pycharm"></a>安装Pycharm</h2><p>1）安装JDK</p>
-<pre><code>sudo apt install openjdk-11-jdk
-</code></pre>
-<p>2）安装Pycharm</p>
-<pre><code>#安装过程可以简单搜到
-</code></pre>
-<h1 id="tensorrt加速"><a href="#tensorrt加速" class="headerlink" title="tensorrt加速"></a>tensorrt加速</h1><p>1）安装pycuda</p>
-<pre><code>https://blog.csdn.net/weixin_44501699/article/details/106470671
-</code></pre>
-<p>2）安装tensorrt</p>
-<pre><code>git clone https://github.com/wang-xinyu/tensorrtx.git
-</code></pre>
-<pre><code>源代码下载地址：
-链接：https://pan.baidu.com/s/1SFWCmEHe6cn_uVfig_bJDQ 
-提取码：x97q
-</code></pre>
-<p>3）使用方法</p>
-<pre><code>https://blog.csdn.net/weixin_43760045/article/details/124288983?spm=1001.2014.3001.5506
-</code></pre>
+<p>4)连接</p>
+<h2 id="报错-2"><a href="#报错-2" class="headerlink" title="报错"></a>报错</h2><p>开启ssh服务时：Failed to start ssh.service: Unit ssh.service not found.</p>
+<p>解决方法:<a target="_blank" rel="noopener" href="https://blog.csdn.net/luminous_you/article/details/108791035?spm=1001.2014.3001.5506">参考文章</a></p>
 
             
         </div>
@@ -813,7 +573,116 @@ sudo pip3 install pycocotools
         
         
     </div>
-    <a href="/2022/08/31/Nano部署/" class="go-post">阅读全文</a>
+    <a href="/2022/09/24/VMware安装及使用/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2022/09/24/Github使用/">
+        <h2 class="post-title">Github</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/9/24
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <h1 id="Github-Hexo创建个人博客"><a href="#Github-Hexo创建个人博客" class="headerlink" title="Github+Hexo创建个人博客"></a>Github+Hexo创建个人博客</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26625249">参考文章</a>  </p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="git-part"><a href="#git-part" class="headerlink" title="git part"></a>git part</h3><p>1）安装git <a target="_blank" rel="noopener" href="https://git-scm.com/download/win">下载地址</a></p>
+<p>2）打开git bash，设置配置信息</p>
+<pre><code>git config --global user.name &quot;github用户名&quot;
+git config --global user.email &quot;github注册邮箱&quot;
+</code></pre>
+<p>3)设置密匙，省去每次输入密码的步骤<br>a.git生成密匙（私钥），复制生成的id_rsa.pub内容   </p>
+<pre><code>ssh-keygen -t rsa -C &quot;github注册邮箱&quot;
+</code></pre>
+<p>b.设置github密匙（公钥）<br>打开<a target="_blank" rel="noopener" href="https://github.com/settings/keys">github_settings_keys</a>，输入id_rsa.pub内容   </p>
+<p>c.验证公钥设置是否成功</p>
+<pre><code>ssh git@github.com
+</code></pre>
+<h3 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h3><p>1)安装Node.js  <a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">下载地址</a></p>
+<p>2)检测安装是否成功</p>
+<pre><code>node -v
+npm -v
+</code></pre>
+<h3 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h3><p>1)创建blog文件夹</p>
+<p>2)安装Hexo</p>
+<pre><code>npm install -g hexo-cli
+</code></pre>
+<p>3)初始化博客，即在文件夹下创建博客</p>
+<pre><code>hexo init blog
+</code></pre>
+<p>4)进入博客，快乐玩耍</p>
+<pre><code>#创建博客
+hexo new md
+#生成网页
+hexo g
+#启动服务预览，即可在本地预览网页
+hexo s
+</code></pre>
+<p>5)打开浏览器地址localhost:4000，即可进入网站进行预览</p>
+<p>6)推送网站<br>a.关联Hexo与Github，修改站点配置文件</p>
+<pre><code>deploy:
+    type: git
+    repo: 仓库地址
+    branch: master
+</code></pre>
+<p>即配置网站部署地址   </p>
+<p>b.安装hexo-git部署插件</p>
+<p>c.输入指令</p>
+<pre><code>#清除缓存
+hexo clean
+#生成网页
+hexo g
+hexo d
+</code></pre>
+<p>7)常用的Hexo命令</p>
+<pre><code>npm install hexo -g
+npm update hexo -g
+hexo init
+hexo n
+hexo g
+hexo s
+hexo d
+#用于网页不正常时
+hexo clean
+</code></pre>
+<p>8)更换主题<br>~</p>
+<h2 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h2><p>~</p>
+<h1 id="Git使用"><a href="#Git使用" class="headerlink" title="Git使用"></a>Git使用</h1><h2 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://www.runoob.com/manual/git-guide/">参考文章</a><br>1)Git安装 <a target="_blank" rel="noopener" href="https://gitforwindows.org/">下载地址</a></p>
+<p>2)创建仓库</p>
+<pre><code>git init
+</code></pre>
+<p>3)添加内容到暂存区</p>
+<pre><code>git add FileName.md
+</code></pre>
+<p>4)将暂存区内容提交到Head</p>
+<pre><code>git commit -m &quot;提交信息&quot;
+</code></pre>
+<p>5）将本地仓库连接到远程服务器&#x2F;Github</p>
+<pre><code>git remote add origin &lt;server&gt;
+</code></pre>
+<p>6)将head中内容提交到远程仓库</p>
+<pre><code>git push origin master
+</code></pre>
+<p>7)分支</p>
+<pre><code>~
+</code></pre>
+<h1 id="Git连接VScode"><a href="#Git连接VScode" class="headerlink" title="Git连接VScode"></a>Git连接VScode</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38981614/article/details/115013188">参考文章</a></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2022/09/24/Github使用/" class="go-post">阅读全文</a>
 </div>
 
              
@@ -827,8 +696,24 @@ sudo pip3 install pycocotools
             1
         </span>
         
+        <span>
+            <a href="/page/2/">
+                <span class="page-num">
+                    2
+                </span>
+            </a>
+            
+            
+        </span>
+        
     </div>
     <div class="next">
+        
+        <a href="/page/2/ ">
+            <span class="page-num">
+                <i class="fa-solid fa-caret-right fa-fw"></i>
+            </span>
+        </a>
         
     </div>
 </div>

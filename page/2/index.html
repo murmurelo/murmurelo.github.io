@@ -1,0 +1,370 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>Hexo</title>
+        <meta name="author" content="John Doe">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <link rel="icon" href="https://picx.zhimg.com/80/v2-c6f978bef2a9792fbf4c0a9002a2a7d4_720w.jpg?source=1940ef5c">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.1.1/js/all.min.js"></script>
+        
+        <link rel="stylesheet" href="/css/test/fonts.min.css">
+        <link rel="stylesheet" href="/css/test/particlex.css">
+        
+        <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
+    <meta name="generator" content="Hexo 6.2.0"></head>
+    <body>
+        <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">Hexo</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;Hexo</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        <div id="home-head">
+    <div id="home-background" style="background-image: url(https://images5.alphacoders.com/722/722798.jpg)"></div>
+    
+    <div id="home-info" class="home-info" @click="home_click">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>Hexo</h1>
+                <h3></h3>
+                <h5></h5>
+            </div>
+        </span>
+    </div>
+    
+</div>
+
+<div id="home-posts-wrap" class="">
+    <div id="home-posts">
+        <div id="posts">
+            
+
+<div class="post">
+    <a href="/2022/08/31/Nano部署/">
+        <h2 class="post-title">Nano部署YoloV5</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/8/31
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <h1 id="Nano部署YoloV5"><a href="#Nano部署YoloV5" class="headerlink" title="Nano部署YoloV5"></a>Nano部署YoloV5</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/IamYZD/article/details/119618950?spm=1001.2014.3001.5506">参考文章</a></p>
+<p>准备：SD卡、电源线</p>
+<h2 id="烧录"><a href="#烧录" class="headerlink" title="烧录"></a>烧录</h2><p>1）<a target="_blank" rel="noopener" href="https://developer.nvidia.com/embedded/dlc/jetson-nano-dev-kit-sd-card-image">下载镜像</a></p>
+<p>2）使用SD Card Formatter格式化SD卡</p>
+<p>3）使用Etcher写入镜像 <a target="_blank" rel="noopener" href="https://www.balena.io/etcher/">Etcher下载地址</a></p>
+<p>4）将SD卡插入nano开机</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>问题常用解决方法:sudo apt-get update</p>
+<p>1）备份</p>
+<pre><code>sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+sudo gedit /etc/apt/sources.list
+</code></pre>
+<p>2）更换软件源</p>
+<pre><code>deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic main multiverse restricted universe
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic-security main multiverse restricted universe
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic-updates main multiverse restricted universe
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic-backports main multiverse restricted universe
+deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic main multiverse restricted universe
+deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic-security main multiverse restricted universe
+deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic-updates main multiverse restricted universe
+deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic-backports main multiverse restricted universe
+</code></pre>
+<p>3）配置cuda</p>
+<pre><code>gedit ~/.bashrc
+</code></pre>
+<pre><code>export PATH=/usr/local/cuda-10.2/bin$&#123;PATH:+:$&#123;PATH&#125;&#125;
+export LD_LIBRARY_PATH=/usr/local/cuda-10.2/lib64$&#123;LD_LIBRARY_PATH:+:$&#123;LD_LIBRARY_PATH&#125;&#125;
+export CUDA_ROOT=/usr/local/cuda
+</code></pre>
+<pre><code>source ~/.bashrc
+</code></pre>
+<pre><code>nvcc -V
+</code></pre>
+<p>4）安装pip3</p>
+<pre><code>sudo apt-get update
+sudo apt-get install python3-pip python3-dev -y
+</code></pre>
+<p>5）配置需要用到的库</p>
+<pre><code>sudo apt-get install build-essential make cmake cmake-curses-gui -y
+sudo apt-get install git g++ pkg-config curl -y
+sudo apt-get install libatlas-base-dev gfortran libcanberra-gtk-module libcanberra-gtk3-module -y
+sudo apt-get install libhdf5-serial-dev hdf5-tools -y
+sudo apt-get install nano locate screen -y
+</code></pre>
+<p>6)安装所需要的依赖环境</p>
+<pre><code>sudo apt-get install libfreetype6-dev -y
+sudo apt-get install protobuf-compiler libprotobuf-dev openssl -y
+sudo apt-get install libssl-dev libcurl4-openssl-dev -y
+sudo apt-get install cython3 -y
+</code></pre>
+<p>7）安装opencv的系统级依赖，一些编解码的库</p>
+<pre><code>sudo apt-get install build-essential -y
+sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev -y
+sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff5-dev libdc1394-22-dev -y
+sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev liblapacke-dev -y
+sudo apt-get install libxvidcore-dev libx264-dev -y
+sudo apt-get install libatlas-base-dev gfortran -y
+sudo apt-get install ffmpeg -y
+</code></pre>
+<p>8）更新CMake，因为arm架构的东西很多要从源码编译</p>
+<pre><code>wget http://www.cmake.org/files/v3.13/cmake-3.13.0.tar.gz
+tar xpvf cmake-3.13.0.tar.gz cmake-3.13.0/  #解压
+cd cmake-3.13.0/
+./bootstrap --system-curl	# 漫长的等待,做一套眼保健操...
+make -j4 #编译  同样是漫长的等待...
+echo &#39;export PATH=~/cmake-3.13.0/bin/:$PATH&#39; &gt;&gt; ~/.bashrc
+source ~/.bashrc #更新.bashrc
+</code></pre>
+<p>9）U盘兼容</p>
+<pre><code>sudo apt-get install exfat-utils
+</code></pre>
+<h2 id="安装pytorch"><a href="#安装pytorch" class="headerlink" title="安装pytorch"></a>安装pytorch</h2><p>注意：版本选择要与nano版本(JetPack)匹配</p>
+<p>1）下载pytorch</p>
+<pre><code>https://forums.developer.nvidia.com/t/pytorch-for-jetson-version-1-9-0-now-available/72048
+</code></pre>
+<p>百度网盘</p>
+<pre><code>https://pan.baidu.com/s/1Nfm9w1DfE2k_cZQ1zTykMQ 
+提取码：zpsa
+</code></pre>
+<p>2）安装pytorch1.8</p>
+<pre><code>sudo pip3 install xxx.whl
+</code></pre>
+<h2 id="安装torchvision0-9-0版本"><a href="#安装torchvision0-9-0版本" class="headerlink" title="安装torchvision0.9.0版本"></a>安装torchvision0.9.0版本</h2><p>注意：pytorch版本与torchvision版本应该相对应</p>
+<p>1)安装所需依赖</p>
+<pre><code>sudo apt-get install libopenmpi2
+sudo apt-get install libopenblas-dev
+sudo apt-get install libjpeg-dev zlib1g-dev
+</code></pre>
+<p>2）安装torchvision</p>
+<pre><code>git clone --branch v0.7.0 https://github.com/pytorch/vision torchvision
+</code></pre>
+<p>百度网盘</p>
+<pre><code>https://pan.baidu.com/s/1Nfm9w1DfE2k_cZQ1zTykMQ 
+提取码：zpsa
+</code></pre>
+<pre><code>cd torchvision	# 进入到这个包的目录下
+export BUILD_VERSION=0.9.0
+sudo python3 setup.py install		# 安装（估计要20分钟不止吧）
+</code></pre>
+<h2 id="安装YoloV5源代码"><a href="#安装YoloV5源代码" class="headerlink" title="安装YoloV5源代码"></a>安装YoloV5源代码</h2><pre><code>https://pan.baidu.com/s/1UGJX7d2sSx04whjbQb3RTA 
+提取码：q0f3
+</code></pre>
+<h2 id="安装YoloV5所需包"><a href="#安装YoloV5所需包" class="headerlink" title="安装YoloV5所需包"></a>安装YoloV5所需包</h2><pre><code>sudo pip3 install matplotlib==3.2.2
+sudo pip3 install --upgrade Cython	#更新一下这个包
+</code></pre>
+<pre><code>sudo apt-get remove python-numpy
+sudo pip3 install numpy==1.19.4
+sudo pip3 install scipy==1.4.1.	# 这个包安装巨慢，耐心等待
+</code></pre>
+<pre><code>sudo pip3 install tqdm==4.61.2
+sudo pip3 install seaborn==0.11.1
+sudo pip3 install scikit-build==0.11.1	# 安装opencv需要这个包
+sudo pip3 install opencv-python==4.5.3.56	# 不出意外也是一个相当漫长的过程
+sudo pip3 install tensorboard==2.5.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+sudo pip3 install --upgrade PyYAML	# 我升级到了5.4.1 也可以sudo pip3 install PyYAML==5.4.1
+sudo pip3 install thop
+sudo pip3 install pycocotools
+</code></pre>
+<h2 id="安装Pycharm"><a href="#安装Pycharm" class="headerlink" title="安装Pycharm"></a>安装Pycharm</h2><p>1）安装JDK</p>
+<pre><code>sudo apt install openjdk-11-jdk
+</code></pre>
+<p>2）安装Pycharm</p>
+<pre><code>#安装过程可以简单搜到
+</code></pre>
+<h1 id="tensorrt加速"><a href="#tensorrt加速" class="headerlink" title="tensorrt加速"></a>tensorrt加速</h1><p>1）安装pycuda</p>
+<pre><code>https://blog.csdn.net/weixin_44501699/article/details/106470671
+</code></pre>
+<p>2）安装tensorrt</p>
+<pre><code>git clone https://github.com/wang-xinyu/tensorrtx.git
+</code></pre>
+<pre><code>源代码下载地址：
+链接：https://pan.baidu.com/s/1SFWCmEHe6cn_uVfig_bJDQ 
+提取码：x97q
+</code></pre>
+<p>3）使用方法</p>
+<pre><code>https://blog.csdn.net/weixin_43760045/article/details/124288983?spm=1001.2014.3001.5506
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2022/08/31/Nano部署/" class="go-post">阅读全文</a>
+</div>
+
+             
+<div class="page-current">
+    <div class="prev">
+        
+        <a href="/">
+            <span class="page-num">
+                <i class="fa-solid fa-caret-left fa-fw"></i>
+            </span>
+        </a>
+        
+    </div>
+    <div class="page-index">
+        
+        <span>
+            
+            
+            <a href="/">
+                <span class="page-num">
+                    1
+                </span>
+            </a>
+        </span>
+        
+        <span class="current">
+            2
+        </span>
+        
+    </div>
+    <div class="next">
+        
+    </div>
+</div>
+        </div>
+    </div>
+    
+    <div id="home-card">
+        <div id="card-div">
+    <div class="card-style" style="width: 300px">
+        <div class="avatar">
+            <img src="https://picx.zhimg.com/80/v2-c6f978bef2a9792fbf4c0a9002a2a7d4_720w.jpg?source=1940ef5c " alt="avatar">
+        </div>
+        <div class="name">
+            John Doe
+        </div>
+        <div class="descriptions">
+            
+            <div class="description">
+                balabala...
+            </div>
+            
+        </div>
+        <div class="icon-links">
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://github.com/murmurelo/">
+                    <i class="fa-brands fa-github fa-fw"></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="http://39.108.173.79/wp-blog/">
+                    <i class="fa-brands fa-wordpress fa-fw"></i>
+                </a>
+            </span>
+            
+        </div>
+        <div class="friend-links">
+            
+        </div>
+    </div>
+</div>
+    </div>
+    
+</div>
+                         
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 20xx - 2022 Hexo
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @John Doe
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+
+    </body>
+</html>
