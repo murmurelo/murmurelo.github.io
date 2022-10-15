@@ -102,6 +102,44 @@
             
 
 <div class="post">
+    <a href="/2022/10/14/LSL时间同步/">
+        <h2 class="post-title">LSL时间同步</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/10/14
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <h1 id="Time-Synchronization"><a href="#Time-Synchronization" class="headerlink" title="Time Synchronization"></a>Time Synchronization</h1><p>时间同步可以通过用户程序实现，也可以通过LSL库内嵌的时间支持<br>采集的每个样本都对应一个时间戳，时间戳的值可以由用户提供（例如GPS时钟）或者LSL时钟<br>如果用户程序没有为样本点提供时间戳，会默认由库提供时间戳</p>
+<h3 id="同步信息："><a href="#同步信息：" class="headerlink" title="同步信息："></a>同步信息：</h3><p>LSL中内嵌的时钟同步依托于2个数据：<br>1）每个样本点的时间戳（由采集样本点的电脑的本地高分辨率时钟提供）<br>2）2个时钟间的时间偏移(发送至接收端电脑，由记录程序采集，<strong>that are made at periodic intervals</strong>)</p>
+<h3 id="时钟偏移计算"><a href="#时钟偏移计算" class="headerlink" title="时钟偏移计算:"></a>时钟偏移计算:</h3><p>每次时间偏移测量都包含了n个UDP包的交换(n默认为8)<br>每个包的交换包含了a)RTT的测量（两台电脑间往返时间的测量）以及 b)OFS的测量（测量时电脑时钟间的偏移）<br>多次测量 Clock Filter</p>
+<h3 id="网络中包的交换："><a href="#网络中包的交换：" class="headerlink" title="网络中包的交换："></a>网络中包的交换：</h3><p>假设Alice（客户端）、Bob（服务端）<br>1）Alice发送包P1，包含时间点t0（数据包被提交到网络中的时刻）<br>2）Bob接收到包P1后，添加时间戳t1（Bob端在网络中接收到数据包的时刻）<br>3）Bob返回包P2（包含时间戳t0,t1,t2(返回包提交到网络中的时刻))<br>4）Alice接收到数据包，并将接收时间记为t3<br>Bob加工数据的时间：t2-t1<br>总过程的时间：t3-t0<br>RTT: (t3-t0)-(t2-t1)<br>OFS: ((t1-t0)+(t2-t3))&#x2F;2</p>
+<h3 id="结果测量偏差"><a href="#结果测量偏差" class="headerlink" title="结果测量偏差:"></a>结果测量偏差:</h3><p>如果服务器的<strong>传入和传出路由</strong>具有对称的延迟，那么时间同步机制就是正确的<br>但如果延迟不同，同步就会有一个系统偏差（前传和后传时间差的一半），在对称的局域网上，行程时间差一方面是由于多线程、缓冲或中断造成的随机延迟的总和，另一方面是两个系统的<strong>网络堆栈</strong>延迟差异，通过clock filter可以降低预估中随机影响的可能性，其余的不准确性都来自于系统的网络堆栈延迟差异，基于现代的硬件和操作系统，差异可以认为在1ms以下</p>
+<h3 id="同步过程（偏移校正）"><a href="#同步过程（偏移校正）" class="headerlink" title="同步过程（偏移校正）"></a>同步过程（偏移校正）</h3><p>给定两台计算机之间时钟偏移测量的历史记录，可以将远程采集的样本的时间戳重新映射到本地时域，以便与所有其他可用样本进行比较，在最简单的例子中，这可以通过向每个时间戳添加最新的时钟偏移值来实现，一个更加强大的方法是通过（<strong>可能有噪声的</strong>）时钟偏移测量计算线性拟合，并使用得到的线性拟合重新映射时间戳（<strong>具体</strong>），而更复杂的方法是通过时钟偏移执行<strong>outlier-resilient</strong>线性拟合以获得更好的线性映射，库本身不会执行映射，而是将这个任务交给了数据的接收端</p>
+<h3 id="在线处理的同步"><a href="#在线处理的同步" class="headerlink" title="在线处理的同步"></a>在线处理的同步</h3><p>大多数线上处理应用都只接收单个流或者不需要细粒度时间对齐所以根本不需要线上同步，对于那些需要同步时间戳的应用，将最近的时间偏移添加到每个输入流即可<br><strong>可以平均出连续偏移量中的误差以进一步减小误差，但应注意，该同步相关的抖动已经很小，并且即使在偏移矫正之前，原始时间戳中的抖动也通常已经至少大十倍，这两个抖动源可以在同步时间戳的单个后处理中解决</strong></p>
+<h3 id="多流记录中的同步"><a href="#多流记录中的同步" class="headerlink" title="多流记录中的同步"></a>多流记录中的同步</h3><p>当数据被存入硬盘，记录程序(如labrecorder)将会采集所有信息，包括时间戳和时钟偏移量并不做任何处理，由导入程序处理处理时间偏移校正，这允许用户即使在数据被采集了很久以后仍然可以使用他们选择的处理方法<br>导入程序(如load_xdf)对每个远程输入流的时钟偏移量进行线性拟合(<strong>thereby</strong>假定线性时钟漂移)，并使用此线性映射重新映射给定的时间戳</p>
+<h3 id="时间戳后处理（消抖）"><a href="#时间戳后处理（消抖）" class="headerlink" title="时间戳后处理（消抖）"></a>时间戳后处理（消抖）</h3><p>在时间序列已经同步之后（时间偏移已经被校正），时间戳中几乎总是会有抖动（例如高斯噪声），这不是由于同步问题，而是因为时间戳本身通常不是在固定的时间间隔内发生的，某种程度上是随机的（由硬件、驱动程序和操作系统的性质决定；为了实现多流传输中同步的ms级准确性，消抖十分重要，可以通过trend-adjusted平滑算法来实现，平滑处理可以在数据采集时在线完成，也可以在数据导入时离线处理</p>
+<h3 id="导入时的平滑处理"><a href="#导入时的平滑处理" class="headerlink" title="导入时的平滑处理"></a>导入时的平滑处理</h3><p>除了纠正时钟偏移，导入程序(XDF importer)还会默认在最后一步对所有<strong>具有规则采样率的输入流</strong>重新计算时间戳，这一操作是可取的，因为样本或样本块的实际时间戳通常受到小抖动的影响，该计算独立地处理每个流，并首先检查时间序列是否包含任何中断（即数据丢失），使用观察到的样本间隔(<strong>generous</strong>)阈值，然后，对于每个不间断段，计算每个样本的索引与其时间戳之间的线性拟合（因此假设一个恒定但任意的有效采样率），然后根据各自的索引重新计算所有样本的时间戳</p>
+<h3 id="在线平滑处理"><a href="#在线平滑处理" class="headerlink" title="在线平滑处理"></a>在线平滑处理</h3><p>要实现在线消抖，可以使用多种方法，最简单的方法是双指数平滑，这在在线数据处理系统中相对容易实现，但应注意的是，在最初几分钟的操作期间（最多5分钟），产生的时间戳仍会有相当大的误差（超过1ms），该算法的遗忘因子需要根据数据的采样率和原始戳中抖动的幅度来设置，并且可能需要一些调整来达到所需的精度。一种更好的替代方法是递归二乘法，它具有本质上最优的收敛行为，尽管在实际设置中，平滑后的抖动达到可接受的水平之前仍需要一到两分钟的预热；为达到该精度，应设置遗忘因子使30秒前的样本具有1&#x2F;2的有效权重，人们还可以使用60或120秒的时间来进一步提高精度，但是由于房间或计算机温度的变化，过大的值可能无法跟踪足够快的非线性时钟漂移（-）。该算法将内置在未来的liblsl中以便使用，也可以使用其他算法，如QR-RLS和卡尔曼滤波器，其性能与RLS类似（-）</p>
+<h3 id="Stream-Header-Synchronization-Parameters"><a href="#Stream-Header-Synchronization-Parameters" class="headerlink" title="Stream Header Synchronization Parameters"></a>Stream Header Synchronization Parameters</h3>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2022/10/14/LSL时间同步/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2022/10/09/C++学习笔记/">
         <h2 class="post-title">C++</h2>
     </a>
