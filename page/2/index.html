@@ -102,6 +102,301 @@
             
 
 <div class="post">
+    <a href="/2022/09/24/Ubuntu常见用法/">
+        <h2 class="post-title">Ubuntu常见用法</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/9/24
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <h1 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h1><h3 id="编辑文本"><a href="#编辑文本" class="headerlink" title="编辑文本"></a>编辑文本</h3><p>‘sudo gedit’  </p>
+<h3 id="更改apt源"><a href="#更改apt源" class="headerlink" title="更改apt源"></a>更改apt源</h3><p>‘sudo gedit &#x2F;etc&#x2F;apt&#x2F;sources.list’</p>
+<h3 id="查看cuda版本"><a href="#查看cuda版本" class="headerlink" title="查看cuda版本"></a>查看cuda版本</h3><pre><code>&#39;cat /usr/local/cuda/version.txt&#39;  
+&#39;nvidia-smi&#39;
+&#39;nvcc -V&#39;
+</code></pre>
+<h3 id="安装显卡驱动cuda"><a href="#安装显卡驱动cuda" class="headerlink" title="安装显卡驱动cuda"></a>安装显卡驱动cuda</h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/108930996">article</a></p>
+<h3 id="查看文件夹下文件"><a href="#查看文件夹下文件" class="headerlink" title="查看文件夹下文件"></a>查看文件夹下文件</h3><p>‘ls’<br>绿色表示可执行文件 ‘sudo .&#x2F;可执行文件’</p>
+<h3 id="解压gz文件"><a href="#解压gz文件" class="headerlink" title="解压gz文件"></a>解压gz文件</h3><p>‘grid -d FileName.gz’<br>‘gunzip FileName.gz’</p>
+<h3 id="更新软件包"><a href="#更新软件包" class="headerlink" title="更新软件包"></a>更新软件包</h3><p>‘sudo apt-get update’</p>
+<h3 id="安装ssh"><a href="#安装ssh" class="headerlink" title="安装ssh"></a>安装ssh</h3><p>‘sudo apt-get install ssh’</p>
+<h3 id="更新全局变量"><a href="#更新全局变量" class="headerlink" title="更新全局变量"></a>更新全局变量</h3><p>‘source ~&#x2F;.bashrc’</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2022/09/24/Ubuntu常见用法/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2022/09/24/ROS部署与使用/">
+        <h2 class="post-title">ROS</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/9/24
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <h1 id="ROS安装"><a href="#ROS安装" class="headerlink" title="ROS安装"></a>ROS安装</h1><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://robot.czxy.com/car/ros/env/ros18/">参考文章</a><br>1）添加镜像源以及配置密匙   </p>
+<pre><code>sudo sh -c &#39;. /etc/lsb-release &amp;&amp; echo &quot;deb http://mirrors.ustc.edu.cn/ros/ubuntu/ `lsb_release -cs` main&quot; &gt; /etc/apt/sources.list.d/ros-latest.list&#39;  
+sudo apt-key adv --keyserver &#39;hkp://keyserver.ubuntu.com:80&#39; --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654   
+sudo apt-get update  
+</code></pre>
+<p>2)安装ROS<br><code>sudo apt install ros-melodic-desktop-full</code></p>
+<p>3)配置ROS的全局环境变量</p>
+<pre><code>echo &quot;source /opt/ros/melodic/setup.bash&quot; &gt;&gt; ~/.bashrc  
+source ~/.bashrc  
+</code></pre>
+<p>4)安装打包工具依赖   </p>
+<pre><code>sudo apt install python-rosdep python-rosinstall    python-rosinstall-generator python-wstool build-essential   
+</code></pre>
+<p>5)初始化rosdep   </p>
+<pre><code>sudo rosdep init   
+rosdep update   
+</code></pre>
+<p>rosdep可以轻松地为要编译的代码添加系统依赖项，并且帮助我们运行ROS中核心组件    </p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_52811474/article/details/122801027">参考文章</a><br>Ubuntu20.04下需将melodic改为noetic,依赖包安装发生变化，且不再需要对rosdep进行初始化</p>
+<h2 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43439214/article/details/124780142?spm=1001.2014.3001.5506">参考文章</a><br>ros-melodic-desktop-full安装过慢，连接失败<br>解决方法：更改系统软件下载设置与软件下载源同步   </p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/leida_wt/article/details/115120940?spm=1001.2014.3001.5506">参考文章1</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35813104/article/details/117332670?spm=1001.2014.3001.5506">参考文章2</a><br>rosdep update超时<br>解决办法：修改rosdep源码中下载资源的函数</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Veissia_/article/details/120885274">参考文章</a><br>lock锁正在由进程xxxx持有</p>
+<h1 id="ROS安装Gazebo、Griz等关键组件"><a href="#ROS安装Gazebo、Griz等关键组件" class="headerlink" title="ROS安装Gazebo、Griz等关键组件"></a>ROS安装Gazebo、Griz等关键组件</h1><h2 id="安装Gazebo-连接Gazebo与ROS"><a href="#安装Gazebo-连接Gazebo与ROS" class="headerlink" title="安装Gazebo,连接Gazebo与ROS"></a>安装Gazebo,连接Gazebo与ROS</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43855855/article/details/107443865?spm=1001.2014.3001.5506">参考文章</a><br>1)添加软件源    </p>
+<pre><code>sudo sh -c &#39;echo &quot;deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main&quot; &gt; /etc/apt/sources.list.d/gazebo-stable.list
+wget https://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
+</code></pre>
+<p>2)安装Gazebo   </p>
+<pre><code>sudo apt-get update
+sudo apt-get install gazebo9
+sudo apt-get install libgazebo9-dev
+</code></pre>
+<p>3)安装ROS-Gazebo接口</p>
+<pre><code>sudo apt install ros-melodic-gazebo-ros-pkgs  ros-melodic-gazebo-msgs  ros-melodic-gazebo-plugins  ros-melodic-gazebo-ros-control
+</code></pre>
+<p>4)验证是否连接成功</p>
+<pre><code>roscore
+rosrun gazebo_ros gazebo
+</code></pre>
+<h2 id="安装Griz"><a href="#安装Griz" class="headerlink" title="安装Griz"></a>安装Griz</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/baidu_38485156/article/details/81201079?spm=1001.2014.3001.5506">参考文章</a><br>1)安装</p>
+<pre><code>sudo apt-get install ros-kinetic-rviz
+rosdep install rviz
+rosmake rviz
+</code></pre>
+<p>2）测试</p>
+<pre><code>roscore
+rosrun rviz rviz
+</code></pre>
+<h2 id="安装TF"><a href="#安装TF" class="headerlink" title="安装TF"></a>安装TF</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32761549/article/details/105799663?spm=1001.2014.3001.5506">参考文章</a><br>1)安装</p>
+<pre><code>sudo apt-get install ros-$ROS_DISTRO-turtle-tf2 ros-$ROS_DISTRO-tf2-tools ros-$ROS_DISTRO-tf
+</code></pre>
+<p>2）测试</p>
+<pre><code>roscore
+roslaunch turtle_tf2 turtle_tf2_demo.launch
+rosrun turtlesim turtle_teleop_key
+</code></pre>
+<h1 id="ROS创建工作空间"><a href="#ROS创建工作空间" class="headerlink" title="ROS创建工作空间"></a>ROS创建工作空间</h1><p><a target="_blank" rel="noopener" href="https://robot.czxy.com/car/ros/hello/ws/">参考文章1</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42237429/article/details/90238000">参考文章2</a></p>
+<h2 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h2><pre><code>mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws/src
+#初始化文件夹，即生成CMakeList.txt文件
+catkin_init_workspace
+#编译
+cd ..
+catkin_make
+#设置工作空间的环境变量
+echo &quot;source ~/catkin_ws/devel/setup.bash&quot; &gt;&gt; ~/.bashrc
+source ~/.bashrc
+#查看环境变量
+echo $ROS_PACKAGE_PATH
+#创建功能包
+cd ~/catkin_ws/src/
+catkin_create_pkg learning_communication std_msgs roscpp rospy
+#编译
+cd ..
+catkin_make
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2022/09/24/ROS部署与使用/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2022/09/24/VMware安装及使用/">
+        <h2 class="post-title">VMware安装与使用</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/9/24
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <h1 id="虚拟机扩容"><a href="#虚拟机扩容" class="headerlink" title="虚拟机扩容"></a>虚拟机扩容</h1><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/daemon_2017/article/details/80660372">参考文章</a><br>1）在虚拟机设置中修改硬盘大小<br>2）’sudo apt-get install gparted’<br>3）’sudo gparted’<br>4）使用gpart调整分区</p>
+<h2 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h2><p>VMware错误：指定的虚拟磁盘需要进行修复（在(1)中出现）<br>解决方法：重启VMvare</p>
+<h1 id="VMvare-tools安装"><a href="#VMvare-tools安装" class="headerlink" title="VMvare_tools安装"></a>VMvare_tools安装</h1><h2 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41892825/article/details/122464113">参考文章</a>  </p>
+<h1 id="虚拟机连接VScode"><a href="#虚拟机连接VScode" class="headerlink" title="虚拟机连接VScode"></a>虚拟机连接VScode</h1><h2 id="步骤-2"><a href="#步骤-2" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59038488/article/details/122099093">参考文章</a></p>
+<h2 id="报错-1"><a href="#报错-1" class="headerlink" title="报错"></a>报错</h2><p>failed to start ssh.service. unit ssh.service not found<br>解决方案：<a target="_blank" rel="noopener" href="https://blog.csdn.net/xiato_yu/article/details/104166581">参考文章</a></p>
+<h1 id="VSCode连接虚拟机"><a href="#VSCode连接虚拟机" class="headerlink" title="VSCode连接虚拟机"></a>VSCode连接虚拟机</h1><h2 id="步骤-3"><a href="#步骤-3" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59038488/article/details/122099093?spm=1001.2014.3001.5506">参考文章</a><br>1)安装扩展Remote-ssh<br>2)配置ssh-config文件<br>3)linux开启ssh服务</p>
+<pre><code>#安装ssh
+sudo apt-get install sshd
+#查看SSH版本（测试是否安装成功）
+ssh -V
+#开启ssh服务
+sudo service ssh start
+#查看是否开启
+sudo ps -e |grep ssh
+</code></pre>
+<p>4)连接</p>
+<h2 id="报错-2"><a href="#报错-2" class="headerlink" title="报错"></a>报错</h2><p>开启ssh服务时：Failed to start ssh.service: Unit ssh.service not found.</p>
+<p>解决方法:<a target="_blank" rel="noopener" href="https://blog.csdn.net/luminous_you/article/details/108791035?spm=1001.2014.3001.5506">参考文章</a></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2022/09/24/VMware安装及使用/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2022/09/24/Github使用/">
+        <h2 class="post-title">Github使用</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/9/24
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <h1 id="Github-Hexo创建个人博客"><a href="#Github-Hexo创建个人博客" class="headerlink" title="Github+Hexo创建个人博客"></a>Github+Hexo创建个人博客</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26625249">参考文章</a>  </p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="git-part"><a href="#git-part" class="headerlink" title="git part"></a>git part</h3><p>1）安装git <a target="_blank" rel="noopener" href="https://git-scm.com/download/win">下载地址</a></p>
+<p>2）打开git bash，设置配置信息</p>
+<pre><code>git config --global user.name &quot;github用户名&quot;
+git config --global user.email &quot;github注册邮箱&quot;
+</code></pre>
+<p>3)设置密匙，省去每次输入密码的步骤<br>a.git生成密匙（私钥），复制生成的id_rsa.pub内容   </p>
+<pre><code>ssh-keygen -t rsa -C &quot;github注册邮箱&quot;
+</code></pre>
+<p>b.设置github密匙（公钥）<br>打开<a target="_blank" rel="noopener" href="https://github.com/settings/keys">github_settings_keys</a>，输入id_rsa.pub内容   </p>
+<p>c.验证公钥设置是否成功</p>
+<pre><code>ssh git@github.com
+</code></pre>
+<h3 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h3><p>1)安装Node.js  <a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">下载地址</a></p>
+<p>2)检测安装是否成功</p>
+<pre><code>node -v
+npm -v
+</code></pre>
+<h3 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h3><p>1)创建blog文件夹</p>
+<p>2)安装Hexo</p>
+<pre><code>npm install -g hexo-cli
+</code></pre>
+<p>3)初始化博客，即在文件夹下创建博客</p>
+<pre><code>hexo init blog
+</code></pre>
+<p>4)进入博客，快乐玩耍</p>
+<pre><code>#创建博客
+hexo new md
+#生成网页
+hexo g
+#启动服务预览，即可在本地预览网页
+hexo s
+</code></pre>
+<p>5)打开浏览器地址localhost:4000，即可进入网站进行预览</p>
+<p>6)推送网站<br>a.关联Hexo与Github，修改站点配置文件</p>
+<pre><code>deploy:
+    type: git
+    repo: 仓库地址
+    branch: master
+</code></pre>
+<p>即配置网站部署地址   </p>
+<p>b.安装hexo-git部署插件</p>
+<p>c.输入指令</p>
+<pre><code>#清除缓存
+hexo clean
+#生成网页
+hexo g
+hexo d
+</code></pre>
+<p>7)常用的Hexo命令</p>
+<pre><code>npm install hexo -g
+npm update hexo -g
+hexo init
+hexo n
+hexo g
+hexo s
+hexo d
+#用于网页不正常时
+hexo clean
+</code></pre>
+<p>8)更换主题<br>~</p>
+<h2 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h2><p>~</p>
+<h1 id="Git使用"><a href="#Git使用" class="headerlink" title="Git使用"></a>Git使用</h1><h2 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://www.runoob.com/manual/git-guide/">参考文章</a><br>1)Git安装 <a target="_blank" rel="noopener" href="https://gitforwindows.org/">下载地址</a></p>
+<p>2)创建仓库</p>
+<pre><code>git init
+</code></pre>
+<p>3)添加内容到暂存区</p>
+<pre><code>git add FileName.md
+</code></pre>
+<p>4)将暂存区内容提交到Head</p>
+<pre><code>git commit -m &quot;提交信息&quot;
+</code></pre>
+<p>5）将本地仓库连接到远程服务器&#x2F;Github</p>
+<pre><code>git remote add origin &lt;server&gt;
+</code></pre>
+<p>6)将head中内容提交到远程仓库</p>
+<pre><code>git push origin master
+</code></pre>
+<p>7)分支</p>
+<pre><code>~
+</code></pre>
+<h1 id="Git连接VScode"><a href="#Git连接VScode" class="headerlink" title="Git连接VScode"></a>Git连接VScode</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38981614/article/details/115013188">参考文章</a></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2022/09/24/Github使用/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2022/08/31/Nano部署/">
         <h2 class="post-title">Nano部署YoloV5</h2>
     </a>

@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Github使用 | Hexo</title>
+        <title>Hexo</title>
         <meta name="author" content="John Doe">
         <meta name="description" content="">
         <meta name="keywords" content="">
@@ -80,101 +80,108 @@
                         
 <div class="article">
     <div>
-        <h1>Github使用 </h1>
+        <h1> </h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2022/9/24
+            2022/10/17
         </span>
         
         
     </div>
     <div class="content" v-pre>
-        <h1 id="Github-Hexo创建个人博客"><a href="#Github-Hexo创建个人博客" class="headerlink" title="Github+Hexo创建个人博客"></a>Github+Hexo创建个人博客</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26625249">参考文章</a>  </p>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="git-part"><a href="#git-part" class="headerlink" title="git part"></a>git part</h3><p>1）安装git <a target="_blank" rel="noopener" href="https://git-scm.com/download/win">下载地址</a></p>
-<p>2）打开git bash，设置配置信息</p>
-<pre><code>git config --global user.name &quot;github用户名&quot;
-git config --global user.email &quot;github注册邮箱&quot;
+        <h1 id="Paddlex使用笔记"><a href="#Paddlex使用笔记" class="headerlink" title="Paddlex使用笔记"></a>Paddlex使用笔记</h1><h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><p>1）安装paddlepaddle</p>
+<pre><code>python -m pip install paddlepaddle-gpu==2.2.2.post101 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
 </code></pre>
-<p>3)设置密匙，省去每次输入密码的步骤<br>a.git生成密匙（私钥），复制生成的id_rsa.pub内容   </p>
-<pre><code>ssh-keygen -t rsa -C &quot;github注册邮箱&quot;
+<p>2）安装paddlex</p>
+<pre><code>pip install paddlex -i https://mirror.baidu.com/pypi/simple
 </code></pre>
-<p>b.设置github密匙（公钥）<br>打开<a target="_blank" rel="noopener" href="https://github.com/settings/keys">github_settings_keys</a>，输入id_rsa.pub内容   </p>
-<p>c.验证公钥设置是否成功</p>
-<pre><code>ssh git@github.com
+<h2 id="训练历程"><a href="#训练历程" class="headerlink" title="训练历程"></a>训练历程</h2><p>1）定义图像的预处理和数据增强操作</p>
+<pre><code>from paddlex.det import transforms
+train_transforms=transforms.Compose([
+    transforms.MixupImage(mixup_epoch=250),#图像混合
+    transforms.RandomDistort(),#随即像素变换
+    transforms.RandomExpand(),#随机膨胀
+    transforms.RandomCrop(),#随即裁剪
+    transforms.Resize(target_size=512,interp=&#39;RANDOM&#39;),
+    transforms.RandomHorizontalFlip(),#随机水平翻转
+    transforms.Normalize(),
+])
+eval_transforms=transforms.Compose([
+    transforms.Resize(target_size=512,interp=&#39;CUBIC&#39;),
+    transforms.Normalize(),
+])
 </code></pre>
-<h3 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h3><p>1)安装Node.js  <a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">下载地址</a></p>
-<p>2)检测安装是否成功</p>
-<pre><code>node -v
-npm -v
+<p>2）定义数据集(VOC格式)</p>
+<pre><code>base=&#39;./work/pascalvoc/VOCdevkit/VOC2012&#39;
+imgs=os.listdir(&#39;./work/pascalvoc/VOCdevkit/VOC2012/JPEGImages&#39;)
+
+with open(os.path.join(base,&#39;train_list.txt&#39;),&#39;w&#39;) as f:
+    for im in imgs[:-200]:
+        info=&#39;JPEGImages/&#39;+im+&#39; &#39;
+        info+=&#39;Annotations/&#39;+im[:-4]+&#39;.xml\n&#39;
+
+with open(os.path.join(base,&#39;val_list.txt&#39;),&#39;w&#39;) as f:
+    for im in imgs[-200:]:
+        info=&#39;JPEGImages/&#39;+im+&#39; &#39;
+        info+=&#39;Annotations/&#39;+im[:-4]+&#39;.xml\n&#39;
+        f.write(info)
+
+CLASSES=[&#39;aeroplane&#39;,&#39;bicycle&#39;,&#39;bird&#39;,&#39;boat&#39;,&#39;bottle&#39;,&#39;bus&#39;,&#39;car&#39;,&#39;cat&#39;,&#39;chair&#39;,&#39;cow&#39;,
+         &#39;diningtable&#39;,&#39;dog&#39;,&#39;horse&#39;,&#39;motorbike&#39;,&#39;person&#39;,&#39;pottedplant&#39;,&#39;sheep&#39;,&#39;sofa&#39;,
+         &#39;train&#39;,&#39;tvmonitor&#39;]
+
+with open(&#39;labels.txt&#39;,&#39;w&#39;) as f:
+    for v in CLASSES:
+        f.write(v+&#39;\n&#39;)
 </code></pre>
-<h3 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h3><p>1)创建blog文件夹</p>
-<p>2)安装Hexo</p>
-<pre><code>npm install -g hexo-cli
+<p>3）加载数据集</p>
+<pre><code>train_dataset=pdx.datasets.VOCDetection(
+    data_dir=base,
+    file_list=os.path.join(base,&#39;train_list.txt&#39;),
+    label_list=&#39;label.txt&#39;,
+    transforms=train_transforms,
+    shuffle=True
+)
+
+eval_dataset=pdx.datasets.VOCDetection(
+    data_dir=base,
+    file_list=os.path.join(base,&#39;val_list.txt&#39;),
+    label_list=&#39;labels.txt&#39;,
+    transforms=eval_transforms,
+)
 </code></pre>
-<p>3)初始化博客，即在文件夹下创建博客</p>
-<pre><code>hexo init blog
+<p>4）定义模型开始训练</p>
+<pre><code>model=pdx.det.YOLOv3(
+    num_classes=num_classes,
+    backbone=&#39;DarkNet53&#39;
+)
+model.train(
+    num_epochs=20,
+    train_dataset=train_dataset,
+    train_batch_size=4,
+    eval_dataset=eval_dataset,
+    learning_rate=0.00025,
+    lr_decay_epochs=[10,15],
+    save_internal_epochs=4,
+    log_internal_steps=100,
+    save_dir=&#39;./YOLOv3&#39;,
+    pretrain_weights=&#39;IMAGENET&#39;,
+    use_vdl=True
+)
 </code></pre>
-<p>4)进入博客，快乐玩耍</p>
-<pre><code>#创建博客
-hexo new md
-#生成网页
-hexo g
-#启动服务预览，即可在本地预览网页
-hexo s
+<p>5）加载模型</p>
+<pre><code>model=pdx.load_model(&#39;./YOLOv3/best_model&#39;)
 </code></pre>
-<p>5)打开浏览器地址localhost:4000，即可进入网站进行预览</p>
-<p>6)推送网站<br>a.关联Hexo与Github，修改站点配置文件</p>
-<pre><code>deploy:
-    type: git
-    repo: 仓库地址
-    branch: master
+<p>6）评估模型</p>
+<pre><code>model.evaluate(eval_dataset,batch_size=1,epoch_id=None,metric=None,return_details=False)
 </code></pre>
-<p>即配置网站部署地址   </p>
-<p>b.安装hexo-git部署插件</p>
-<p>c.输入指令</p>
-<pre><code>#清除缓存
-hexo clean
-#生成网页
-hexo g
-hexo d
+<p>7）模型预测</p>
+<pre><code>result = model.predict(test_jpg)
 </code></pre>
-<p>7)常用的Hexo命令</p>
-<pre><code>npm install hexo -g
-npm update hexo -g
-hexo init
-hexo n
-hexo g
-hexo s
-hexo d
-#用于网页不正常时
-hexo clean
-</code></pre>
-<p>8)更换主题<br>~</p>
-<h2 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h2><p>~</p>
-<h1 id="Git使用"><a href="#Git使用" class="headerlink" title="Git使用"></a>Git使用</h1><h2 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://www.runoob.com/manual/git-guide/">参考文章</a><br>1)Git安装 <a target="_blank" rel="noopener" href="https://gitforwindows.org/">下载地址</a></p>
-<p>2)创建仓库</p>
-<pre><code>git init
-</code></pre>
-<p>3)添加内容到暂存区</p>
-<pre><code>git add FileName.md
-</code></pre>
-<p>4)将暂存区内容提交到Head</p>
-<pre><code>git commit -m &quot;提交信息&quot;
-</code></pre>
-<p>5）将本地仓库连接到远程服务器&#x2F;Github</p>
-<pre><code>git remote add origin &lt;server&gt;
-</code></pre>
-<p>6)将head中内容提交到远程仓库</p>
-<pre><code>git push origin master
-</code></pre>
-<p>7)分支</p>
-<pre><code>~
-</code></pre>
-<h1 id="Git连接VScode"><a href="#Git连接VScode" class="headerlink" title="Git连接VScode"></a>Git连接VScode</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38981614/article/details/115013188">参考文章</a></p>
 
     </div>
     
