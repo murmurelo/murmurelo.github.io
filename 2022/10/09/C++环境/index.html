@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>LSL:Lab Streaming Layer | Hexo</title>
+        <title>C++环境 | Hexo</title>
         <meta name="author" content="John Doe">
         <meta name="description" content="">
         <meta name="keywords" content="">
@@ -80,7 +80,7 @@
                         
 <div class="article">
     <div>
-        <h1>LSL:Lab Streaming Layer </h1>
+        <h1>C++环境 </h1>
     </div>
     <div class="info">
         <span class="date">
@@ -93,22 +93,15 @@
         
     </div>
     <div class="content" v-pre>
-        <h1 id="LSL：Lab-Streaming-Layer"><a href="#LSL：Lab-Streaming-Layer" class="headerlink" title="LSL：Lab Streaming Layer"></a>LSL：Lab Streaming Layer</h1><h2 id="相关名词介绍"><a href="#相关名词介绍" class="headerlink" title="相关名词介绍"></a>相关名词介绍</h2><p>Sample: 对一台设备的所有通道进行一次测量</p>
-<p>Chunk: 样本的集合发送</p>
-<p>MetaData: XML记录关于流的信息，类似于文件头</p>
-<p>Stream: 设备的采样数据与元数据的组合称为流，流的采样率可以相同可以不同，可以来自一个通道也可以来自很多通道，流内数据必须为相同类型</p>
-<p>Stream Outlet: 用于提供时间序列数据流，数据被逐样本或逐块推送到出口；通过outlet可以使数据流被网络中的一批主机可见，主机可以通过解析函数找到outlet以及订阅</p>
-<p>Stream Inlet: 用于从连接的outlet中接收时间序列数据，允许从流中检索采样数据，inlet还可以获得元数据（以XML形式或者通过<strong>小型的内嵌DOM接口</strong>）</p>
-<p>Resolver: LSL提供函数来解析数据流（根据以内容为基础的查询），查找服务并不依赖于外部设备，旨在简化数据采集网络</p>
-<p>Built-in clock: 允许对传输的样本进行时间戳，以便它们可以相互同步</p>
-<p>Time Synchronization: LSL具有的内嵌时间同步设备，<strong>详细内容，NTP</strong></p>
-<p>File Format: 传输API本身不提供特定的文件格式，但提供的记录程序（默认）将数据记录为XDF格式，XDF与LSL同时设计，支持LSL的完整功能集（包括<strong>多流</strong>，任意大小的XML头，所有的样本格式以及时间同步信息）</p>
-<h2 id="具体说明"><a href="#具体说明" class="headerlink" title="具体说明"></a>具体说明</h2><p>Outlets: 一个出口可能使用ipv4，也可能使用ipv6，也可能同时使用，lsl::stream_outlet</p>
-<p>UDP Service Discovery: 一个出口创建多个UDP socket，用于监听查询。这样的查询都是用于查找感兴趣的数据流，出口将每个入站查询与其元数据匹配，一旦匹配则响应，重复的查询将被缓存；特别地，outlets监听组播端口(16571)，用于接收组播和多播请求，并且为此创建了多个socket，用于监听不同的多播地址，这些socket采用异步I&#x2F;O与单线程，<strong>虽然这听起来仍然花销巨大，但请注意线程在大多数时候都处于等待状态</strong>；另外，outlets创建了一个单播的UDP socket用于在<strong>free port</strong>（16572-16604）上监听查询，这个socket不仅用于处理内容查询也用于响应时间估计数据包（由入口发出）</p>
-<p>TCP Data Transmission: 另外每个出口创建一个TCP服务端socket通过<strong>free port</strong>（16572-16604）接收实际的数据传输请求,传输请求包括两种：请求数据流和请求元数据，TCP服务器也可以用于处理服务发现，但是因为低效不被用于这个目的</p>
-<p>Resolve Operations: 当一个客户端创建了一个Stream Solver来解析实验室网络中具有所需属性的流时，它会发出解析操作，解析操作会临时打开一系列UDP sockets，通过这些socket，查询被发送到激活的地址，它同样会开启一个UDP socket来接收结果包，解析操作会在一个短暂的时间内<strong>向每个通道</strong>发送一个数据包，并等待响应，然后发送下一个突发，知道找到服务或超时</p>
-<p>Inlets: Inlet在被创建时是默认没有任何socket的，创建socket的情况有以下几种：1）调用lsl::stream_inlet::pull_sample()或者lsl::stream_inlet::open_stream()以开启数据流的传输，此时将会建立一个TCP连接，  2）调用lsl::stream_inlet::info()，    3）当调用lsl::stream_inlet::time_correction()用于估计<strong>时间校正值</strong>时，将打开一个UDP socket，与出口的UDP单播端口<strong>交换一系列简短的数据包</strong>，</p>
-<p>Clock synchronization: 本地时钟函数lsl_local_clock()，查询时间偏移函数lsl_time_correction_ex()，获取加载库的版本的函数lsl_library_version()</p>
+        <h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>MinGW </p>
+<p>GNU</p>
+<p>g++</p>
+<p>gcc</p>
+<p>make</p>
+<p>cmake</p>
+<h3 id="环境踩雷"><a href="#环境踩雷" class="headerlink" title="环境踩雷"></a>环境踩雷</h3><p>1） CMake报错：error in configuration process, project files may be invalid<br>原因：编译器配置为2017，但电脑里只有2019（明明2019里安装了2017的编译器，不知道为什么不可以)<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qc530167365/article/details/89399877?spm=1001.2014.3001.5506">参考文章</a></p>
+<p>2）VS编译cmake生成文件时出现error MSB3073错误<br>原因：CMake GUI中CMAKE_INSTALL_PREFIX指定为C盘目录，导致权限不够</p>
+<p>3）C4819<br>原因：没找到</p>
 
     </div>
     
