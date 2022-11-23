@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>Hexo</title>
+        <meta name="author" content="John Doe">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <link rel="icon" href="https://picx.zhimg.com/80/v2-c6f978bef2a9792fbf4c0a9002a2a7d4_720w.jpg?source=1940ef5c">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.1.1/js/all.min.js"></script>
+        
+        <link rel="stylesheet" href="/css/test/fonts.min.css">
+        <link rel="stylesheet" href="/css/test/particlex.css">
+        
+        <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
+    <meta name="generator" content="Hexo 6.2.0"></head>
+    <body>
+        <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">Hexo</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;Hexo</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        
+<div class="article">
+    <div>
+        <h1> </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/11/23
+        </span>
+        
+        
+    </div>
+    <div class="content" v-pre>
+        <h1 id="专有名词解释"><a href="#专有名词解释" class="headerlink" title="专有名词解释"></a>专有名词解释</h1><p>水力半径：用于表示非圆管的过流能力<br>水力等级线的斜率或线性水头损失</p>
+<h1 id="相关算法算法解析"><a href="#相关算法算法解析" class="headerlink" title="相关算法算法解析"></a>相关算法算法解析</h1><h2 id="AHP"><a href="#AHP" class="headerlink" title="AHP"></a>AHP</h2><h2 id="TOPSIS"><a href="#TOPSIS" class="headerlink" title="TOPSIS"></a>TOPSIS</h2><h2 id="遗传算法"><a href="#遗传算法" class="headerlink" title="遗传算法"></a>遗传算法</h2><h1 id="条件理想化"><a href="#条件理想化" class="headerlink" title="条件理想化"></a>条件理想化</h1><p>1）不考虑河流上的极端条件<br>2）忽略其他现存的水坝<br>3）河流的平均流速是可估计的</p>
+<h1 id="参数列表"><a href="#参数列表" class="headerlink" title="参数列表"></a>参数列表</h1><p><img src="/para.png" alt="pic"></p>
+<h1 id="预备计算"><a href="#预备计算" class="headerlink" title="预备计算"></a>预备计算</h1><h2 id="计算水流特性"><a href="#计算水流特性" class="headerlink" title="计算水流特性"></a>计算水流特性</h2><p>使用曼宁公式来估计流度<br>$$v&#x3D;\frac{k}{n}R_h^{\frac{2}{3}}S^{\frac{1}{2}}$$<br>由此公式可知，水流到达大坝时的平均流速只取决于河道坡度S和水力半径R  </p>
+<h2 id="对单个大坝的分析"><a href="#对单个大坝的分析" class="headerlink" title="对单个大坝的分析"></a>对单个大坝的分析</h2><p>使用锥法计算容量<br>$$CA(X_i)&#x3D;\frac{h(X_i)^2d}{2k(X_i)}$$<br>计算建造成本，包括施工成本和其他不可避免的成本，施工成本和大坝的体积呈线性关系，最后将其他成本简化为常数<br>$$Cost(X_i)&#x3D;\lambda\frac{\rho gdh(X_i)^2}{2\sigma}+\beta$$</p>
+<h1 id="模型结构——iMoDS"><a href="#模型结构——iMoDS" class="headerlink" title="模型结构——iMoDS"></a>模型结构——iMoDS</h1><p>风险成本模型、供电能力模型、串联安全模型</p>
+<h2 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h2><p>上游流量大于下游<br>位置用到河流起始点的距离表示，水力等级线的坡度以$k(X_i)$表示</p>
+<h2 id="风险成本模型"><a href="#风险成本模型" class="headerlink" title="风险成本模型"></a>风险成本模型</h2><p>成本（基本投资）：建造成本与$P_f$的比值<br>安全（风险损失）：坍塌<br>风险成本模型&#x3D;成本+安全</p>
+<h2 id="串联安全模型"><a href="#串联安全模型" class="headerlink" title="串联安全模型"></a>串联安全模型</h2><p>此处的安全性考虑的两个因素分别是两个相邻水坝之间的平均距离和分布的均匀程度</p>
+<h2 id="供电能力模型"><a href="#供电能力模型" class="headerlink" title="供电能力模型"></a>供电能力模型</h2><p>供电等于所有水坝之和，单个水坝的电力可通过水的参数计算</p>
+<h2 id="功能集成"><a href="#功能集成" class="headerlink" title="功能集成"></a>功能集成</h2><p>串联安全模型与安全水平正相关，越高越好<br>供电能力模型与供电能力呈正相关，越高越好<br>风险成本模型是投资和损失之间的平衡，越低越好<br>采用TOPSIS方法分析每个指标的分数<br>采用层次分析法为iMoDS模型分配权重<br><img src="/AHP.png" alt="pic"><br>最终模型<br><img src="/model.png" alt="pic"><br>约束条件<br><img src="/constraints.png" alt="pic"></p>
+<h1 id="模型实现"><a href="#模型实现" class="headerlink" title="模型实现"></a>模型实现</h1><h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p>没有找到数据所以通过地理刨面图分析了河流的流量数据</p>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>1）假设所有小水坝的高度相等<br>2）使用启发式算法，例如遗传算法，运行iMoDS模型<br>3）更改每个大坝的高度<br>4）测试约束条件</p>
+<h3 id="确定大坝的数量和-P-f"><a href="#确定大坝的数量和-P-f" class="headerlink" title="确定大坝的数量和$P_f$"></a>确定大坝的数量和$P_f$</h3><p>1）简化大坝高度为常数<br>2）寻找最优参数$P_f$使得目标函数最大化以及满足约束条件<br>3）直观层面分析参数对每个模块的作用，证明结果的可信度</p>
+<h3 id="确定每个大坝的高度"><a href="#确定每个大坝的高度" class="headerlink" title="确定每个大坝的高度"></a>确定每个大坝的高度</h3><p>1）给定$P_f$，iMoDS模型是大坝高度的单变量函数<br>2）采用微分方法确定最佳高度，进而确定最佳位置<br>3）考虑约束条件，若不满足则进行微调      </p>
+<h1 id="其他策略"><a href="#其他策略" class="headerlink" title="其他策略"></a>其他策略</h1><h2 id="对卡里巴湖的保护"><a href="#对卡里巴湖的保护" class="headerlink" title="对卡里巴湖的保护"></a>对卡里巴湖的保护</h2><h2 id="紧急水流情况下的指导"><a href="#紧急水流情况下的指导" class="headerlink" title="紧急水流情况下的指导"></a>紧急水流情况下的指导</h2><h1 id="敏感性分析"><a href="#敏感性分析" class="headerlink" title="敏感性分析"></a>敏感性分析</h1><p>调整模型中包含的一些参数分析敏感性      </p>
+<h2 id="大坝工作年限"><a href="#大坝工作年限" class="headerlink" title="大坝工作年限"></a>大坝工作年限</h2><p>在模型中，我们设置年限为50，此处将年限按10递增至100，结论为不敏感</p>
+<h2 id="极端条件的影响比"><a href="#极端条件的影响比" class="headerlink" title="极端条件的影响比"></a>极端条件的影响比</h2><h1 id="优缺点分析"><a href="#优缺点分析" class="headerlink" title="优缺点分析"></a>优缺点分析</h1><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>1）可靠的数据<br>2）跨学科确定评价方法<br>3）可视化</p>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>1）启发式算法的固有缺陷<br>2）把河流简化为开阔的水道        </p>
+<h2 id="方案选择分析"><a href="#方案选择分析" class="headerlink" title="方案选择分析"></a>方案选择分析</h2>
+    </div>
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container">
+        </div>
+    </div>
+    
+</div>
+                         
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 20xx - 2022 Hexo
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @John Doe
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+<script>
+    var clientID = "", clientSecret = "";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "",
+        owner: "",
+        admin: [""],
+        language: "zh-CN",
+        id: location.pathname,
+        distractionFreeMode: false,
+        
+        proxy: "https://fy135.herokuapp.com/https://github.com/login/oauth/access_token"
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
+
+    </body>
+</html>

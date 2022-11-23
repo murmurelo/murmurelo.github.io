@@ -102,6 +102,133 @@
             
 
 <div class="post">
+    <a href="/2022/11/23/problem/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/11/23
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <h1 id="题面解读"><a href="#题面解读" class="headerlink" title="题面解读"></a>题面解读</h1><h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>大坝急需维护，维护选项有三个</p>
+<p>1）修复现有的水坝</p>
+<p>2）重建现有的水坝</p>
+<p>3）拆除Kariba水坝，并更换为十到二十个较小的水坝</p>
+<p>问题要求：<br>1）对三个选项进行简要评估<br>2）对选项三进行详细分析</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2022/11/23/problem/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2022/11/23/55280/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/11/23
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <h1 id="专有名词解释"><a href="#专有名词解释" class="headerlink" title="专有名词解释"></a>专有名词解释</h1><p>水力半径：用于表示非圆管的过流能力<br>水力等级线的斜率或线性水头损失</p>
+<h1 id="相关算法算法解析"><a href="#相关算法算法解析" class="headerlink" title="相关算法算法解析"></a>相关算法算法解析</h1><h2 id="AHP"><a href="#AHP" class="headerlink" title="AHP"></a>AHP</h2><h2 id="TOPSIS"><a href="#TOPSIS" class="headerlink" title="TOPSIS"></a>TOPSIS</h2><h2 id="遗传算法"><a href="#遗传算法" class="headerlink" title="遗传算法"></a>遗传算法</h2><h1 id="条件理想化"><a href="#条件理想化" class="headerlink" title="条件理想化"></a>条件理想化</h1><p>1）不考虑河流上的极端条件<br>2）忽略其他现存的水坝<br>3）河流的平均流速是可估计的</p>
+<h1 id="参数列表"><a href="#参数列表" class="headerlink" title="参数列表"></a>参数列表</h1><p><img src="/para.png" alt="pic"></p>
+<h1 id="预备计算"><a href="#预备计算" class="headerlink" title="预备计算"></a>预备计算</h1><h2 id="计算水流特性"><a href="#计算水流特性" class="headerlink" title="计算水流特性"></a>计算水流特性</h2><p>使用曼宁公式来估计流度<br>$$v&#x3D;\frac{k}{n}R_h^{\frac{2}{3}}S^{\frac{1}{2}}$$<br>由此公式可知，水流到达大坝时的平均流速只取决于河道坡度S和水力半径R  </p>
+<h2 id="对单个大坝的分析"><a href="#对单个大坝的分析" class="headerlink" title="对单个大坝的分析"></a>对单个大坝的分析</h2><p>使用锥法计算容量<br>$$CA(X_i)&#x3D;\frac{h(X_i)^2d}{2k(X_i)}$$<br>计算建造成本，包括施工成本和其他不可避免的成本，施工成本和大坝的体积呈线性关系，最后将其他成本简化为常数<br>$$Cost(X_i)&#x3D;\lambda\frac{\rho gdh(X_i)^2}{2\sigma}+\beta$$</p>
+<h1 id="模型结构——iMoDS"><a href="#模型结构——iMoDS" class="headerlink" title="模型结构——iMoDS"></a>模型结构——iMoDS</h1><p>风险成本模型、供电能力模型、串联安全模型</p>
+<h2 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h2><p>上游流量大于下游<br>位置用到河流起始点的距离表示，水力等级线的坡度以$k(X_i)$表示</p>
+<h2 id="风险成本模型"><a href="#风险成本模型" class="headerlink" title="风险成本模型"></a>风险成本模型</h2><p>成本（基本投资）：建造成本与$P_f$的比值<br>安全（风险损失）：坍塌<br>风险成本模型&#x3D;成本+安全</p>
+<h2 id="串联安全模型"><a href="#串联安全模型" class="headerlink" title="串联安全模型"></a>串联安全模型</h2><p>此处的安全性考虑的两个因素分别是两个相邻水坝之间的平均距离和分布的均匀程度</p>
+<h2 id="供电能力模型"><a href="#供电能力模型" class="headerlink" title="供电能力模型"></a>供电能力模型</h2><p>供电等于所有水坝之和，单个水坝的电力可通过水的参数计算</p>
+<h2 id="功能集成"><a href="#功能集成" class="headerlink" title="功能集成"></a>功能集成</h2><p>串联安全模型与安全水平正相关，越高越好<br>供电能力模型与供电能力呈正相关，越高越好<br>风险成本模型是投资和损失之间的平衡，越低越好<br>采用TOPSIS方法分析每个指标的分数<br>采用层次分析法为iMoDS模型分配权重<br><img src="/AHP.png" alt="pic"><br>最终模型<br><img src="/model.png" alt="pic"><br>约束条件<br><img src="/constraints.png" alt="pic"></p>
+<h1 id="模型实现"><a href="#模型实现" class="headerlink" title="模型实现"></a>模型实现</h1><h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p>没有找到数据所以通过地理刨面图分析了河流的流量数据</p>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>1）假设所有小水坝的高度相等<br>2）使用启发式算法，例如遗传算法，运行iMoDS模型<br>3）更改每个大坝的高度<br>4）测试约束条件</p>
+<h3 id="确定大坝的数量和-P-f"><a href="#确定大坝的数量和-P-f" class="headerlink" title="确定大坝的数量和$P_f$"></a>确定大坝的数量和$P_f$</h3><p>1）简化大坝高度为常数<br>2）寻找最优参数$P_f$使得目标函数最大化以及满足约束条件<br>3）直观层面分析参数对每个模块的作用，证明结果的可信度</p>
+<h3 id="确定每个大坝的高度"><a href="#确定每个大坝的高度" class="headerlink" title="确定每个大坝的高度"></a>确定每个大坝的高度</h3><p>1）给定$P_f$，iMoDS模型是大坝高度的单变量函数<br>2）采用微分方法确定最佳高度，进而确定最佳位置<br>3）考虑约束条件，若不满足则进行微调      </p>
+<h1 id="其他策略"><a href="#其他策略" class="headerlink" title="其他策略"></a>其他策略</h1><h2 id="对卡里巴湖的保护"><a href="#对卡里巴湖的保护" class="headerlink" title="对卡里巴湖的保护"></a>对卡里巴湖的保护</h2><h2 id="紧急水流情况下的指导"><a href="#紧急水流情况下的指导" class="headerlink" title="紧急水流情况下的指导"></a>紧急水流情况下的指导</h2><h1 id="敏感性分析"><a href="#敏感性分析" class="headerlink" title="敏感性分析"></a>敏感性分析</h1><p>调整模型中包含的一些参数分析敏感性      </p>
+<h2 id="大坝工作年限"><a href="#大坝工作年限" class="headerlink" title="大坝工作年限"></a>大坝工作年限</h2><p>在模型中，我们设置年限为50，此处将年限按10递增至100，结论为不敏感</p>
+<h2 id="极端条件的影响比"><a href="#极端条件的影响比" class="headerlink" title="极端条件的影响比"></a>极端条件的影响比</h2><h1 id="优缺点分析"><a href="#优缺点分析" class="headerlink" title="优缺点分析"></a>优缺点分析</h1><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>1）可靠的数据<br>2）跨学科确定评价方法<br>3）可视化</p>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>1）启发式算法的固有缺陷<br>2）把河流简化为开阔的水道        </p>
+<h2 id="方案选择分析"><a href="#方案选择分析" class="headerlink" title="方案选择分析"></a>方案选择分析</h2>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2022/11/23/55280/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2022/11/23/55069/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/11/23
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <h1 id="算法解析"><a href="#算法解析" class="headerlink" title="算法解析"></a>算法解析</h1><h2 id="层次分析法"><a href="#层次分析法" class="headerlink" title="层次分析法"></a>层次分析法</h2><h2 id="多目标优化模型"><a href="#多目标优化模型" class="headerlink" title="多目标优化模型"></a>多目标优化模型</h2><h2 id="TOPSIS"><a href="#TOPSIS" class="headerlink" title="TOPSIS"></a>TOPSIS</h2><h2 id="遗传算法"><a href="#遗传算法" class="headerlink" title="遗传算法"></a>遗传算法</h2><h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><h1 id="确定解决方案"><a href="#确定解决方案" class="headerlink" title="确定解决方案"></a>确定解决方案</h1><p>评价标准：潜在成本和收益<br>结论：选项3是最佳选择</p>
+<h1 id="问题条件理想化"><a href="#问题条件理想化" class="headerlink" title="问题条件理想化"></a>问题条件理想化</h1><p>1）大坝系统建在卡里巴大坝下游的山谷中。<br>2）大坝的建造花费相同<br>3）大坝的供水量相同<br>4）坝系水质取两水库水质的平均值<br>5）下游大坝的水仅来自上游大坝和自然降水</p>
+<h1 id="确定水坝数量和位置"><a href="#确定水坝数量和位置" class="headerlink" title="确定水坝数量和位置"></a>确定水坝数量和位置</h1><p>问题抽象：集合覆盖问题<br>问题目标：提高水资源管理能力和降低成本<br>建立多目标优化模型并使用遗传算法决定数量和位置<br>约束条件：水平衡、水位、安全和水保护    </p>
+<h2 id="目标函数"><a href="#目标函数" class="headerlink" title="目标函数"></a>目标函数</h2><p>提高水资源管理能力（最小化大坝到需求量大的城市的距离）：<br>$$min\sum_{i&#x3D;1}^mEle_id(y_i,X_n)$$<br>$$min\sum_{i&#x3D;1}^mWat_id(y_i,X_n)$$<br>减少花费（拆除成本和建设成本，只与水坝的数量有关）<br>$$min n$$</p>
+<h2 id="约束条件"><a href="#约束条件" class="headerlink" title="约束条件"></a>约束条件</h2><p>水平衡：<br>$$W(t,i)&#x3D;W(t-1,i)+\sum_{k\in PI(i)}Z(t,k)+T(t,i)$$<br>水位（坝区水位应保持在死水位和汛期限水位之间）：<br>$$DWL&lt;&#x3D;WL&lt;&#x3D;FWL$$<br>安全（主要考虑溃坝概率）：<br>$$Safety_{sd}&gt;&#x3D;Safety_{Bd}$$<br>水资源保护:<br>$$WRP_{sd}&gt;&#x3D;WRP_{Bd}$$<br>水坝数量:<br>$$10&#x3D;&lt;n&lt;&#x3D;20$$<br><img src="/1_cons.png" alt="pic"></p>
+<h2 id="参数解析"><a href="#参数解析" class="headerlink" title="参数解析"></a>参数解析</h2><p>1）电力需求主要与城市的经济和人口因素有关   </p>
+<p>2）居民用水主要用居民收入、水价等因素影响   </p>
+<p>3）大坝安全以风险损失指标为代理，单个大坝的RLI的计算方法为<br>$$R^{Bd}&#x3D;P(K)*N(K)$$<br>多坝系统中第j个大坝的计算方法为<br>$$R_j&#x3D;P(j)*N(j)+\sum_{l&#x3D;j+1}^nP(l|j)*P(j)*N(l)$$<br>多坝系统的计算方法为<br>$$R^{sd}&#x3D;\sum_{j&#x3D;1}^nR_{j}^{sd}$$</p>
+<p>4）水资源保护<br>水资源管理有三个目标<br>a.改善供水管理<br>b.改善河流水质<br>c.改善流域环境条件<br>供水管理：小水坝的数量乘以供水量<br>河流水质：</p>
+<h1 id="水资源调度方案"><a href="#水资源调度方案" class="headerlink" title="水资源调度方案"></a>水资源调度方案</h1><h2 id="目标函数-1"><a href="#目标函数-1" class="headerlink" title="目标函数"></a>目标函数</h2><p>$$I&#x3D;max(I_{e}+I_{s})$$</p>
+<h2 id="约束条件-1"><a href="#约束条件-1" class="headerlink" title="约束条件"></a>约束条件</h2><p>水平衡<br>大坝容量<br>水流约束<br><img src="/1_cons2.png" alt="pic"></p>
+<p>抽象出正常流量年、低流量年、高流量年、差异年，构建流量指标和容量指标</p>
+<h1 id="模型实施与结果"><a href="#模型实施与结果" class="headerlink" title="模型实施与结果"></a>模型实施与结果</h1><h2 id="数量和选址"><a href="#数量和选址" class="headerlink" title="数量和选址"></a>数量和选址</h2><p>1）计算周围城市的需求<br>2）计算从每个水坝到每个城市的最短距离<br>3）计算其他因素的数据<br>4）数量和选址，此优化问题属于NP-hard问题，故采用启发式算法，我们反复运行此程序，确定了大坝数量和位置</p>
+<h2 id="水流调节策略"><a href="#水流调节策略" class="headerlink" title="水流调节策略"></a>水流调节策略</h2><h3 id="正常流量年（取平均气候水文条件模拟正常气候条件）："><a href="#正常流量年（取平均气候水文条件模拟正常气候条件）：" class="headerlink" title="正常流量年（取平均气候水文条件模拟正常气候条件）："></a>正常流量年（取平均气候水文条件模拟正常气候条件）：</h3><p>正常年份的水资源调度存在季节性差异，在旱季每个水库的流量都达到了底线，因此将上中游的水排到中游，<br>结果表明，5月和10月的流量指数和库容指数表现较好，均处于最佳区间，其余月份均在0.7以上，结果较满意</p>
+<h3 id="低流量年（取近30年内月降水量最低）"><a href="#低流量年（取近30年内月降水量最低）" class="headerlink" title="低流量年（取近30年内月降水量最低）"></a>低流量年（取近30年内月降水量最低）</h3><p>当年降水量减少时，各大坝流量明显降低，但流量指数和容量指数仍在0.7以上，说明大坝系统联合运行对抗旱等异常天气条件仍有明显的作用</p>
+<h3 id="高流量年（取近30年内月降水量最高）"><a href="#高流量年（取近30年内月降水量最高）" class="headerlink" title="高流量年（取近30年内月降水量最高）"></a>高流量年（取近30年内月降水量最高）</h3><p>当年降水量显著增加时，水库流量会增加。雨季流量增加较多，而旱季流量增加幅度较小，这使得5 - 9月的流量指数和流量指数显著增加。虽然11月和2月指数下降明显，但都在0.7以上，仍然是比较令人满意的</p>
+<h3 id="分化年"><a href="#分化年" class="headerlink" title="分化年"></a>分化年</h3><p>当面对降水增加的雨季和降水减少的旱季的分异年时，都发生在一年之内。各水库的流量季节性扩大，使各水库的流量指数和库容指数下降，在雨季表现更为明显。不可忽视的是，流量指标和存储容量指标保持在0.7以上</p>
+<h1 id="敏感性分析"><a href="#敏感性分析" class="headerlink" title="敏感性分析"></a>敏感性分析</h1><h2 id="移去重要城市"><a href="#移去重要城市" class="headerlink" title="移去重要城市"></a>移去重要城市</h2><p>由此分析模型结果的变化，得出影响因素</p>
+<h2 id="改变经济发展指数的指标"><a href="#改变经济发展指数的指标" class="headerlink" title="改变经济发展指数的指标"></a>改变经济发展指数的指标</h2><p>将GDP增长率作为城市发展的指标，并改变增长率以分析经济增长对大坝数量的影响</p>
+<h2 id="输出系数"><a href="#输出系数" class="headerlink" title="输出系数"></a>输出系数</h2><h1 id="长远的讨论"><a href="#长远的讨论" class="headerlink" title="长远的讨论"></a>长远的讨论</h1><h2 id="考虑未来的收益"><a href="#考虑未来的收益" class="headerlink" title="考虑未来的收益"></a>考虑未来的收益</h2><h2 id="提高生态效益"><a href="#提高生态效益" class="headerlink" title="提高生态效益"></a>提高生态效益</h2><h2 id="增加约束条件"><a href="#增加约束条件" class="headerlink" title="增加约束条件"></a>增加约束条件</h2><h1 id="优缺点分析"><a href="#优缺点分析" class="headerlink" title="优缺点分析"></a>优缺点分析</h1><h1 id="三种选择的评估"><a href="#三种选择的评估" class="headerlink" title="三种选择的评估"></a>三种选择的评估</h1><h2 id="确定评价指标"><a href="#确定评价指标" class="headerlink" title="确定评价指标"></a>确定评价指标</h2><p>由相关文献确定为成本指标和收益指标</p>
+<h2 id="建立层次模型"><a href="#建立层次模型" class="headerlink" title="建立层次模型"></a>建立层次模型</h2><h3 id="成本指标"><a href="#成本指标" class="headerlink" title="成本指标"></a>成本指标</h3><p>直接成本（拆除费、建造费、操作费、维护费、管理费）<br>间接成本</p>
+<h3 id="收益指标"><a href="#收益指标" class="headerlink" title="收益指标"></a>收益指标</h3><p>经济效益<br>环境效益<br>社会效益     </p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2022/11/23/55069/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2022/10/15/项目收藏/">
         <h2 class="post-title">项目笔记</h2>
     </a>
