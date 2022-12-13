@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>ROS环境 | Hexo</title>
+        <title>瓜田吃瓜 | Hexo</title>
         <meta name="author" content="John Doe">
         <meta name="description" content="">
         <meta name="keywords" content="">
@@ -80,94 +80,47 @@
                         
 <div class="article">
     <div>
-        <h1>ROS环境 </h1>
+        <h1>瓜田吃瓜 </h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2022/9/24
+            2022/12/13
         </span>
         
         
     </div>
     <div class="content" v-pre>
-        <h1 id="ROS安装"><a href="#ROS安装" class="headerlink" title="ROS安装"></a>ROS安装</h1><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p><a target="_blank" rel="noopener" href="https://robot.czxy.com/car/ros/env/ros18/">参考文章</a><br>1）添加镜像源以及配置密匙   </p>
-<pre><code>sudo sh -c &#39;. /etc/lsb-release &amp;&amp; echo &quot;deb http://mirrors.ustc.edu.cn/ros/ubuntu/ `lsb_release -cs` main&quot; &gt; /etc/apt/sources.list.d/ros-latest.list&#39;  
-sudo apt-key adv --keyserver &#39;hkp://keyserver.ubuntu.com:80&#39; --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654   
-sudo apt-get update  
-</code></pre>
-<p>2)安装ROS<br><code>sudo apt install ros-melodic-desktop-full</code></p>
-<p>3)配置ROS的全局环境变量</p>
-<pre><code>echo &quot;source /opt/ros/melodic/setup.bash&quot; &gt;&gt; ~/.bashrc  
-source ~/.bashrc  
-</code></pre>
-<p>4)安装打包工具依赖   </p>
-<pre><code>sudo apt install python-rosdep python-rosinstall    python-rosinstall-generator python-wstool build-essential   
-</code></pre>
-<p>5)初始化rosdep   </p>
-<pre><code>sudo rosdep init   
-rosdep update   
-</code></pre>
-<p>rosdep可以轻松地为要编译的代码添加系统依赖项，并且帮助我们运行ROS中核心组件    </p>
-<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_52811474/article/details/122801027">参考文章</a><br>Ubuntu20.04下需将melodic改为noetic,依赖包安装发生变化，且不再需要对rosdep进行初始化</p>
-<h2 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43439214/article/details/124780142?spm=1001.2014.3001.5506">参考文章</a><br>ros-melodic-desktop-full安装过慢，连接失败<br>解决方法：更改系统软件下载设置与软件下载源同步   </p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/leida_wt/article/details/115120940?spm=1001.2014.3001.5506">参考文章1</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35813104/article/details/117332670?spm=1001.2014.3001.5506">参考文章2</a><br>rosdep update超时<br>解决办法：修改rosdep源码中下载资源的函数</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Veissia_/article/details/120885274">参考文章</a><br>lock锁正在由进程xxxx持有</p>
-<h1 id="ROS安装Gazebo、Griz等关键组件"><a href="#ROS安装Gazebo、Griz等关键组件" class="headerlink" title="ROS安装Gazebo、Griz等关键组件"></a>ROS安装Gazebo、Griz等关键组件</h1><h2 id="安装Gazebo-连接Gazebo与ROS"><a href="#安装Gazebo-连接Gazebo与ROS" class="headerlink" title="安装Gazebo,连接Gazebo与ROS"></a>安装Gazebo,连接Gazebo与ROS</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43855855/article/details/107443865?spm=1001.2014.3001.5506">参考文章</a><br>1)添加软件源    </p>
-<pre><code>sudo sh -c &#39;echo &quot;deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main&quot; &gt; /etc/apt/sources.list.d/gazebo-stable.list
-wget https://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
-</code></pre>
-<p>2)安装Gazebo   </p>
-<pre><code>sudo apt-get update
-sudo apt-get install gazebo9
-sudo apt-get install libgazebo9-dev
-</code></pre>
-<p>3)安装ROS-Gazebo接口</p>
-<pre><code>sudo apt install ros-melodic-gazebo-ros-pkgs  ros-melodic-gazebo-msgs  ros-melodic-gazebo-plugins  ros-melodic-gazebo-ros-control
-</code></pre>
-<p>4)验证是否连接成功</p>
-<pre><code>roscore
-rosrun gazebo_ros gazebo
-</code></pre>
-<h2 id="安装Griz"><a href="#安装Griz" class="headerlink" title="安装Griz"></a>安装Griz</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/baidu_38485156/article/details/81201079?spm=1001.2014.3001.5506">参考文章</a><br>1)安装</p>
-<pre><code>sudo apt-get install ros-kinetic-rviz
-rosdep install rviz
-rosmake rviz
-</code></pre>
-<p>2）测试</p>
-<pre><code>roscore
-rosrun rviz rviz
-</code></pre>
-<h2 id="安装TF"><a href="#安装TF" class="headerlink" title="安装TF"></a>安装TF</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32761549/article/details/105799663?spm=1001.2014.3001.5506">参考文章</a><br>1)安装</p>
-<pre><code>sudo apt-get install ros-$ROS_DISTRO-turtle-tf2 ros-$ROS_DISTRO-tf2-tools ros-$ROS_DISTRO-tf
-</code></pre>
-<p>2）测试</p>
-<pre><code>roscore
-roslaunch turtle_tf2 turtle_tf2_demo.launch
-rosrun turtlesim turtle_teleop_key
-</code></pre>
-<h1 id="ROS创建工作空间"><a href="#ROS创建工作空间" class="headerlink" title="ROS创建工作空间"></a>ROS创建工作空间</h1><p><a target="_blank" rel="noopener" href="https://robot.czxy.com/car/ros/hello/ws/">参考文章1</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42237429/article/details/90238000">参考文章2</a></p>
-<h2 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h2><pre><code>mkdir -p ~/catkin_ws/src
-cd ~/catkin_ws/src
-#初始化文件夹，即生成CMakeList.txt文件
-catkin_init_workspace
-#编译
-cd ..
-catkin_make
-#设置工作空间的环境变量
-echo &quot;source ~/catkin_ws/devel/setup.bash&quot; &gt;&gt; ~/.bashrc
-source ~/.bashrc
-#查看环境变量
-echo $ROS_PACKAGE_PATH
-#创建功能包
-cd ~/catkin_ws/src/
-catkin_create_pkg learning_communication std_msgs roscpp rospy
-#编译
-cd ..
-catkin_make
-</code></pre>
+        <h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><p>机器学习：利用数据作为经验，让计算机产生模型，并根据产生的模型来对新的情况作出判断</p>
+<p>基本术语的介绍：样本、数据集、属性（描述样本性质）、样本空间（属性作为空间维度）、训练数据、测试数据</p>
+<p>机器学习两大类：监督学习与无监督学习</p>
+<p>泛化能力：学得的模型适用于新样本的能力，具有强泛化能力的模型可较好的用于整个样本空间</p>
+<p>独立同分布：样本空间中全体样本服从同一个未知分布，且各个样本间是独立的</p>
+<p>假设空间：由判断事物的可能取值所形成</p>
+<p>版本空间：存在着一个与训练集一致的假设集合。</p>
+<p>“奥卡姆剃刀”原则：若有多个假设与观察一致，则选择最简单的那个</p>
+<p>归纳偏好：是对应于“选择什么样的模型更好”的假设</p>
+<h1 id="模型评估与选择"><a href="#模型评估与选择" class="headerlink" title="模型评估与选择"></a>模型评估与选择</h1><h2 id="术语介绍"><a href="#术语介绍" class="headerlink" title="术语介绍"></a>术语介绍</h2><p>错误率：分类错误的样本数占样本总数的比例</p>
+<p>精度：1-错误率</p>
+<p>误差：学习器的实际预测输出与样本的真实输出之间的差异</p>
+<p>训练误差（经验误差）：学习器在训练集上的误差</p>
+<p>泛化误差：在新样本上的误差</p>
+<p>过拟合：学习器把训练样本自身的一些特点当作了所有潜在样本都会具有的一般性质，从而导致泛化性能下降。</p>
+<p>欠拟合：学习器不能完全学习训练样本的一般性质</p>
+<p><strong>多项式时间（Polynomial time）</strong>：在计算复杂度理论中，指的是一个问题的计算时间m(n)不大于问题大小n的多项式倍数。任何抽象机器都拥有一复杂度类，此类包括可于此机器以多项式时间求解的问题</p>
+<p><strong>P问题</strong>：指的是能够在多项式的时间里得到解决的问题</p>
+<p><strong>NP问题</strong>：指的是能够在多项式的时间里验证一个解是否正确的问题</p>
+<p>模型评估：通过测试集来测试学习器对新样本的判别能力，将测试误差近似为泛化误差，测试集是从样本真实分布中采样得来，但应尽可能与训练集互斥</p>
+<h2 id="训练集和测试集的划分"><a href="#训练集和测试集的划分" class="headerlink" title="训练集和测试集的划分"></a>训练集和测试集的划分</h2><h3 id="交叉验证法"><a href="#交叉验证法" class="headerlink" title="交叉验证法"></a>交叉验证法</h3><p>先将数据集划分为K个大小相似的互斥子集，每个自己都尽可能保持数据分布独立性，然后每次用k-1个子集的并集作为训练集，剩下一个作为测试集，进行k次训练和测试，将k次结果的均值作为最终结果。</p>
+<h3 id="k折交叉验证"><a href="#k折交叉验证" class="headerlink" title="k折交叉验证"></a>k折交叉验证</h3><p>交叉验证法评估结果的稳定性和保真性很大程度上取决于k的取值，因此交叉验证法又称为“k折交叉验证”，常用值为10，即为10折交叉验证。</p>
+<h3 id="p次k折交叉验证"><a href="#p次k折交叉验证" class="headerlink" title="p次k折交叉验证"></a>p次k折交叉验证</h3><p>k折交叉验证要随机使用不同的划分重复P次，最终结果为P次k折交叉验证结果的均值</p>
+<h3 id="留一法"><a href="#留一法" class="headerlink" title="留一法"></a>留一法</h3><p>数据集中包含m个样本，令K&#x3D;m可得到交叉验证的一个特例。<strong>留一法中被实际评估的模型与期望评估的用数据集训练的模型相似</strong>，评估结果相对准确，但当数据集较大时，计算量太大。</p>
+<h3 id="自助法"><a href="#自助法" class="headerlink" title="自助法"></a>自助法</h3><h3 id="包外估计"><a href="#包外估计" class="headerlink" title="包外估计"></a>包外估计</h3><h2 id="模型评估指标"><a href="#模型评估指标" class="headerlink" title="模型评估指标"></a>模型评估指标</h2><p>1）回归：均方误差</p>
+<p>2）分类：错误率和精度；查准率和查全率</p>
+<p>3）P-R曲线：查全率做横轴，查准率做纵轴</p>
+<p>4）ROC曲线：以真正例率为纵轴，以假证例率为横轴；AUC，即ROC曲线下各部分的面积求和</p>
 
     </div>
     

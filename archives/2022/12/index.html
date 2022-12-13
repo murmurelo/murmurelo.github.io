@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>WordPress搭建指南 | Hexo</title>
+        <title>Archives | Hexo</title>
         <meta name="author" content="John Doe">
         <meta name="description" content="">
         <meta name="keywords" content="">
@@ -78,100 +78,19 @@
                     </div>
                     <div id="main">
                         
-<div class="article">
-    <div>
-        <h1>WordPress搭建指南 </h1>
-    </div>
-    <div class="info">
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/9/24
-        </span>
-        
-        
-    </div>
-    <div class="content" v-pre>
-        <h1 id="基于Centos7搭建WordPress博客"><a href="#基于Centos7搭建WordPress博客" class="headerlink" title="基于Centos7搭建WordPress博客"></a>基于Centos7搭建WordPress博客</h1><h2 id="登陆实例"><a href="#登陆实例" class="headerlink" title="登陆实例"></a>登陆实例</h2><p>1）打开PowerShell</p>
-<p>2）输入如下</p>
-<pre><code>#检查是否安装SSH工具
-ssh -V
-#登陆
-ssh root@123.123.123.123
-</code></pre>
-<h2 id="部署环境"><a href="#部署环境" class="headerlink" title="部署环境"></a>部署环境</h2><h3 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h3><p>1)安装Apache服务及其扩展包</p>
-<pre><code>yum -y install httpd httpd-manual mod_ssl mod_perl mod_auth_mysql
-</code></pre>
-<p>2)启动Apache服务</p>
-<pre><code>systemctl start httpd.service
-</code></pre>
-<p>3)安全组</p>
-<p>4)打开浏览器输入服务器的公网IP，得到测试页面表明Apache服务安装成功</p>
-<h3 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h3><p>1）在服务器上搭建MySQL数据库</p>
-<pre><code>#还不太理解这个命令的含义
-wget http://dev.mysql.com/get/mysql57-community-release-el7-10.noarch.rpm
-#下载相关包
-yum -y install mysql57-community-release-el7-10.noarch.rpm
-yum -y install mysql-community-server --nogpgcheck
-</code></pre>
-<p>2）启动MySQL数据库</p>
-<pre><code>systemctl start mysqld.service
-#查看运行状态
-systemctl status mysqld.service
-#查看初始密码
-grep &quot;password&quot; /var/log/mysqld.log
-#登录数据库
-mysql -uroot -p
-#修改初始密码
-ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;NewPassWord1.&#39;;
-#在MySQL下创建一个存储博客网站内容
-create database wordpress; 
-#查看是否创建成功
-show databases;
-#退出数据库
-exit
-</code></pre>
-<h3 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h3><p>1)安装PHP</p>
-<pre><code>yum -y install php php-mysql gd php-gd gd-devel php-xml php-common php-mbstring php-ldap php-pear php-xmlrpc php-imap
-</code></pre>
-<p>2)创建PHP测试页面</p>
-<pre><code>echo &quot;&lt;?php phpinfo(); ?&gt;&quot; &gt; /var/www/html/phpinfo.php
-</code></pre>
-<p>3)重启Apache服务（可能是因为要刷新网站）</p>
-<pre><code>systemctl restart httpd
-</code></pre>
-<p>4)访问网址http:&#x2F;&#x2F;&lt;ECS公网IP&gt;&#x2F;phpinfo.php</p>
-<h3 id="WordPress"><a href="#WordPress" class="headerlink" title="WordPress"></a>WordPress</h3><p>1)安装WordPress</p>
-<pre><code>yum -y install wordpress
-</code></pre>
-<p>2)修改WordPress配置文件</p>
-<pre><code># 进入/usr/share/wordpress目录。
-cd /usr/share/wordpress
-# 修改路径。
-ln -snf /etc/wordpress/wp-config.php wp-config.php
-# 查看修改后的目录结构。
-ll
-# 在Apache的根目录/var/www/html下，创建一个wp-blog文件夹
-mkdir /var/www/html/wp-blog
-#移动wordpress到Apache目录
-mv * /var/www/html/wp-blog/
-#修改wp-config.php配置文件
-sed -i &#39;s/database_name_here/wordpress/&#39; /var/www/html/wp-blog/wp-config.php
-sed -i &#39;s/username_here/root/&#39; /var/www/html/wp-blog/wp-config.php
-sed -i &#39;s/password_here/NewPassWord1./&#39; /var/www/html/wp-blog/wp-config.php
-#查看配置文件信息是否修改成功
-cat -n /var/www/html/wp-blog/wp-config.php
-</code></pre>
-<p>3）重启Apache服务</p>
-<pre><code>systemctl restart httpd
-</code></pre>
-
-    </div>
+<div id="archives">
     
-    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
-    <div id="comment">
-        <div id="gitalk-container">
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2022/12/13</div>
+            <a href="/2022/12/13/吃瓜笔记/">
+                <h3>瓜田吃瓜</h3>
+            </a>
+            <div class="info">
+                
+                
+            </div>
         </div>
     </div>
     
@@ -203,26 +122,6 @@ cat -n /var/www/html/wp-blog/wp-config.php
         <script src="/js/particlex.js"></script>
         <script src="/js/showimg.js"></script>
         
-<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
-<script>
-    var clientID = "", clientSecret = "";
-    
-    const gitalk = new Gitalk({
-        clientID: clientID,
-        clientSecret: clientSecret,
-        repo: "",
-        owner: "",
-        admin: [""],
-        language: "zh-CN",
-        id: location.pathname,
-        distractionFreeMode: false,
-        
-        proxy: "https://fy135.herokuapp.com/https://github.com/login/oauth/access_token"
-        
-    })
-    gitalk.render("gitalk-container")
-</script>
-
 
     </body>
 </html>
